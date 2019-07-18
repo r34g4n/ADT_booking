@@ -18,7 +18,7 @@ class Patient(models.Model):
     phone_number = models.CharField(max_length=12)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT)
     email = models.EmailField(default=default_email, blank=True)
-    uhid = models.IntegerField(unique=True, blank=True)
+    uhid = models.BigIntegerField(unique=True, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
