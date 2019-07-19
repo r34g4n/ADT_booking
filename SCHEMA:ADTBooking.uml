@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>fb05994a-974e-4b04-acad-886bceed15e5.SCHEMA:ADTBooking</OriginalElement>
+  <nodes>
+    <node x="211.0" y="1245.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_session</node>
+    <node x="1655.9958333333334" y="831.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_mobilebankingpayment</node>
+    <node x="457.87500000000006" y="1084.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group_permissions</node>
+    <node x="699.1458333333334" y="381.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user</node>
+    <node x="1140.3" y="0.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_gender</node>
+    <node x="882.8208333333333" y="1072.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_cancelledsession</node>
+    <node x="968.23125" y="481.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_sessionstatus</node>
+    <node x="805.575" y="140.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_doctor</node>
+    <node x="573.125" y="844.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group</node>
+    <node x="1733.4958333333334" y="493.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_mobilebankingtype</node>
+    <node x="1247.3" y="128.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_patient</node>
+    <node x="959.625" y="744.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session</node>
+    <node x="166.25208333333342" y="1084.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_user_permissions</node>
+    <node x="1195.9958333333334" y="844.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_insurancepayment</node>
+    <node x="0.0" y="1245.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_migrations</node>
+    <node x="90.375" y="481.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_content_type</node>
+    <node x="0.0" y="819.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_permission</node>
+    <node x="211.0" y="769.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_admin_log</node>
+    <node x="1445.9958333333334" y="857.0">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_cashpayment</node>
+    <node x="683.875" y="1084.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_groups</node>
+    <node x="1335.73125" y="468.5">fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_admin_log" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_content_type">
+      <point x="-62.25" y="-114.0" />
+      <point x="273.25" y="724.0" />
+      <point x="231.375" y="724.0" />
+      <point x="47.0" y="51.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_cancelledsession" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session">
+      <point x="60.25" y="-64.0" />
+      <point x="0.0" y="139.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_mobilebankingpayment" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment">
+      <point x="-65.5" y="-51.5" />
+      <point x="1721.4958333333334" y="714.0" />
+      <point x="1491.48125" y="714.0" />
+      <point x="66.75" y="64.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user">
+      <point x="-82.80000000000007" y="-139.0" />
+      <point x="980.325" y="714.0" />
+      <point x="874.6458333333334" y="714.0" />
+      <point x="78.0" y="151.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group_permissions" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_permission">
+      <point x="-51.5" y="-51.5" />
+      <point x="509.37500000000006" y="1042.0" />
+      <point x="143.25" y="1042.0" />
+      <point x="47.75" y="64.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_insurancepayment" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment">
+      <point x="0.0" y="-39.0" />
+      <point x="1310.9958333333334" y="724.0" />
+      <point x="1402.48125" y="724.0" />
+      <point x="-22.25" y="64.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_patient">
+      <point x="41.40000000000009" y="-139.0" />
+      <point x="1104.525" y="704.0" />
+      <point x="1217.9770833333332" y="704.0" />
+      <point x="1217.9770833333332" y="356.0" />
+      <point x="1301.3" y="356.0" />
+      <point x="-54.0" y="101.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_user_permissions" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user">
+      <point x="59.5" y="-51.5" />
+      <point x="344.7520833333334" y="1052.0" />
+      <point x="470.50000000000006" y="1052.0" />
+      <point x="470.50000000000006" y="724.0" />
+      <point x="757.6458333333334" y="724.0" />
+      <point x="-39.0" y="151.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_cashpayment" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment">
+      <point x="0.0" y="-26.0" />
+      <point x="1540.9958333333334" y="724.0" />
+      <point x="1446.98125" y="724.0" />
+      <point x="22.25" y="64.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_patient" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_gender">
+      <point x="0.0" y="-101.5" />
+      <point x="1355.3" y="103.0" />
+      <point x="1252.05" y="103.0" />
+      <point x="37.25" y="39.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_cancelledsession" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user">
+      <point x="-60.25" y="-64.0" />
+      <point x="943.0708333333333" y="1052.0" />
+      <point x="946.3208333333333" y="1052.0" />
+      <point x="946.3208333333333" y="724.0" />
+      <point x="835.6458333333334" y="724.0" />
+      <point x="39.0" y="151.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_admin_log" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user">
+      <point x="62.25" y="-114.0" />
+      <point x="397.75" y="714.0" />
+      <point x="718.6458333333334" y="714.0" />
+      <point x="-78.0" y="151.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_doctor" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_gender">
+      <point x="0.0" y="-89.0" />
+      <point x="913.575" y="103.0" />
+      <point x="1177.55" y="103.0" />
+      <point x="-37.25" y="39.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_doctor">
+      <point x="-41.40000000000009" y="-139.0" />
+      <point x="1021.7249999999999" y="704.0" />
+      <point x="913.575" y="704.0" />
+      <point x="0.0" y="89.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment">
+      <point x="82.79999999999995" y="-139.0" />
+      <point x="1145.925" y="714.0" />
+      <point x="1357.98125" y="714.0" />
+      <point x="-66.75" y="64.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_mobilebankingpayment" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_mobilebankingtype">
+      <point x="65.5" y="-51.5" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.payments_payment" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.users_patient">
+      <point x="0.0" y="-64.0" />
+      <point x="1424.73125" y="356.0" />
+      <point x="1409.3" y="356.0" />
+      <point x="54.0" y="101.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_groups" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group">
+      <point x="-39.5" y="-51.5" />
+      <point x="723.375" y="1052.0" />
+      <point x="690.875" y="1052.0" />
+      <point x="39.25" y="39.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_session" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.bookings_sessionstatus">
+      <point x="0.0" y="-139.0" />
+      <point x="1063.125" y="724.0" />
+      <point x="1071.23125" y="724.0" />
+      <point x="0.0" y="51.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group_permissions" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_group">
+      <point x="51.5" y="-51.5" />
+      <point x="-39.25" y="39.0" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_permission" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.django_content_type">
+      <point x="0.0" y="-64.0" />
+      <point x="95.5" y="724.0" />
+      <point x="137.375" y="724.0" />
+      <point x="-47.0" y="51.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_groups" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user">
+      <point x="39.5" y="-51.5" />
+      <point x="802.375" y="724.0" />
+      <point x="796.6458333333334" y="724.0" />
+      <point x="0.0" y="151.5" />
+    </edge>
+    <edge source="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_user_user_permissions" target="fb05994a-974e-4b04-acad-886bceed15e5.TABLE:ADTBooking.auth_permission">
+      <point x="-59.5" y="-51.5" />
+      <point x="225.75208333333342" y="1052.0" />
+      <point x="47.75" y="1052.0" />
+      <point x="-47.75" y="64.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6817251461988304" x="1049.3404584996883" y="706.9002734767241" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
