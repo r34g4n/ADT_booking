@@ -1,8 +1,8 @@
 {% extends "admin/base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('ADT site admin') }}{% endblock %}
-
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "users/css/main.css" %}" />{% endblock %}
 {% block branding %}
 <h1 id="site-name">
     <a href="{% url 'admin:index' %}">{{ site_header|default:_('ADT administration') }}</a>

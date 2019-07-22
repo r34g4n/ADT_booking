@@ -129,8 +129,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = '/admin'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 index_title = 'ADT Booking'
-SESSION_COOKIE_AGE = 300
+# SESSION_COOKIE_AGE = 300

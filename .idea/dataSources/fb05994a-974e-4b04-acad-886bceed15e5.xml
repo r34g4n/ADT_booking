@@ -1665,24 +1665,24 @@ permission_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="411" parent="339" name="cancelled_by_id">
+    <column id="411" parent="339" name="session_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="412" parent="339" name="session_id">
+    <column id="412" parent="339" name="cancelled_by_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="413" parent="339" name="bookings_cancelledse_cancelled_by_id_8eee2553_fk_auth_user">
-      <ColNames>cancelled_by_id</ColNames>
+    <index id="413" parent="339" name="bookings_cancelledse_session_id_eabca96b_fk_bookings_">
+      <ColNames>session_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="414" parent="339" name="bookings_cancelledse_session_id_eabca96b_fk_bookings_">
-      <ColNames>session_id</ColNames>
+    <index id="414" parent="339" name="bookings_cancelledse_cancelled_by_id_8eee2553_fk_auth_user">
+      <ColNames>cancelled_by_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="415" parent="339" name="PRIMARY">
@@ -1690,16 +1690,16 @@ permission_id</ColNames>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="416" parent="339" name="bookings_cancelledse_cancelled_by_id_8eee2553_fk_auth_user">
-      <ColNames>cancelled_by_id</ColNames>
-      <RefSchemaName>ADTBooking</RefSchemaName>
-      <RefTableName>auth_user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="417" parent="339" name="bookings_cancelledse_session_id_eabca96b_fk_bookings_">
+    <foreign-key id="416" parent="339" name="bookings_cancelledse_session_id_eabca96b_fk_bookings_">
       <ColNames>session_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
       <RefTableName>bookings_session</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="417" parent="339" name="bookings_cancelledse_cancelled_by_id_8eee2553_fk_auth_user">
+      <ColNames>cancelled_by_id</ColNames>
+      <RefSchemaName>ADTBooking</RefSchemaName>
+      <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="418" parent="340" name="id">
@@ -1751,25 +1751,25 @@ permission_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="426" parent="341" name="booked_by_id">
+    <column id="426" parent="341" name="doctor_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="427" parent="341" name="doctor_id">
+    <column id="427" parent="341" name="patient_id">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="428" parent="341" name="patient_id">
+    <column id="428" parent="341" name="payment_id">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="429" parent="341" name="payment_id">
+    <column id="429" parent="341" name="service_id">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1781,34 +1781,34 @@ permission_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="431" parent="341" name="service_id">
+    <column id="431" parent="341" name="booked_by_id">
       <Position>10</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="432" parent="341" name="bookings_session_booked_by_id_1d50a6c3_fk_auth_user_id">
-      <ColNames>booked_by_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="433" parent="341" name="bookings_session_doctor_id_d6582cd7_fk_users_doctor_id">
+    <index id="432" parent="341" name="bookings_session_doctor_id_d6582cd7_fk_users_doctor_id">
       <ColNames>doctor_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="434" parent="341" name="bookings_session_patient_id_ba5e8fcc_fk_users_patient_id">
+    <index id="433" parent="341" name="bookings_session_patient_id_ba5e8fcc_fk_users_patient_id">
       <ColNames>patient_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="435" parent="341" name="bookings_session_payment_id_34c9207c_fk_payments_payment_id">
+    <index id="434" parent="341" name="bookings_session_payment_id_34c9207c_fk_payments_payment_id">
       <ColNames>payment_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="435" parent="341" name="bookings_session_service_id_5442aa90_fk_bookings_service_id">
+      <ColNames>service_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="436" parent="341" name="bookings_session_status_id_76cfed22_fk_bookings_sessionstatus_id">
       <ColNames>status_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="437" parent="341" name="bookings_session_service_id_5442aa90_fk_bookings_service_id">
-      <ColNames>service_id</ColNames>
+    <index id="437" parent="341" name="bookings_session_booked_by_id_1d50a6c3_fk_auth_user_id">
+      <ColNames>booked_by_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="438" parent="341" name="PRIMARY">
@@ -1816,28 +1816,28 @@ permission_id</ColNames>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="439" parent="341" name="bookings_session_booked_by_id_1d50a6c3_fk_auth_user_id">
-      <ColNames>booked_by_id</ColNames>
-      <RefSchemaName>ADTBooking</RefSchemaName>
-      <RefTableName>auth_user</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="440" parent="341" name="bookings_session_doctor_id_d6582cd7_fk_users_doctor_id">
+    <foreign-key id="439" parent="341" name="bookings_session_doctor_id_d6582cd7_fk_users_doctor_id">
       <ColNames>doctor_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
       <RefTableName>users_doctor</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="441" parent="341" name="bookings_session_patient_id_ba5e8fcc_fk_users_patient_id">
+    <foreign-key id="440" parent="341" name="bookings_session_patient_id_ba5e8fcc_fk_users_patient_id">
       <ColNames>patient_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
       <RefTableName>users_patient</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="442" parent="341" name="bookings_session_payment_id_34c9207c_fk_payments_payment_id">
+    <foreign-key id="441" parent="341" name="bookings_session_payment_id_34c9207c_fk_payments_payment_id">
       <ColNames>payment_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
       <RefTableName>payments_payment</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="442" parent="341" name="bookings_session_service_id_5442aa90_fk_bookings_service_id">
+      <ColNames>service_id</ColNames>
+      <RefSchemaName>ADTBooking</RefSchemaName>
+      <RefTableName>bookings_service</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="443" parent="341" name="bookings_session_status_id_76cfed22_fk_bookings_sessionstatus_id">
@@ -1846,10 +1846,10 @@ permission_id</ColNames>
       <RefTableName>bookings_sessionstatus</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="444" parent="341" name="bookings_session_service_id_5442aa90_fk_bookings_service_id">
-      <ColNames>service_id</ColNames>
+    <foreign-key id="444" parent="341" name="bookings_session_booked_by_id_1d50a6c3_fk_auth_user_id">
+      <ColNames>booked_by_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
-      <RefTableName>bookings_service</RefTableName>
+      <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="445" parent="342" name="id">
@@ -1861,13 +1861,13 @@ permission_id</ColNames>
     </column>
     <column id="446" parent="342" name="status">
       <Position>2</Position>
-      <DataType>longtext|0s</DataType>
+      <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="447" parent="342" name="indicator">
       <Position>3</Position>
-      <DataType>longtext|0s</DataType>
+      <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -2080,19 +2080,19 @@ model</ColNames>
       <RefTableName>payments_payment</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="485" parent="349" name="code">
+    <column id="485" parent="349" name="payment_ptr_id">
       <Position>1</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="486" parent="349" name="mobile_banking_type_id">
-      <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="487" parent="349" name="payment_ptr_id">
+    <column id="486" parent="349" name="code">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="487" parent="349" name="mobile_banking_type_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -2107,16 +2107,16 @@ model</ColNames>
       <ColNames>payment_ptr_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="490" parent="349" name="payments_mobilebanki_mobile_banking_type__cce17f69_fk_payments_">
-      <ColNames>mobile_banking_type_id</ColNames>
-      <RefSchemaName>ADTBooking</RefSchemaName>
-      <RefTableName>payments_mobilebankingtype</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="491" parent="349" name="payments_mobilebanki_payment_ptr_id_24f83de8_fk_payments_">
+    <foreign-key id="490" parent="349" name="payments_mobilebanki_payment_ptr_id_24f83de8_fk_payments_">
       <ColNames>payment_ptr_id</ColNames>
       <RefSchemaName>ADTBooking</RefSchemaName>
       <RefTableName>payments_payment</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="491" parent="349" name="payments_mobilebanki_mobile_banking_type__cce17f69_fk_payments_">
+      <ColNames>mobile_banking_type_id</ColNames>
+      <RefSchemaName>ADTBooking</RefSchemaName>
+      <RefTableName>payments_mobilebankingtype</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="492" parent="350" name="id">
@@ -2132,7 +2132,7 @@ model</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="494" parent="350" name="payments_mobilebankingtype_name_054f9884_uniq">
+    <index id="494" parent="350" name="name">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
@@ -2142,9 +2142,9 @@ model</ColNames>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="496" parent="350" name="payments_mobilebankingtype_name_054f9884_uniq">
+    <key id="496" parent="350" name="name">
       <ColNames>name</ColNames>
-      <UnderlyingIndexName>payments_mobilebankingtype_name_054f9884_uniq</UnderlyingIndexName>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
     </key>
     <column id="497" parent="351" name="id">
       <Position>1</Position>
@@ -2214,7 +2214,6 @@ model</ColNames>
     <column id="508" parent="352" name="email">
       <Position>5</Position>
       <DataType>varchar(254)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="509" parent="352" name="gender_id">
@@ -2299,7 +2298,6 @@ model</ColNames>
     <column id="523" parent="354" name="uhid">
       <Position>6</Position>
       <DataType>bigint(20)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="524" parent="354" name="gender_id">

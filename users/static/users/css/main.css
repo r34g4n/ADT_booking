@@ -1,8 +1,9 @@
-{% block extrastyle %}
   :root {
-    --primary-color: #bd3018;
-    --primary-color-faded: #dd361a;
+    --primary-color: #b40000;
+    --primary-color-faded: #dd9a35;
     --secondary-color: #4dffba;
+    --navbar-color: beige;
+    --fallback-color:  #0071fc;
   }
 
   ::selection {
@@ -86,4 +87,60 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/*---------------------------------------------------*/
+body{
+    margin: 1%;
+}
+
+.navbar{
+    border-bottom: 1px solid var(--navbar-color);
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.icon{
+    height: 2em;
+}
+
+.icon-lg{
+    height: 5em;
+}
+#header2{
+    color: var(--primary-color);
+    background-color: unset;
+    padding: 0;
+    margin: 0;
+    font-family: "Arial", "Helvetica";
+    font-stretch: extra-expanded;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.navbar li:hover, .navbar li:active{
+    background-color: var(--fallback-color);
+    border-radius: 10px;
+}
+.jumbotron-fluid{
+    margin: 5px;
+}
+.main-menu{
+    align-content: center;
+    border: 1px solid var(--fallback-color);
+    padding: 5px;
+    margin: 5px;
+}
+.main-menu a{
+    text-decoration: none;
+}
+.main-menu{
+}
+.main-menu:hover{
+    background-color: unset;
+    border-color: var(--primary-color);
+}
+
+.main-menu h1{
+    color: var(--primary-color-faded);
+    text-align: center;
 }

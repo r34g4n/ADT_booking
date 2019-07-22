@@ -1,0 +1,42 @@
+{% extends "bookings/base.html" %}
+{% block content %}
+    {% load static %}
+    <div class="row">
+        <!--Registration-->
+        <div class="col main-menu rounded shadow-sm">
+            <h1>Register Patient</h1>
+            <a href="{% url 'register_patient' %}">
+                <img src="{% static 'users/logo_and_icons/icons/svg/234-plus-3.svg' %}" class="icon">
+            </a>
+        </div>
+        <!--End of Registration-->
+        
+        <!--Booking-->
+        <div class="col main-menu rounded shadow-sm">
+            <a href="#">
+                <h1>Book Session</h1>
+                <img src="{% static 'users/logo_and_icons/icons/svg/354-bookmark.svg' %}" class="icon">
+            </a>
+        </div>
+        <!--End of Booking-->
+        
+        <!--Update Booking-->
+        <div class="col main-menu rounded shadow-sm">
+            <a href="#">
+                <h1>Update Bookings</h1>
+                <img src="{% static 'users/logo_and_icons/icons/svg/018-pencil-1.svg' %}" class="icon">
+            </a>
+        </div>
+        <!--End of Updating Booking-->
+        
+        <!--Reports and Extras-->
+        <div class="col main-menu rounded shadow-sm">
+            <a href="#">
+                <h1>Reports & Extras</h1>
+                <img src="{% static 'users/logo_and_icons/icons/svg/048-folder-5.svg' %}" class="icon">
+            </a>
+        </div>
+        <!--End of Reports and Extras-->
+    
+    </div>
+{% endblock %}

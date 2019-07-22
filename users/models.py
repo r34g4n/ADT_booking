@@ -16,9 +16,9 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=12)
-    gender = models.ForeignKey(Gender, on_delete=models.PROTECT)
+    gender = models.ForeignKey(Gender, on_delete=models.PROTECT, default=3)
     email = models.EmailField(default=default_email, blank=True)
-    uhid = models.BigIntegerField(unique=True, blank=True)
+    uhid = models.BigIntegerField(unique=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -27,9 +27,9 @@ class Patient(models.Model):
 class Doctor(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    phone_number = models.CharField(max_length=12, blank=True)
+    phone_number = models.CharField(max_length=12)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT)
-    email = models.EmailField(default=default_email, blank=True)
+    email = models.EmailField(default=default_email, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

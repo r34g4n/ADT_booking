@@ -32,7 +32,7 @@ class Session(models.Model):
     start_date = models.DateField(default=timezone.now)
     payment = models.ForeignKey('payments.Payment', on_delete=models.CASCADE)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT)
-    booked_by = models.ForeignKey(User, editable=False, on_delete=models.PROTECT)
+    booked_by = models.ForeignKey(User, on_delete=models.PROTECT)
     remarks = models.TextField(max_length=200)
 
 
