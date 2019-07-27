@@ -2,6 +2,8 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
+app_name = 'users'
+
 urlpatterns = [
-    path('patient/', views.register_patient, name='register_patient')
+    path('view-patients/', views.PatientsListView.as_view(), name='view_patients'),
 ]

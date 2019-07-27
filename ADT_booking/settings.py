@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
+
+with open('/etc/config.json') as config_file:
+    config = json.load(config_file)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's&eu+7s!te*+v+f86wf0!a2hbi4dj+i5bma3w)#i&md9s&(t$%'
+SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = config.get('DEBUG_VALUE', False)
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.16.15.213','localhost', 'myweb', '127.0.0.1']
 
 
 # Application definition
@@ -35,6 +40,7 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'simple_history',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware'
 ]
 
 ROOT_URLCONF = 'ADT_booking.urls'
@@ -82,9 +89,9 @@ WSGI_APPLICATION = 'ADT_booking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ADTBooking',
-        'USER': 'django',
-        'PASSWORD': 'djangodb'
+        'NAME': config['DATABASE_ENGINE'],
+        'USER': config['DATABASE_USER'],
+        'PASSWORD': config['DATABASE_PASSWORD']
     }
 }
 
@@ -126,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_production')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 LOGIN_URL = 'login'
@@ -135,3 +142,10 @@ LOGIN_REDIRECT_URL = '/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 index_title = 'ADT Booking'
 # SESSION_COOKIE_AGE = 300
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = config['EMAIL_HOST_PASSWORD']
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

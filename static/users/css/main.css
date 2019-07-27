@@ -63,31 +63,43 @@
 
 /*loader or spinner*/
 
-  .loader{
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
   position: absolute;
-  top: 40%;
-  left: 40%;
-  cursor: wait;
-  border: 10px solid #f3f3f3;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #fff;
   border-radius: 50%;
-  border-top: 1em solid var(--primary-color-faded);
-  border-bottom: 1em solid var(--primary-color-faded);
-  width: 5em;
-  height: 5em;
-  -webkit-animation: spin 1s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 /*---------------------------------------------------*/
 body{
@@ -115,18 +127,4 @@ body{
 .navbar li:hover, .navbar li:active{
     background-color: var(--fallback-color);
     border-radius: 10px;
-}
-.jumbotron-fluid{
-    margin: 5px;
-}
-.main-menu{
-    align-content: center;
-    border: 1px solid var(--fallback-color);
-    padding: 5px;
-    margin: 5px;
-}
-
-.main-menu h1{
-    color: var(--primary-color-faded);
-    text-align: center;
 }

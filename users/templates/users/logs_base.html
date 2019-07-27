@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<html lang="en-us" >
+<head>
+    {% if title %}
+        <title>{{ title }} | ADT Booking System</title>
+    {% else %}
+        <title>ADT Booking System</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'bootstrap bundle/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+
+
+
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" login"
+  data-admin-utc-offset="10800">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">
+                {% if title %}
+                    {{ title }}
+                 {% else %}
+                    ADT Booking
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+    <!-- END Header -->
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <div id="content-main">
+
+        <!--Pop up messages-->
+            {% if msgs %}
+                {% for tag, messages in msgs.items %}
+                   {% for message in messages %}
+                       <div class="alert alert-{{ tag }}">{{ message }}</div>
+                   {% endfor %}
+                {% endfor %}
+            {% endif %}
+        <!--end of popup messages-->
+
+
+            <form method="POST" id="login-form" class="mx-auto p-3">
+                {% csrf_token %}
+                    {% block content %}
+
+                    {% endblock %}
+            </form>
+        </div>
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+<!-- END Container -->
+
+</body>
+</html>

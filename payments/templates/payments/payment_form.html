@@ -1,0 +1,22 @@
+{% extends "users/logs_base.html" %}l>
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div>
+        {{ form|crispy }}
+    </div>
+    <div>
+        {% if patients %}
+            <input list="patients_list">
+            <datalist id="patients_list">
+                {% for patient in patients %}
+                    <option value="{{ patient.id }}">{{ patient }}</option>
+                {% endfor %}
+            </datalist>
+        {% endif %}
+    </div>
+     <div class="submit-row">
+         <input type="submit" value="Submit">&nbsp;
+     </div>
+{% endblock %}
+

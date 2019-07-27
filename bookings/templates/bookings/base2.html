@@ -1,0 +1,36 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap bundle/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap bundle/jquery.modal.min.css' %}">
+    <title>Test</title>
+</head>
+
+<body>
+    <script src="{% static 'bootstrap bundle/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap bundle/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap bundle/jquery.modal.min.js' %}"></script>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+<!-- Create book button -->
+<button class="create-pat btn btn-primary" type="button" name="button">Create Book</button>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $(".create-pat").modalForm({
+        formURL: "{% url 'users:register_patient_modal' %}"
+    });
+
+});
+</script>
+
+</body>

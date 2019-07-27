@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap bundle/bootstrap.min.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'bootstrap bundle/bootstrap.min.css' %}">
 
     <link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap bundle/jquery.modal.min.css' %}">
 
     <!--title-->
 
@@ -25,7 +26,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-light" >
+<nav class="navbar navbar-expand-lg sticky-top navbar-light rounded-sm" >
   <a class="navbar-brand" id="header2" href="{% url 'bookings-home' %}">
       <img src="{% static 'users/logo_and_icons/TNH_logo.png' %}" class="align-left">ADT Booking
   </a>
@@ -38,7 +39,7 @@
         <li class="nav-item dropdown">
         {% if user.is_authenticated %}
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="{% static 'users/logo_and_icons/icons/svg/159-user-8.svg' %}" class="icon">{{ user.username }}
+          <img src="{% static 'users/logo_and_icons/icons/solid/user-circle.svg' %}" class="icon">{{ user.username }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Profile</a>
@@ -51,7 +52,7 @@
 
           <!--Home-->
         <a class="nav-link " href="{% url 'bookings-home' %}">
-            <img src="{% static 'users/logo_and_icons/icons/svg/073-house-3.svg' %}" class="icon" alt="Home">
+            <img src="{% static 'users/logo_and_icons/icons/solid/home.svg' %}" class="icon" alt="Home">
             <span class="sr-only">(current)</span>
         </a>
           <!---->
@@ -60,13 +61,13 @@
 
           <!--Reports-->
         <a class="nav-link" href="#">
-             <img src="{% static 'users/logo_and_icons/icons/svg/146-newspaper.svg' %}" class="icon" alt="Reports">Reports
+             <img src="{% static 'users/logo_and_icons/icons/solid/stream.svg' %}" class="icon" alt="Reports">Reports
         </a>
           <!---->
       </li>
       {% if user.is_staff%}
           <li class="nav-item">
-        <a class="nav-link" href="/admin"><img src="{% static 'users/logo_and_icons/icons/svg/006-settings-5.svg' %}" class="icon">Admin Page</a>
+        <a class="nav-link" href="/admin"><img src="{% static 'users/logo_and_icons/icons/solid/user-shield.svg' %}" class="icon">Admin Page</a>
       </li>
       {% endif %}
     </ul>
@@ -76,8 +77,8 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Name, Tel No. or UHID" aria-label="Search">
 
         <!--Search button and Search(loupe) icon-->
-      <button class="btn btn-sm btn-outline-primary" type="submit">
-          <img src="{% static 'users/logo_and_icons/icons/svg/072-loupe.svg' %}" class="icon">
+      <button class="btn btn-sm btn-outline-light" type="submit">
+          <img src="{% static 'users/logo_and_icons/icons/solid/search.svg' %}" class="icon">
       </button>
         <!--end of icon-->
     </form>
@@ -85,10 +86,11 @@
   </div>
 </nav>
 
-    <div class="container"><br>
+    <div class="row mx-auto"><br>
 
     <!--Messages, if any-->
-    {% if messages %}
+        <div class="col-sm-12 col-md-5 text-center mx-auto my-2">
+            {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
                             <li{% if message.tags %} class="alert alert-{{message.tags }} alert-dismissible fade show"{% endif %} role="alert">
@@ -99,11 +101,12 @@
                             </li>
                         {% endfor %}
                     </ul>
-                {% endif %}
+            {% endif %}
+        </div>
     <!--end of messages-->
 
-    </div> <!-- /container -->
-    <div class="jumbotron-fluid">
+    </div>
+    <div class="container-fluid">
         {% block content %}{% endblock %}
     </div>
    <script>
@@ -115,5 +118,7 @@
     <script src="{% static 'bootstrap bundle/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'bootstrap bundle/popper.min.js' %}"></script>
     <script src="{% static 'bootstrap bundle/bootstrap.min.js' %}"></script>
+    <!--script src="{% static 'bootstrap bundle/jquery.modal.min.js' %}"></script-->
+    <script src="{% static 'bootstrap bundle/jquery-3.4.1.min.js' %}"></script>
 </body>
 </html>

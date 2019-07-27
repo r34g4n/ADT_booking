@@ -97,6 +97,7 @@ body{
 .navbar{
     border-bottom: 1px solid var(--navbar-color);
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    background-color: var(--primary-color-faded);
 }
 
 .icon{
@@ -118,29 +119,25 @@ body{
 }
 
 .navbar li:hover, .navbar li:active{
-    background-color: var(--fallback-color);
+    background-color: whitesmoke;
     border-radius: 10px;
 }
-.jumbotron-fluid{
-    margin: 5px;
+.navbar a{
+    color: var(--primary-color);
 }
-.main-menu{
-    align-content: center;
-    border: 1px solid var(--fallback-color);
-    padding: 5px;
-    margin: 5px;
+.card:hover{
+    border-width: 0 15px;
 }
-.main-menu a{
+.card-header{
+    color: var(--primary-color);
+    font-weight: bolder;
+    font-family: "DejaVu Sans Condensed";
+}
+.card a{
+    color: unset;
     text-decoration: none;
 }
-.main-menu{
-}
-.main-menu:hover{
-    background-color: unset;
-    border-color: var(--primary-color);
-}
 
-.main-menu h1{
-    color: var(--primary-color-faded);
-    text-align: center;
+body{
+    background-color: whitesmoke;
 }

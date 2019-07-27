@@ -1,69 +1,11 @@
-<!DOCTYPE html>
+{% extends "users/logs_base.html" %}l>
 {% load staticfiles %}
 {% load crispy_forms_tags %}
-
-<html lang="en-us" >
-<head>
-    <title>Log in | ADT Booking System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
-
-
-
-
-
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-
-<meta name="robots" content="NONE,NOARCHIVE">
-</head>
-
-
-<body class=" login"
-  data-admin-utc-offset="10800">
-
-<!-- Container -->
-<div id="container">
-
-
-    <!-- Header -->
-    <div id="header">
-        <div id="branding">
-            <h1 id="site-name"><a href="/">ADT Booking</a>
-            </h1>
+{% block content %}
+    <p>You have been successfully logged out!</p>
+        <div class="submit-row">
+            <label>&nbsp;</label><a href="{% url 'login' %}"><span class="button">Log me in!</span></a>
         </div>
-    </div>
-    <!-- END Header -->
+    </p>
+{% endblock %}
 
-
-    <!-- Content -->
-    <div id="content" class="colM">
-
-        <div id="content-main">
-
-            <form method="POST" id="login-form" class="form-row">
-                {% csrf_token %}
-
-                <div class="row justify-content-center">
-                        <!--div class="loader"></div-->
-                    <p>You have been successfully logged out!</p>
-
-
-                    <div class="submit-row">
-                        <label>&nbsp;</label><a href="{% url 'login' %}"><span class="button">Log me in!</span></a>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <br class="clear">
-    </div>
-    <!-- END Content -->
-
-    <div id="footer"></div>
-</div>
-<!-- END Container -->
-
-</body>
-</html>

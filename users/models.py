@@ -1,12 +1,15 @@
 from django.db import models
+from simple_history.models import HistoricalRecords
+from django.conf import settings
 
 # Create your models here.
 
-default_email = 'none@none.none'
+DEFAULT_EMAIL = 'none@none.none'
 
 
 class Gender(models.Model):
     name = models.CharField(max_length=10, unique=True, editable=False)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name
@@ -17,8 +20,11 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=12)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT, default=3)
-    email = models.EmailField(default=default_email, blank=True)
+    email = models.EmailField(default=DEFAULT_EMAIL, blank=True)
     uhid = models.BigIntegerField(unique=True, null=True)
+    history = HistoricalRecords()
+    date_added = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -29,7 +35,10 @@ class Doctor(models.Model):
     last_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=12)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT)
-    email = models.EmailField(default=default_email, null=True)
+    email = models.EmailField(default=DEFAULT_EMAIL, null=True)
+    history = HistoricalRecords()
+    date_added = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
