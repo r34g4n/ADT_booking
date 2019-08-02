@@ -27,7 +27,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-light rounded-sm" >
-  <a class="navbar-brand" id="header2" href="{% url 'bookings-home' %}">
+  <a class="navbar-brand" id="header2" href="{% url 'bookings:bookings-home' %}">
       <img src="{% static 'users/logo_and_icons/TNH_logo.png' %}" class="align-left">ADT Booking
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
       <li class="nav-item active">
 
           <!--Home-->
-        <a class="nav-link " href="{% url 'bookings-home' %}">
+        <a class="nav-link " href="{% url 'bookings:bookings-home' %}">
             <img src="{% static 'users/logo_and_icons/icons/solid/home.svg' %}" class="icon" alt="Home">
             <span class="sr-only">(current)</span>
         </a>

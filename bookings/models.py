@@ -3,6 +3,7 @@ from django.utils import timezone
 from simple_history.models import HistoricalRecords
 
 # Create your models here.
+DEFAULT_DIAGNOSIS = 'none provided'
 
 
 class Service(models.Model):
@@ -30,7 +31,7 @@ class Session(models.Model):
     patient = models.ForeignKey('users.Patient', on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
     doctor = models.ForeignKey('users.Doctor', on_delete=models.PROTECT)
-    doctor_diagnosis = models.TextField(max_length=200)
+    doctor_diagnosis = models.TextField(max_length=200, default=DEFAULT_DIAGNOSIS)
     start_date = models.DateField(default=timezone.now)
     payment = models.ForeignKey('payments.Payment', on_delete=models.CASCADE)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)

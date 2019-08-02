@@ -30,7 +30,7 @@ SECRET_KEY = config['SECRET_KEY']
 # DEBUG = config.get('DEBUG_VALUE', False)
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.15.213','localhost', 'myweb', '127.0.0.1']
+ALLOWED_HOSTS = ['172.16.15.213','localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'bootstrapform',
     'simple_history',
     'django.contrib.admin',
     'django.contrib.auth',

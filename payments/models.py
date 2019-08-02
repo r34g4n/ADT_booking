@@ -38,28 +38,40 @@ class Payment(models.Model):
     history = HistoricalRecords()
 
     def __str__(self):
-        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({str(self.date)}) {self.__class__.__name__}"
+        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({str(self.date)})"
 
 
 class InsurancePayment(Payment):
     company = models.ForeignKey(InsuranceCompany, on_delete=models.PROTECT, default=1)
-    type = models.ForeignKey(PaymentType, on_delete=models.PROTECT, default=3, editable=False)
     history = HistoricalRecords()
 
+    @property
+    def type(self):
+        return PaymentType.objects.get(pk=3)
+
     def __str__(self):
-        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({self.date}, {self.company})"
+        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({self.date}, {self.company}) {self.type}"
 
 
 class CashPayment(Payment):
-    type = models.ForeignKey(PaymentType, on_delete=models.PROTECT, default=2, editable=False)
     history = HistoricalRecords()
+
+    @property
+    def type(self):
+        return PaymentType.objects.get(pk=2)
+
+    def __str__(self):
+        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({str(self.date)}) {self.type}"
 
 
 class MobileBankingPayment(Payment):
     mobile_banking_type = models.ForeignKey(MobileBankingType, on_delete=models.PROTECT)
-    code = models.CharField(max_length=20)
-    type = models.ForeignKey(PaymentType, on_delete=models.PROTECT, default=4, editable=False)
+    code = models.CharField(max_length=20, unique_for_month=True)
     history = HistoricalRecords()
 
+    @property
+    def type(self):
+        return PaymentType.objects.get(pk=4)
+
     def __str__(self):
-        return f"{self.mobile_banking_type} - {DENOM}{self.amount}{DENOM_CLOSER} - {self.date} - {self.code}"
+        return f"{self.mobile_banking_type} - {DENOM}{self.amount}{DENOM_CLOSER} - {self.date} - {self.code} - {self.type}"

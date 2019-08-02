@@ -32,20 +32,18 @@ def register_patient(request):
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             messages.success(request, f"The patient '{first_name} {last_name}' has been successfully registered")
-            msgs = {}
             success = [f"The patient '{first_name} {last_name}' has been successfully registered", ]
 
-            # pop up messages and context
+            # pop-up (messages and context)
 
-            error = [f'Pop up has not been closed by {request.user}']
-            warning = [f"Hello {request.user}, If this is a popup window, Kindly close it!", ]
+            msgs = {}; error = []; warning = []
             msgs['success'] = [msg for msg in success]
             msgs['danger'] = [msg for msg in error]
             msgs['warning'] = [msg for msg in warning]
             context['msgs'] = msgs
             context['title'] = 'Success! close pop-up'
 
-            # end of pop up messages and context
+            # end of pop-up (messages and context)
 
             return render(request, template_name='users/logs_base.html', context=context)
     else:

@@ -1,8 +1,11 @@
-from django.forms import ModelForm, forms
+from django import forms
 from .models import Patient, DEFAULT_EMAIL
 
+# crispy-forms import
+from crispy_forms.layout import Layout, Submit, Row, Column
 
-class PatientRegistrationForm(ModelForm):
+
+class PatientRegistrationForm(forms.ModelForm):
 
     def clean_phone_number(self):
         self.phone_number = self.cleaned_data.get('phone_number', None)
@@ -21,6 +24,7 @@ class PatientRegistrationForm(ModelForm):
                                         "This means, this could be a duplicate.\n"
                                         "Kindly confirm before proceeding")
 
+
     class Meta:
         model = Patient
-        fields = ['first_name', 'last_name', 'phone_number', 'email', 'gender', 'uhid']
+        fields = "__all__"

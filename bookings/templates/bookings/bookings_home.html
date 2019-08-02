@@ -30,9 +30,19 @@
             <h1 class="card-header">Bookings/Sessions</h1>
             <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
             <div class="card-body">
-                <span class="btn btn-outline-success"><img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon">Add</span>
+                <a href="{% url 'bookings:new_session' %}" target="_blank"
+                        onclick="window.open('{% url 'bookings:new_session' %}',
+				            'newwindow',
+					            'width=700,height=700');
+						            return false;">
+                    <button class="btn btn-outline-success">
+				        <img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon">Add
+			        </button>
+                </a>
                 <span class="btn btn-outline-danger"><img src="{% static 'users/logo_and_icons/icons/solid/pen.svg' %}" class="icon" alt="Edit"></span>
-                <span class="btn btn-outline-info"><img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"></span>
+                <a href="{% url 'bookings:view_session_all' %}">
+                    <span class="btn btn-outline-info"><img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"></span>
+                </a>
             </div>
         </div>
         <!--End of Booking-->
