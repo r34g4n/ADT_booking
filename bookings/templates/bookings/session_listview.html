@@ -23,7 +23,11 @@
                 {% for session in sessions %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ session.patient }}</td>
+                        <td>
+                            <a href="{% url 'bookings:session-detail' session.id %}">
+                                {{ session.patient }}
+                            </a>
+                        </td>
                         <td>{{ session.service }}</td>
                         <td>{{ session.doctor }}</td>
                         <td>{{ session.start_date|date:"jS-N-Y"}}</td>

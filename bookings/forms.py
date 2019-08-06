@@ -10,7 +10,7 @@ from payments.models import (
     PaymentType,
 )
 from users.models import Patient, Doctor
-from bookings.models import  Session
+from bookings.models import Session, DEFAULT_DIAGNOSIS
 
 from .fields import ListTextWidget, CustomDateWidget
 
@@ -29,7 +29,7 @@ class NewSessionForm(forms.Form):
                                      required=True
                                      )
     doctor = forms.ModelChoiceField(doctors_list)
-    diagnosis = forms.Field(widget=forms.Textarea, initial="undisclosed diagnosis")
+    diagnosis = forms.Field(widget=forms.Textarea, initial=DEFAULT_DIAGNOSIS)
     start_date = forms.DateField(
         widget=forms.TextInput(
             attrs={'type': 'date'}

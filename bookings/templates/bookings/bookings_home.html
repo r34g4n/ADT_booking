@@ -7,50 +7,58 @@
 
     {% if title == 'Book Patient' %}
 
-
-
-        <div class="col">
-
             <div class="row mx-auto">
+
+
+            <!--step 1-->
                 <div class="col">
                     <form class="main-form" method="post">
-                        <legend><span class="number">{{ step }}</span> Book Patient</legend>
+                        <legend><span class="number">1</span> Book Patient</legend>
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form1|crispy }}
                         <div class="submit-row">
                             <input class="btn button" type="submit" value="+ Add">
                         </div>
                     </form>
 
                 </div>
+            <!--en of step 1-->
+
+            <!--step 2-->
 
                 <div class="col">
-                    <form class="main-form" method="post">
-                        <legend><span class="number">{{ step }}</span> Book Patient</legend>
+                    {% if form2%}
+                        <form class="main-form" method="post">
+                        <legend><span class="number">2</span> Book Patient</legend>
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form2|crispy }}
                         <div class="submit-row">
                             <input class="btn button" type="submit" value="+ Add">
                         </div>
                     </form>
-
+                    {% endif %}
                 </div>
 
+            <!--end of step 2-->
+
+            <!--step 3-->
+
                 <div class="col">
-                    <form class="main-form" method="post">
-                        <legend><span class="number">{{ step }}</span> Book Patient</legend>
+                    {% if form3 %}
+                        <form class="main-form" method="post">
+                        <legend><span class="number">3</span> Book Patient</legend>
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form3|crispy }}
                         <div class="submit-row">
                             <input class="btn button" type="submit" value="+ Add">
                         </div>
                     </form>
+                    {% endif %}
 
                 </div>
+            <!--end of step 3-->
 
             </div>
-
-        </div>
 
 
 
@@ -59,10 +67,13 @@
 
 
 
+
+
+
     <div class="row text-center mx-auto">
 
         <!--Registration-->
-        <div class="card mb-2 p-2 mx-auto">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-4 col-md-5 col-sm-6">
             <h1 class="card-header">Patients</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/user-circle.svg' %}" class="card-img icon-lg" alt="patients">
@@ -91,7 +102,7 @@
         <!--End of Registration-->
         
         <!--Booking-->
-        <div class="card mb-2 p-2 mx-auto">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Bookings</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
@@ -99,7 +110,7 @@
             <div class="card-body">
                 <a href="{% url 'bookings:new_session' %}">
                     <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="Book Patient">
-				        <img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon">New
+				        <!--img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon"-->New
 			        </button>
                 </a>
                 <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Booking">
@@ -107,15 +118,17 @@
                 </span>
                 <a href="{% url 'bookings:view_session_all' %}">
                     <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Bookings">
-                        <img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View">View
+                        <!--img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"-->View
                     </span>
                 </a>
             </div>
         </div>
         <!--End of Booking-->
+
+        <!--div class="w-100 d-none d-md-block"></div-->
         
         <!--Update Booking-->
-        <div class="card mb-2 p-2 mx-auto">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Payments</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/money-check-alt.svg' %}" class="card-img icon-lg" alt="payments">
@@ -132,8 +145,8 @@
         <!--End of Updating Booking-->
         
         <!--Reports and Extras-->
-        <div class="card mb-2 p-2 mx-auto">
-            <h1 class="card-header">Reports & Extras</h1>
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <h1 class="card-header">Extras</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/box-open.svg' %}" class="card-img icon-lg" alt="payments">
             {% endif %}

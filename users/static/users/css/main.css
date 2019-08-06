@@ -1,7 +1,7 @@
   :root {
     --primary-color:#711E0C;
     --primary-color-faded: #dd9a35;
-    --secondary-color: #4dffba;
+    --secondary-color: rgb(255, 192, 203);
     --navbar-color: whitesmoke;
     --fallback-color:  #0071fc;
   }
@@ -16,6 +16,10 @@
     background: var(--secondary-color);
     color:var(--primary-color);
     opacity:1
+  }
+  #user-tools a:focus, #user-tools a:hover{
+    border-bottom-color: var(--navbar-color);
+    color: var(--navbar-color)
   }
   body {
     font-family:
@@ -138,6 +142,7 @@ body{
 }
 
 .main-form legend {
+  text-align: center;
 	font-size: 1.4em;
   margin-bottom: 10px;
 }
@@ -154,4 +159,15 @@ body{
 	text-align: center;
 	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
 	border-radius: 15px 15px 15px 0px;
+}
+.attention-seeking-link{
+  color: var(--primary-color-faded) !important;
+  font-weight: bolder;
+}
+  a.view-link{
+  color: unset;
+}
+
+img.icon-lg.rounded-circle{
+  background-color: var(--fallback-color);
 }

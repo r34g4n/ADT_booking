@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from simple_history.models import HistoricalRecords
 
@@ -39,6 +40,13 @@ class Session(models.Model):
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('bookings:session-detail', kwargs={'pk': self.pk})
+
+    @property
+    def is_past(self):
+        return self.start_date < timezone.now().date()
 
 
 class CancelledSession(models.Model):

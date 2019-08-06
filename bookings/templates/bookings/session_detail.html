@@ -1,0 +1,29 @@
+{% extends 'bookings/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card align-items-center p-2 mx-auto">
+        <h1 id="header2">{{ object.patient.first_name}} {{ object.patient.last_name }}</h1>
+        <img class="icon-lg rounded-circle"
+        {% if object.patient.gender.id == 3 %}
+            src="{% static 'users/logo_and_icons/icons/svg/161-user-3.svg' %}" alt="Female"
+        {% elif object.patient.gender.id == 2%}
+            src="{% static 'users/logo_and_icons/icons/svg/160-user-2.svg' %}" alt="Male"
+        {% else %}
+            src="{% static 'users/logo_and_icons/icons/svg/159-user-1.svg' %}" alt="Other"
+        {% endif %}
+        >
+        <div class="card-body">
+            <div></div>
+        </div>
+        <div>
+            <span class="button btn">
+                <a href="{% url 'bookings:view_session_all' %}">Back</a>
+            </span>
+            {% if not session.is_past %}
+                <span class="btn btn-outline-danger">
+                    <a href="{% url 'bookings:session-edit' object.id %}">Edit</a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
