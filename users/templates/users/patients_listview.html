@@ -10,6 +10,7 @@
             <thead class="float-md-none">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">App_ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone/Tel No.</th>
                     <th scope="col">Email</th>
@@ -25,11 +26,12 @@
                 {% for patient in patients %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
+                        <td>{{ patient.id }}</td>
                         <td>{{ patient.first_name.capitalize }} {{ patient.last_name.capitalize }}</td>
                         <td>{% if patient.phone_number %}{{ patient.phone_number }}{% else %}--{% endif %}</td>
-                        <td>{% if patient.email != 'none@none.none' %}{{ patient.email }}{% else %}--{% endif %}</td>
+                        <td>{% if patient.email == 'none@none.none' or patient.email == '' %}--{% else %}{{ patient.email }}{% endif %}</td>
                         <td>{% if patient.uhid %}{{ patient.uhid }}{% else %}--{% endif %}</td>
-                        <td>{{ patient.gender }}</td>
+                        <td>{{ patient.gender.initial }}</td>
                         <td>{{ patient.date_added|date:"jS-N-Y H:i" }}</td>
                         <td>{{ patient.last_modified|date:"jS-N-Y H:i" }}</td>
                     </tr>
@@ -51,7 +53,7 @@
 
              <!--Start of page navigation buttons-->
 
-                <div class="text-center">
+                <div class="btn-group mb-3" role="group" aria-label="Pages Navigation">
                     {% if is_paginated %}
 
                         {% if page_obj.has_previous %}
@@ -82,12 +84,11 @@
 
 
         <div class="card align-items-center p-2 mx-auto">
-            <div class="card-header">Patient Lists</div>
-            <div class="card-body alert alert-danger">
-                <p>No Patients registered or No search results found for the specified criteria</p>
-                <p>Please adjust criteria or Register one</p>
+            <div class="card-body">
+                <p class="alert alert-danger">No Patients registered or No search results found for the specified criteria</p>
+                <p class="alert alert-info">Please adjust criteria or Register one</p>
             </div>
-            <div class="card-footer">0(Zero) Records</div>
+            <div class="card-footer">0 Records</div>
         </div>
     {% endif %}
 {% endblock %}

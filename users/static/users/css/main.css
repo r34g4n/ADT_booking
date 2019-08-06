@@ -1,8 +1,8 @@
   :root {
-    --primary-color: #b40000;
+    --primary-color:#711E0C;
     --primary-color-faded: #dd9a35;
     --secondary-color: #4dffba;
-    --navbar-color: beige;
+    --navbar-color: whitesmoke;
     --fallback-color:  #0071fc;
   }
 
@@ -20,7 +20,7 @@
   body {
     font-family:
           -apple-system,
-          BlinkMacSystemFont,
+          BlinkMacSystemFont,site
           'Segoe UI',
           Roboto,
           Helvetica,
@@ -45,6 +45,7 @@
   .selector-chosen h2 {
     background: var(--primary-color-faded) !important;
   }
+
   .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: var(--primary-color-faded);
   }
@@ -61,39 +62,9 @@
   }
 
 
-/*loader or spinner*/
-
-  .loader{
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  cursor: wait;
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 1em solid var(--primary-color-faded);
-  border-bottom: 1em solid var(--primary-color-faded);
-  width: 5em;
-  height: 5em;
-  -webkit-animation: spin 1s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/*---------------------------------------------------*/
 body{
     margin: 1%;
 }
-
 .navbar{
     border-bottom: 1px solid var(--navbar-color);
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
@@ -139,5 +110,48 @@ body{
 }
 
 body{
-    background-color: whitesmoke;
+    background-color: var(--navbar-color);
+}
+
+/*************************************************/
+#site-name, #site-name a{
+  color: var(--navbar-color) !important;
+}
+.alert{
+  list-style: none;
+}
+
+.card-header{
+  background-color: var(--primary-color);
+  color: var(--navbar-color);
+}
+
+.main-form{
+  max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.main-form legend {
+	font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.main-form .number {
+	background: var(--primary-color-faded);
+	color: #fff;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
 }

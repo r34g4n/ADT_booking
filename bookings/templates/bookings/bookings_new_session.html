@@ -2,19 +2,16 @@
 {% block content %}
     {% load static %}
     {% load crispy_forms_tags %}
-    <h1 id="header2">New Booking</h1>
+    <h1 id="header2">Booking Info</h1>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <div class="submit-row">
-            <input class="btn button" type="submit" value="+ Add">
+            <input class="btn button" type="submit" value="+ Create">
         </div>
         <div class="d-flex align-items-center">
             <small class="text-muted">Waiting...</small>
         <div class="spinner-grow spinner-border-sm text-secondary ml-auto" role="status" aria-hidden="true"></div>
         </div>
     </form>
-    <datalist>
-        <option></option>
-    </datalist>
 {% endblock %}

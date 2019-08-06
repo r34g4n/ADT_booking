@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,7 +7,7 @@ from django.views.generic import ListView
 
 
 from .models import Session
-from .forms import NewSessionForm
+from .forms import NewSessionForm, SessionModelForm
 
 # Create your views here.
 
@@ -24,12 +24,22 @@ def home(request):
     return render(request,'bookings/bookings_home.html', context)
 
 
+@login_required
 def create_session(request):
-    form = NewSessionForm()
     context = {
-        'form': form
+        'title': 'Book Patient',
+        'step': 1
     }
-    return render(request, 'bookings/bookings_new_session.html' ,context)
+    if request.method == "POST":
+        form = NewSessionForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            messages.success(request, "valid data entered")
+            return render(request, 'bookings/bookings_home.html', context=None)
+    else:
+        form = NewSessionForm()
+        context['form'] = form
+    return render(request, 'bookings/bookings_home.html', context)
 
 
 class SessionListView(LoginRequiredMixin, ListView):

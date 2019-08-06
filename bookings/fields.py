@@ -22,5 +22,7 @@ class ListTextWidget(forms.TextInput):
 class CustomDateWidget(forms.DateTimeInput):
 
     def render(self, name, value, attrs=None, renderer=None):
-        text_html = "<input type='date' name='color' class='dateinput dateInput form-control' required id='id_start_date'>"
+        text_html = (
+            "<input type='date' name='start_date' class='dateinput dateInput form-control' required id='id_date'>"
+        )
         return text_html

@@ -142,7 +142,7 @@ LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 index_title = 'ADT Booking'
-# SESSION_COOKIE_AGE = 300
+SESSION_COOKIE_AGE = 5000
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

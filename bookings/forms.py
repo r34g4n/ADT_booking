@@ -10,7 +10,7 @@ from payments.models import (
     PaymentType,
 )
 from users.models import Patient, Doctor
-from bookings.models import DEFAULT_DIAGNOSIS
+from bookings.models import  Session
 
 from .fields import ListTextWidget, CustomDateWidget
 
@@ -19,25 +19,38 @@ from crispy_forms.layout import Layout, Submit, Row, Column
 
 patients_list = Patient.objects.all()
 services_choices = Service.objects.all()
-payment_types_list = PaymentType.objects.all()
 doctors_list = Doctor.objects.all()
 
 
 class NewSessionForm(forms.Form):
 
-    patient = forms.CharField(required=True, help_text="search <a href='/'>Patient</a>")
+    patient = forms.ModelChoiceField(patients_list)
     service = forms.ModelChoiceField(queryset=Service.objects.all(),
                                      required=True
                                      )
-    doctor = forms.CharField(required=True)
-    diagnosis = forms.Field(widget=forms.Textarea, initial="{{ user.username }}")
-    start_date = forms.DateField()
-    payment_method = forms.CharField(required=True)
+    doctor = forms.ModelChoiceField(doctors_list)
+    diagnosis = forms.Field(widget=forms.Textarea, initial="undisclosed diagnosis")
+    start_date = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+    )
+    payment_method = forms.ModelChoiceField(queryset=PaymentType.objects.all())
 
-    def __init__(self, *args, **kwargs):
-        super(NewSessionForm, self).__init__(*args, **kwargs)
-        self.fields['patient'].widget = ListTextWidget(data_list=patients_list, name='patients-list')
-        self.fields['payment_method'].widget = ListTextWidget(data_list=payment_types_list, name='payment-types-list')
-        self.fields['doctor'].widget = ListTextWidget(data_list=doctors_list, name='doctors-list')
-        self.fields['start_date'].widget = CustomDateWidget()
+    def clean_start_date(self):
+        if self.cleaned_data['start_date'] < timezone.now().date():
+            raise forms.ValidationError("Invalid date. Form cannot be in the past")
+        return self.cleaned_data['start_date']
+
+
+class SessionModelForm(forms.ModelForm):
+
+    def clean_start_date(self):
+        if self.cleaned_data['start_date'] < timezone.now().date():
+            raise forms.ValidationError("Invalid date value. Past dates cannot be accepted")
+        return self.cleaned_data['start_date']
+
+    class Meta:
+        model = Session
+        fields = "__all__"
 

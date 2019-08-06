@@ -36,7 +36,9 @@ def register_patient(request):
 
             # pop-up (messages and context)
 
-            msgs = {}; error = []; warning = []
+            msgs = {}
+            error = []
+            warning = []
             msgs['success'] = [msg for msg in success]
             msgs['danger'] = [msg for msg in error]
             msgs['warning'] = [msg for msg in warning]

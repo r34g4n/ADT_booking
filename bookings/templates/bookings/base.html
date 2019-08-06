@@ -109,9 +109,6 @@
     <div class="container-fluid">
         {% block content %}{% endblock %}
     </div>
-   <script>
-        $('.alert').alert()
-   </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -120,5 +117,20 @@
     <script src="{% static 'bootstrap bundle/bootstrap.min.js' %}"></script>
     <!--script src="{% static 'bootstrap bundle/jquery.modal.min.js' %}"></script-->
     <script src="{% static 'bootstrap bundle/jquery-3.4.1.min.js' %}"></script>
+    <!--script>
+        $('.alert').alert()
+   </script-->
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideDown(40000, function(){
+                $(this).remove();
+            });
+        }, 4000);
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>
