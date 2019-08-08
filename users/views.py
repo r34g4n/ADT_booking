@@ -1,4 +1,5 @@
 # Other imports
+from django.db.models import Q
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -10,14 +11,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 # end of generic views and mixins imports
 
+# dal auto-complete imports
+from dal import autocomplete
+# end of dal auto-complete
+
+# models import
+from .models import Patient
+# end of model imports
 
 # form imports
 from .forms import PatientRegistrationForm
+
 # end of form imports
 
 """end of forms imports"""
 
 from users.models import Patient
+
+
 # Create your views here.
 @login_required
 def register_patient(request):
@@ -60,3 +71,16 @@ class PatientsListView(LoginRequiredMixin, ListView):
     context_object_name = 'patients'
     paginate_by = 10
     ordering = ['-last_modified']
+
+
+class PatientAutocompleteView(autocomplete.Select2QuerySetView):
+
+    def get_queryset(self):
+        qs = []
+        if not self.request.user.is_authenticated:
+            return Patient.objects.none()
+        if self.q:
+            qs = Patient.objects.filter(
+                Q(first_name__icontains=self.q) | Q(last_name__icontains=self.q) | Q(phone_number__icontains=self.q)
+            )
+        return qs

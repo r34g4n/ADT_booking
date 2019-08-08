@@ -13,7 +13,7 @@ class ListTextWidget(forms.TextInput):
         text_html = super(ListTextWidget, self).render(name, value, attrs=attrs)
         data_list = f"<datalist id='list__{self._name}'>"
         for item in self._list:
-            data_list += f"<option value='{item.id}'>{item}</option>"
+            data_list += f"<option value='{item}'>{item.phone_number}</option>"
         data_list += '</datalist>'
 
         return text_html + data_list

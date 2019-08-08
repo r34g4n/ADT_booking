@@ -1,9 +1,11 @@
 {% extends 'bookings/base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
     <div class="card align-items-center p-2 mx-auto">
-        <h1 id="header2">{{ object.patient.first_name}} {{ object.patient.last_name }}</h1>
-        <img class="icon-lg rounded-circle"
+        <a href="#">
+            <div class="card-header text-center bg-unset">
+            <img class="icon-lg rounded-circle"
         {% if object.patient.gender.id == 3 %}
             src="{% static 'users/logo_and_icons/icons/svg/161-user-3.svg' %}" alt="Female"
         {% elif object.patient.gender.id == 2%}
@@ -12,15 +14,79 @@
             src="{% static 'users/logo_and_icons/icons/svg/159-user-1.svg' %}" alt="Other"
         {% endif %}
         >
+        <h3 id="header2" class="header2-fallback-color">{{ object.patient.first_name}} {{ object.patient.last_name }}</h3>
+        </div>
+        </a>
         <div class="card-body">
-            <div></div>
+            <table class="table text-center">
+                <thead class="bg-theme">
+                    <tr>
+                        <th scope="rowgroup" class="font-weight-bold" colspan="3">
+                            <h4>Booking Detail</h4>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <b>Service: </b> {{ object.service }}
+                    </td>
+                    <td>
+                        <b>Date: </b>{{ object.start_date|date:"jS-N-Y" }}
+                    </td>
+                    <td>
+                        <b>Status: </b> <span style="color: {{ object.status.indicator }};">{{ object.status }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Doctor: </b>{{ object.doctor }}
+                    </td>
+                </tr>
+                <tr class="bg-faded-theme text-center">
+                    <td colspan="3"><b>Diagnosis</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <textarea cols="50" rows="5" disabled class="bg-unset border-info rounded">{{ object.doctor_diagnosis }}</textarea>
+                    </td>
+                </tr>
+                <tr class="bg-theme text-center">
+                    <td colspan="3"><b>Payment Info</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Type: </b>{{ object.payment.get_real_instance.type }}
+                    </td>
+                    <td>
+                        <b>Extra-Tags: </b>{{ object.payment.get_real_instance.additional_info }}
+                    </td>
+                    <td>
+                        <b>Amount: </b>{{ object.payment.denom}} {{ object.payment.amount|intcomma }}{{ object.payment.denom_closer }}
+                    </td>
+                </tr>
+                <tr class="bg-faded-theme text-center">
+                    <td colspan="3"><b>Session Logs/History</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Creation Log: </b>{{ object.history.last.history_user }} -- {{ object.date_added }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Last Modified by: </b>{{ object.history.first.history_user }} -- {{ object.last_modified }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div>
             <span class="button btn">
                 <a href="{% url 'bookings:view_session_all' %}">Back</a>
             </span>
             {% if not session.is_past %}
-                <span class="btn btn-outline-danger">
+                <span class="btn btn-outline-secondary">
                     <a href="{% url 'bookings:session-edit' object.id %}">Edit</a>
                 </span>
             {% endif %}

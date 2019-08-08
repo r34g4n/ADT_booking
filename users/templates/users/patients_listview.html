@@ -10,7 +10,6 @@
             <thead class="float-md-none">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">App_ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone/Tel No.</th>
                     <th scope="col">Email</th>
@@ -26,7 +25,6 @@
                 {% for patient in patients %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ patient.id }}</td>
                         <td>{{ patient.first_name.capitalize }} {{ patient.last_name.capitalize }}</td>
                         <td>{% if patient.phone_number %}{{ patient.phone_number }}{% else %}--{% endif %}</td>
                         <td>{% if patient.email == 'none@none.none' or patient.email == '' %}--{% else %}{{ patient.email }}{% endif %}</td>

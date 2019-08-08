@@ -6,8 +6,9 @@
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <div class="submit-row">
-            <input class="btn button" type="submit" value="+ Add">
+        <div class="submit-row text-center">
+            <a href="{% url 'bookings:session-detail' object.id %}"><span class="btn btn-outline-info">Cancel</span></a>
+            <input class="btn button" type="submit" value="Update">
         </div>
         <div class="d-flex align-items-center">
             <small class="text-muted">Waiting...</small>

@@ -13,12 +13,14 @@
             <!--step 1-->
                 <div class="col">
                     <form class="main-form" method="post">
-                        <legend><span class="number">1</span> Book Patient</legend>
+                        <legend><span class="number">1</span> {% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form1|crispy }}
-                        <div class="submit-row">
-                            <input class="btn button" type="submit" value="+ Add">
-                        </div>
+                        {% if not form2 %}
+                            <div class="submit-row text-center">
+                                <input class="btn button" type="submit" value="Next">
+                            </div>
+                        {% endif %}
                     </form>
 
                 </div>
@@ -29,11 +31,12 @@
                 <div class="col">
                     {% if form2%}
                         <form class="main-form" method="post">
-                        <legend><span class="number">2</span> Book Patient</legend>
+                        <legend><span class="number">2</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form2|crispy }}
-                        <div class="submit-row">
-                            <input class="btn button" type="submit" value="+ Add">
+                        <div class="submit-row text-center">
+                            <a href="{% url 'bookings:new_session1' %}"><span class="btn button">Back</span></a>
+                            <input class="btn button" type="submit" value="Next">
                         </div>
                     </form>
                     {% endif %}
@@ -46,7 +49,7 @@
                 <div class="col">
                     {% if form3 %}
                         <form class="main-form" method="post">
-                        <legend><span class="number">3</span> Book Patient</legend>
+                        <legend><span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form3|crispy }}
                         <div class="submit-row">
@@ -108,7 +111,7 @@
                 <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
             {% endif %}
             <div class="card-body">
-                <a href="{% url 'bookings:new_session' %}">
+                <a href="{% url 'bookings:new_session1' %}">
                     <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="Book Patient">
 				        <!--img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon"-->New
 			        </button>
@@ -160,5 +163,10 @@
         <!--End of Reports and Extras-->
     
     </div>
+    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+
+    {{ form1.media }}
+    {{ form2.media }}
+    {{ form3.media }}
 
 {% endblock %}

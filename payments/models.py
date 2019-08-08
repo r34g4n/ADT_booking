@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from simple_history.models import HistoricalRecords
+from polymorphic.models import PolymorphicModel
 
 # Create your models here.
 DENOM = 'KES.'
@@ -31,7 +32,7 @@ class InsuranceCompany(models.Model):
         return self.name
 
 
-class Payment(models.Model):
+class Payment(PolymorphicModel):
     date = models.DateTimeField(default=timezone.now)
     amount = models.DecimalField(max_digits=18, decimal_places=2)
     patient = models.ForeignKey('users.Patient', on_delete=models.PROTECT)
@@ -39,6 +40,14 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({str(self.date)})"
+
+    @property
+    def denom(self):
+        return DENOM
+
+    @property
+    def denom_closer(self):
+        return DENOM_CLOSER
 
 
 class InsurancePayment(Payment):
@@ -49,8 +58,21 @@ class InsurancePayment(Payment):
     def type(self):
         return PaymentType.objects.get(pk=3)
 
-    def __str__(self):
-        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({self.date}, {self.company}) {self.type}"
+    @property
+    def additional_info(self):
+        return self.company
+
+
+class UndefinedPaymentMethod(Payment):
+    history = HistoricalRecords()
+
+    @property
+    def type(self):
+        return PaymentType.objects.get(pk=1)
+
+    @property
+    def additional_info(self):
+        return "Hybrid of payments"
 
 
 class CashPayment(Payment):
@@ -60,18 +82,20 @@ class CashPayment(Payment):
     def type(self):
         return PaymentType.objects.get(pk=2)
 
-    def __str__(self):
-        return f"{DENOM}{str(self.amount)}{DENOM_CLOSER} ({str(self.date)}) {self.type}"
+    @property
+    def additional_info(self):
+        return "..."
 
 
 class MobileBankingPayment(Payment):
-    mobile_banking_type = models.ForeignKey(MobileBankingType, on_delete=models.PROTECT)
-    code = models.CharField(max_length=20, unique_for_month=True)
+    mobile_banking_type = models.ForeignKey(MobileBankingType, on_delete=models.PROTECT, default=1)
+    code = models.CharField(max_length=20, unique=True)
     history = HistoricalRecords()
 
     @property
     def type(self):
         return PaymentType.objects.get(pk=4)
 
-    def __str__(self):
-        return f"{self.mobile_banking_type} - {DENOM}{self.amount}{DENOM_CLOSER} - {self.date} - {self.code} - {self.type}"
+    @property
+    def additional_info(self):
+        return f"{self.mobile_banking_type}({self.code.upper()})"

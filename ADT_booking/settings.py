@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'polymorphic',
     'bootstrapform',
     'simple_history',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,7 +145,7 @@ LOGIN_REDIRECT_URL = '/adtbooking/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 index_title = 'ADT Booking'
-SESSION_COOKIE_AGE = 5000
+SESSION_COOKIE_AGE = 3600
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

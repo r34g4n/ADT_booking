@@ -92,6 +92,9 @@ body{
     font-weight: bolder;
     text-align: center;
 }
+.header2-fallback-color{
+  color: var(--fallback-color) !important;
+}
 
 .navbar li:hover, .navbar li:active{
     background-color: whitesmoke;
@@ -170,4 +173,15 @@ body{
 
 img.icon-lg.rounded-circle{
   background-color: var(--fallback-color);
+}
+
+.bg-faded-theme{
+  background-color: var(--primary-color-faded) !important;
+  color: var(--fallback-color)
+}
+.bg-theme{
+  background-color: var(--primary-color);
+}
+.bg-unset{
+  background-color: unset;
 }

@@ -32,7 +32,7 @@ class Session(models.Model):
     patient = models.ForeignKey('users.Patient', on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
     doctor = models.ForeignKey('users.Doctor', on_delete=models.PROTECT)
-    doctor_diagnosis = models.TextField(max_length=200, default=DEFAULT_DIAGNOSIS)
+    doctor_diagnosis = models.TextField(max_length=300, default=DEFAULT_DIAGNOSIS)
     start_date = models.DateField(default=timezone.now)
     payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)

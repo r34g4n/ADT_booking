@@ -1,5 +1,6 @@
 from django import forms
 from .models import Patient, DEFAULT_EMAIL
+from bookings.fields import ListTextWidget
 
 # crispy-forms import
 from crispy_forms.layout import Layout, Submit, Row, Column
@@ -27,3 +28,6 @@ class PatientRegistrationForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = "__all__"
+        widgets = {
+            'gender': forms.RadioSelect()
+        }

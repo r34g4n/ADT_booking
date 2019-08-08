@@ -32,7 +32,7 @@
                         <td>{{ session.doctor }}</td>
                         <td>{{ session.start_date|date:"jS-N-Y"}}</td>
                         <td style="color: {{ session.status.indicator }};" >
-                            {{ session.status}}
+                            <b><i>{{ session.status }}</i></b>
                         </td>
                     </tr>
                 {% endfor %}
