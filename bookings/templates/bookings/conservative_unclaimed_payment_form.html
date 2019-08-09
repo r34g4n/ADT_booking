@@ -1,0 +1,54 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+            {% if msgs %}
+                {% for tag, messages in msgs.items %}
+                   {% for message in messages %}
+                       <div class="alert alert-{{ tag }}">{{ message }}</div>
+                   {% endfor %}
+                {% endfor %}
+            {% endif %}
+                        {% if conservative_unclaimed_payments %}
+                            <form method="post">
+                                <legend class="text-center font-weight-bold">
+                                    <span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}
+                                    {% if patient %}(for {{ patient }}){% endif %}
+                                </legend>
+                                {% csrf_token %}
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Claim</th>
+                                            <th>Type/Mode</th>
+                                            <th>Extra-Tags</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Posted By</th>
+                                            <th>Last Modified by</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for payment in conservative_unclaimed_payments %}
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" name="payment_id" value="{{ payment.id}}" required>
+                                                </td>
+                                                <td>{{ payment.get_real_instance.type }}</td>
+                                                <td>{{ payment.get_real_instance.additional_info }}</td>
+                                                <td>{{ payment.denom }} {{ payment.amount|intcomma }}{{ payment.denom_closer }}</td>
+                                                <td>{{ payment.date }}</td>
+                                                <td>{{ payment.history.last.history_user }} on {{ payment.history.last.history_date }}</td>
+                                                <td>{{ payment.history.first.history_user }} on {{ payment.history.first.history_date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                            <tr>
+                                                <td colspan="7" class="text-center">
+                                                    <a href="{% url 'bookings:new_session2' %}"><span class="btn btn-outline-secondary">Back</span></a>
+                                                    <input class="btn btn-outline-info" type="submit" value="Claim">
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </form>
+                        {% endif %}
+{% endblock %}

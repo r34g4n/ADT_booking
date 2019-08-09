@@ -10,6 +10,7 @@ from .models import (
 from payments.models import (
     PaymentType,
 )
+from payments.searches import get_conservative_unclaimed_payments
 from users.models import Patient, Doctor
 from bookings.models import Session, DEFAULT_DIAGNOSIS
 
@@ -22,6 +23,7 @@ from crispy_forms.layout import Layout, Submit, Row, Column
 patients_list = Patient.objects.all()
 services_choices = Service.objects.all()
 doctors_list = Doctor.objects.all()
+payment_type_list = PaymentType.objects.all()
 
 PAYMENT_choice = (
     ('', '*---select---*'),
@@ -60,4 +62,23 @@ class NewSessionStep2Form(forms.Form):
     def clean_payment_choice(self):
         if self.cleaned_data['payment_choice'] not in ('1', '2'):
             raise forms.ValidationError("INVALID payment choice. Try again!")
-        return int(self.cleaned_data['payment_choice'])
+        return self.cleaned_data['payment_choice']
+
+
+class NewSessionStep3NewPaymentForm(forms.Form):
+    payment_type = forms.ModelChoiceField(payment_type_list)
+    date_of_payment = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+    )
+    amount = forms.DecimalField(
+        max_digits=18,
+        decimal_places=2,
+        min_value=0.50
+    )
+
+    def clean_date_of_payment(self):
+        if self.cleaned_data['date_of_payment'] > timezone.now():
+            raise forms.ValidationError("INVALID DATE of payment. FUTURE payments CANNOT be created")
+        return self.cleaned_data['date_of_payment']

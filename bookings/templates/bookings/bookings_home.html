@@ -13,7 +13,7 @@
             <!--step 1-->
                 <div class="col">
                     <form class="main-form" method="post">
-                        <legend><span class="number">1</span> {% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                        <legend class="text-center font-weight-bold"><span class="number">1</span> {% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form1|crispy }}
                         {% if not form2 %}
@@ -31,13 +31,15 @@
                 <div class="col">
                     {% if form2%}
                         <form class="main-form" method="post">
-                        <legend><span class="number">2</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                        <legend class="text-center font-weight-bold"><span class="number">2</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form2|crispy }}
-                        <div class="submit-row text-center">
-                            <a href="{% url 'bookings:new_session1' %}"><span class="btn button">Back</span></a>
-                            <input class="btn button" type="submit" value="Next">
-                        </div>
+                        {% if not form3 %}
+                            <div class="submit-row text-center">
+                                <a href="{% url 'bookings:new_session1' %}"><span class="btn button">Back</span></a>
+                                <input class="btn button" type="submit" value="Next">
+                            </div>
+                         {% endif %}
                     </form>
                     {% endif %}
                 </div>
@@ -47,13 +49,15 @@
             <!--step 3-->
 
                 <div class="col">
-                    {% if form3 %}
+                    {% if form3 or form3b %}
                         <form class="main-form" method="post">
-                        <legend><span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                        <legend class="text-center font-weight-bold"><span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
                         {% csrf_token %}
                         {{ form3|crispy }}
-                        <div class="submit-row">
-                            <input class="btn button" type="submit" value="+ Add">
+                        {{ form3b|crispy }}
+                        <div class="submit-row text-center">
+                            <a href="{% url 'bookings:new_session2' %}"><span class="btn button">Back</span></a>
+                            <input class="btn button" type="submit" value="Book">
                         </div>
                     </form>
                     {% endif %}

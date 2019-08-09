@@ -10,8 +10,10 @@ from django.views.generic import ListView, DetailView, UpdateView
 
 from django.urls import reverse_lazy
 from .models import Session
+from payments.models import Payment
 from users.models import Patient
-from .forms import NewSessionStep1Form, NewSessionStep2Form
+from payments.searches import get_conservative_unclaimed_payments
+from .forms import NewSessionStep1Form, NewSessionStep2Form, NewSessionStep3NewPaymentForm
 
 # Create your views here.
 
@@ -77,7 +79,6 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
         })
         """disabling form1"""
         for key in form1.fields.keys():
-            print("foo: ", key)
             form1.fields[key].disabled = True
         """end of disabling form1"""
         """End of form1 info"""
@@ -90,10 +91,7 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # messages.success(request, "Valid data entered")
 
-            """debugging print"""
-            print(form.cleaned_data.items())
             for key, value in form.cleaned_data.items():
                 if key == 'start_date':
                     request.session[key] = str(value)
@@ -104,13 +102,51 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
                 else:
                     request.session[key] = value
 
-            print(request.session.items())
-            """end of debugging print"""
-
-            return render(request, self.template_name, context=None)
+            if request.session.get('payment_choice', None) == '2':
+                return redirect('bookings:new_session_claim_conservative_payment')
+            return redirect('bookings:new_session3')
         self.context['form2'] = form
         return render(request, self.template_name, self.context)
 
+
+class CreateSessionClaimConservativePaymentView(LoginRequiredMixin, View):
+    template_name = 'bookings/conservative_unclaimed_payment_form.html'
+    context = {
+        'title': 'Payment Detail',
+        'heading': 'claim payment'
+    }
+
+    def get(self, request, *args, **kwargs):
+        patient_pk = request.session.get('patient_pk', None)
+        patient = Patient.objects.filter(pk=patient_pk).first()
+        payments = get_conservative_unclaimed_payments(patient_pk).order_by('-date')
+        self.context['conservative_unclaimed_payments'] = payments
+        self.context['patient'] = patient
+        return render(request, self.template_name, self.context)
+
+    def post(self, request, *args, **kwargs):
+        payment = request.POST.get('payment_id', None)
+
+        """debug prints"""
+        print(request.POST.get('payment_id', None))
+        print(payment)
+        """end of debug prints"""
+
+        if request.POST.get('payment_id', None) is None:
+            return redirect('bookings:new_session_claim_conservative_payment')
+
+        payment = Payment.objects.get(pk=int(payment))
+
+        if payment.patient.id != request.session.get('patient_pk', None):
+            return redirect('bookings:new_session_claim_conservative_payment')
+        request.session['payment'] = payment.pk
+        messages.success(request, "Payment has been SUCCESSfully set aside for claiming")
+        messages.success(request, "Almost there")
+        return redirect('bookings:new_session_claim_conservative_payment')
+
+
+class CreateSessionStep3View(LoginRequiredMixin, View):
+    pass
 
 # almost obsolete ------------------------------------------------------------------------------------------------------
 @login_required

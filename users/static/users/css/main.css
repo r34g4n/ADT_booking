@@ -150,7 +150,7 @@ body{
   margin-bottom: 10px;
 }
 
-.main-form .number {
+.main-form .number, .number{
 	background: var(--primary-color-faded);
 	color: #fff;
 	height: 30px;
