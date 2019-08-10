@@ -79,6 +79,6 @@ class NewSessionStep3NewPaymentForm(forms.Form):
     )
 
     def clean_date_of_payment(self):
-        if self.cleaned_data['date_of_payment'] > timezone.now():
+        if self.cleaned_data['date_of_payment'] > timezone.now().date():
             raise forms.ValidationError("INVALID DATE of payment. FUTURE payments CANNOT be created")
         return self.cleaned_data['date_of_payment']

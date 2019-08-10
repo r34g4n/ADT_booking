@@ -7,11 +7,12 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, UpdateView
+from django.utils.dateparse import parse_date
 
 from django.urls import reverse_lazy
-from .models import Session
+from .models import Session, Service
 from payments.models import Payment
-from users.models import Patient
+from users.models import Patient, Doctor
 from payments.searches import get_conservative_unclaimed_payments
 from .forms import NewSessionStep1Form, NewSessionStep2Form, NewSessionStep3NewPaymentForm
 
@@ -65,13 +66,12 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
     template_name = "bookings/bookings_home.html"
     context = {
         'title': 'Book Patient',
-        'heading': 'primary info'
     }
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
 
-        """filling info for form 1"""
+        """filling non-editable info into form 1"""
         patient = Patient.objects.filter(pk=request.session.get('patient_pk')).first()
         print(request.session.items())
         form1 = NewSessionStep1Form(initial={
@@ -90,6 +90,8 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+        print("uncleaned form: ", request.POST)
+        print("form is valid: ", form.is_valid())
         if form.is_valid():
 
             for key, value in form.cleaned_data.items():
@@ -102,6 +104,8 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
                 else:
                     request.session[key] = value
 
+            print("Form: ", form.cleaned_data.items())
+            print("session: ", request.session.items())
             if request.session.get('payment_choice', None) == '2':
                 return redirect('bookings:new_session_claim_conservative_payment')
             return redirect('bookings:new_session3')
@@ -139,14 +143,51 @@ class CreateSessionClaimConservativePaymentView(LoginRequiredMixin, View):
 
         if payment.patient.id != request.session.get('patient_pk', None):
             return redirect('bookings:new_session_claim_conservative_payment')
-        request.session['payment'] = payment.pk
-        messages.success(request, "Payment has been SUCCESSfully set aside for claiming")
-        messages.success(request, "Almost there")
+        else:
+            request.session['payment'] = payment.pk
+            messages.success(request, "Payment has been SUCCESSfully set aside for claiming")
+            messages.success(request, "Almost there")
         return redirect('bookings:new_session_claim_conservative_payment')
 
 
 class CreateSessionStep3View(LoginRequiredMixin, View):
-    pass
+    form_class = NewSessionStep3NewPaymentForm
+    template_name = "bookings/bookings_home.html"
+    context = {
+        'title': 'Book Patient',
+    }
+
+    def get(self, request, *args, **kwargs):
+        form = NewSessionStep3NewPaymentForm
+        patient = Patient.objects.filter(pk=request.session.get('patient_pk')).first()
+        form1 = NewSessionStep1Form(initial={
+            'patient': patient
+        })
+        """disabling form1"""
+        for key in form1.fields.keys():
+            form1.fields[key].disabled = True
+        """end of disabling form1"""
+        """End of form1 info"""
+        form2 = NewSessionStep2Form(initial={
+            'start_date': parse_date(request.session.get('start_date', None)),
+            'service': Service.objects.get(pk=request.session.get('service_pk', None)),
+            'doctor': request.session.get('doctor_pk', None),
+            'diagnosis': request.session.get('diagnosis', None),
+            'payment_choice': request.session.get('payment_choice', None)
+        })
+
+        for key in form2.fields.keys():
+            form2.fields[key].disabled = True
+
+        self.context['form1'] = form1
+        self.context['form2'] = form2
+        self.context['form3'] = self.form_class
+
+        return render(request, self.template_name, self.context)
+
+    def post(self):
+        pass
+
 
 # almost obsolete ------------------------------------------------------------------------------------------------------
 @login_required
@@ -172,6 +213,7 @@ class SessionListView(LoginRequiredMixin, ListView):
     template_name = 'bookings/session_listview.html'
     context_object_name = 'sessions'
     paginate_by = 10
+    ordering = ['-start_date']
 
 
 class SessionDetailView(LoginRequiredMixin, DetailView):

@@ -50,5 +50,13 @@
                                             </tr>
                                     </table>
                                 </form>
+                            {% else %}
+                            <div class="card align-items-center p-2 mx-auto">
+                                <div class="card-body">
+                                    <p class="alert alert-danger">No unclaimed payment for this patient</p>
+                                </div>
+                            <div class="card-footer">0 unclaimed payments</div>
+                            <a href="{% url 'bookings:new_session2' %}"><div class="btn button text-center">Back</div></a>
+                            </div>
                         {% endif %}
 {% endblock %}

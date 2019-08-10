@@ -13,7 +13,7 @@
             <!--step 1-->
                 <div class="col">
                     <form class="main-form" method="post">
-                        <legend class="text-center font-weight-bold"><span class="number">1</span> {% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                        <legend class="text-center font-weight-bold"><span class="number">1</span>Search Patient</legend>
                         {% csrf_token %}
                         {{ form1|crispy }}
                         {% if not form2 %}
@@ -31,7 +31,7 @@
                 <div class="col">
                     {% if form2%}
                         <form class="main-form" method="post">
-                        <legend class="text-center font-weight-bold"><span class="number">2</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                        <legend class="text-center font-weight-bold"><span class="number">2</span>Primary Info</legend>
                         {% csrf_token %}
                         {{ form2|crispy }}
                         {% if not form3 %}
