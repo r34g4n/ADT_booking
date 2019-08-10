@@ -2,18 +2,10 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-            {% if msgs %}
-                {% for tag, messages in msgs.items %}
-                   {% for message in messages %}
-                       <div class="alert alert-{{ tag }}">{{ message }}</div>
-                   {% endfor %}
-                {% endfor %}
-            {% endif %}
                         {% if conservative_unclaimed_payments %}
                             <form method="post">
                                 <legend class="text-center font-weight-bold">
-                                    <span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}
-                                    {% if patient %}(for {{ patient }}){% endif %}
+                                    <span class="number">3</span>Unclaimed Payments{% if patient %}(for {{ patient }}){% endif %}
                                 </legend>
                                 {% csrf_token %}
                                 <table class="table table-hover table-striped">
@@ -55,7 +47,7 @@
                                 <div class="card-body">
                                     <p class="alert alert-danger">No unclaimed payment for this patient</p>
                                 </div>
-                            <div class="card-footer">0 unclaimed payments</div>
+                            <div class="card-footer">0 Unclaimed Payments{% if patient %}(for {{ patient }}){% endif %}</div>
                             <a href="{% url 'bookings:new_session2' %}"><div class="btn button text-center">Back</div></a>
                             </div>
                         {% endif %}

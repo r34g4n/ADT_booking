@@ -7,7 +7,7 @@
 
     {% if title == 'Book Patient' %}
 
-            <div class="row mx-auto">
+            <div class="row mx-auto card">
 
 
             <!--step 1-->
@@ -34,11 +34,13 @@
                         <legend class="text-center font-weight-bold"><span class="number">2</span>Primary Info</legend>
                         {% csrf_token %}
                         {{ form2|crispy }}
-                        {% if not form3 %}
+                        {% if not form3%}
+                            {% if not form3b %}
                             <div class="submit-row text-center">
                                 <a href="{% url 'bookings:new_session1' %}"><span class="btn button">Back</span></a>
                                 <input class="btn button" type="submit" value="Next">
                             </div>
+                            {% endif %}
                          {% endif %}
                     </form>
                     {% endif %}
@@ -49,15 +51,29 @@
             <!--step 3-->
 
                 <div class="col">
-                    {% if form3 or form3b %}
+                    {% if form3 %}
                         <form class="main-form" method="post">
-                        <legend class="text-center font-weight-bold"><span class="number">3</span>{% if heading %}{{ heading.title }}{% else %}Book Patient{% endif %}</legend>
+                            <legend class="text-center font-weight-bold"><span class="number">3a</span>Payment Info</legend>
                         {% csrf_token %}
                         {{ form3|crispy }}
-                        {{ form3b|crispy }}
+                        {% if not form3b %}
                         <div class="submit-row text-center">
                             <a href="{% url 'bookings:new_session2' %}"><span class="btn button">Back</span></a>
-                            <input class="btn button" type="submit" value="Book">
+                            <input class="btn button" type="submit" value="Next">
+                        </div>
+                        {% endif %}
+                    </form>
+                     {% endif %}
+
+
+                    {% if form3b %}
+                    <form class="main-form" method="post">
+                        {% csrf_token %}
+                        <legend class="text-center font-weight-bold"><span class="number">3b</span>Confirm & Book Patient</legend>
+                        {{ form3b|crispy }}
+                        <div class="submit-row text-center">
+                            <a href="{% url 'bookings:new_session3' %}"><span class="btn button">Back</span></a>
+                            <input class="btn button" type="submit" value="Confirm & Book">
                         </div>
                     </form>
                     {% endif %}

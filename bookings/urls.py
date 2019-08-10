@@ -11,6 +11,7 @@ urlpatterns = [
     path('session/new/claim-payment',
          views.CreateSessionClaimConservativePaymentView.as_view(),
          name='new_session_claim_conservative_payment'),
+    path('session/new/3b', views.CreateSessionStep3bView.as_view(), name='new_session3b'),
     path('session/<int:pk>/', views.SessionDetailView.as_view(), name='session-detail'),
     path('session/edit/<int:pk>/', views.SessionUpdate.as_view(), name='session-edit'),
     path('', views.home, name='bookings-home')

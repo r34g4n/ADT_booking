@@ -51,7 +51,9 @@ class NewSessionStep2Form(forms.Form):
 
     service = forms.ModelChoiceField(services_choices)
     doctor = forms.ModelChoiceField(doctors_list)
-    diagnosis = forms.Field(widget=forms.Textarea, initial=DEFAULT_DIAGNOSIS)
+    diagnosis = forms.Field(
+        widget=forms.Textarea, initial=DEFAULT_DIAGNOSIS
+    )
     payment_choice = forms.ChoiceField(choices=PAYMENT_choice, required=True)
 
     def clean_start_date(self):
@@ -80,5 +82,5 @@ class NewSessionStep3NewPaymentForm(forms.Form):
 
     def clean_date_of_payment(self):
         if self.cleaned_data['date_of_payment'] > timezone.now().date():
-            raise forms.ValidationError("INVALID DATE of payment. FUTURE payments CANNOT be created")
+            raise forms.ValidationError("INVALID DATE provided. FUTURE payments CANNOT be created")
         return self.cleaned_data['date_of_payment']

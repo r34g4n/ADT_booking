@@ -5,7 +5,10 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin
+)
 from django.views.generic import ListView, DetailView, UpdateView
 from django.utils.dateparse import parse_date
 
@@ -14,7 +17,16 @@ from .models import Session, Service
 from payments.models import Payment
 from users.models import Patient, Doctor
 from payments.searches import get_conservative_unclaimed_payments
-from .forms import NewSessionStep1Form, NewSessionStep2Form, NewSessionStep3NewPaymentForm
+from payments.forms import (
+    CashOrUndefinedPaymentForm,
+    InsurancePaymentForm,
+    MobilePaymentForm
+)
+from .forms import (
+    NewSessionStep1Form,
+    NewSessionStep2Form,
+    NewSessionStep3NewPaymentForm
+)
 
 # Create your views here.
 
@@ -26,9 +38,10 @@ def redirect_to_home(request):
 @login_required
 def home(request):
     if request.user.is_staff:
-        # messages.info(request, "We've noticed that you have admin rights")
-        # messages.warning(request, "You won't be able to utilize all your rights in this page")
-        messages.info(request, "Kindly, navigate to the Admin page to utilize all your rights")
+        messages.info(
+            request,
+            "Kindly, navigate to the Admin page to utilize all your rights"
+        )
     context = {
         'title': 'Home'
     }
@@ -52,8 +65,6 @@ class CreateSessionStep1View(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # messages.success(request, "Valid data entered")
-
             request.session['patient_pk'] = form.cleaned_data['patient'].pk
             return redirect('bookings:new_session2')
         self.context['form1'] = form
@@ -92,23 +103,26 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
         form = self.form_class(request.POST)
         print("uncleaned form: ", request.POST)
         print("form is valid: ", form.is_valid())
+        request.session['form2'] = {}
         if form.is_valid():
 
             for key, value in form.cleaned_data.items():
                 if key == 'start_date':
-                    request.session[key] = str(value)
+                    request.session["form2"][key] = str(value)
                 elif key == 'service':
-                    request.session['service_pk'] = value.pk
+                    request.session["form2"][key] = value.pk
                 elif key == 'doctor':
-                    request.session['doctor_pk'] = value.pk
+                    request.session["form2"][key] = value.pk
                 else:
-                    request.session[key] = value
+                    request.session["form2"][key] = value
 
             print("Form: ", form.cleaned_data.items())
             print("session: ", request.session.items())
-            if request.session.get('payment_choice', None) == '2':
+            if request.session["form2"].get('payment_choice', None) == '2':
                 return redirect('bookings:new_session_claim_conservative_payment')
-            return redirect('bookings:new_session3')
+            else:
+                return redirect('bookings:new_session3')
+
         self.context['form2'] = form
         return render(request, self.template_name, self.context)
 
@@ -117,7 +131,7 @@ class CreateSessionClaimConservativePaymentView(LoginRequiredMixin, View):
     template_name = 'bookings/conservative_unclaimed_payment_form.html'
     context = {
         'title': 'Payment Detail',
-        'heading': 'claim payment'
+        'heading': 'Unclaimed Payments'
     }
 
     def get(self, request, *args, **kwargs):
@@ -145,9 +159,8 @@ class CreateSessionClaimConservativePaymentView(LoginRequiredMixin, View):
             return redirect('bookings:new_session_claim_conservative_payment')
         else:
             request.session['payment'] = payment.pk
-            messages.success(request, "Payment has been SUCCESSfully set aside for claiming")
-            messages.success(request, "Almost there")
-        return redirect('bookings:new_session_claim_conservative_payment')
+            messages.success(request, "Payment has been successfully set aside for claiming")
+        return redirect('bookings:new_session3b')
 
 
 class CreateSessionStep3View(LoginRequiredMixin, View):
@@ -158,6 +171,17 @@ class CreateSessionStep3View(LoginRequiredMixin, View):
     }
 
     def get(self, request, *args, **kwargs):
+
+        """To fix back button in CreateSessionStep3bView template which redirects here"""
+        """checks if the user had chosen 'Claim posted payment'"""
+
+        if request.session["form2"].get('payment_choice', None) == '2':
+
+            """if True, the user is redirected to CreateSessionStep3bView"""
+
+            return redirect('bookings:new_session_claim_conservative_payment')
+        """end"""
+
         form = NewSessionStep3NewPaymentForm
         patient = Patient.objects.filter(pk=request.session.get('patient_pk')).first()
         form1 = NewSessionStep1Form(initial={
@@ -168,13 +192,7 @@ class CreateSessionStep3View(LoginRequiredMixin, View):
             form1.fields[key].disabled = True
         """end of disabling form1"""
         """End of form1 info"""
-        form2 = NewSessionStep2Form(initial={
-            'start_date': parse_date(request.session.get('start_date', None)),
-            'service': Service.objects.get(pk=request.session.get('service_pk', None)),
-            'doctor': request.session.get('doctor_pk', None),
-            'diagnosis': request.session.get('diagnosis', None),
-            'payment_choice': request.session.get('payment_choice', None)
-        })
+        form2 = NewSessionStep2Form(initial=request.session["form2"])
 
         for key in form2.fields.keys():
             form2.fields[key].disabled = True
@@ -185,7 +203,68 @@ class CreateSessionStep3View(LoginRequiredMixin, View):
 
         return render(request, self.template_name, self.context)
 
-    def post(self):
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        request.session['form3'] = {}
+        if form.is_valid():
+            for key, value in form.cleaned_data.items():
+                if key == 'payment_type':
+                    request.session['form3'][key] = value.pk
+                else:
+                    request.session['form3'][key] = str(value)
+            return redirect('bookings:new_session3b')
+        self.context['form3'] = form
+        return render(request, self.template_name, self.context)
+
+
+class CreateSessionStep3bView(LoginRequiredMixin, View):
+    template_name = "bookings/bookings_home.html"
+    form_class = None
+    context = {
+        'title': 'Book Patient',
+    }
+
+    def get(self, request, *args, **kwargs):
+        if (request.session['form2']['payment_choice'] == '2'
+                or
+                request.session['form3']['payment_type'] in (1, 2)):
+
+            self.form_class = CashOrUndefinedPaymentForm
+        elif request.session['form3']['payment_type'] == 3:
+            self.form_class = InsurancePaymentForm
+        else:
+            self.form_class = MobilePaymentForm
+        form = self.form_class()
+        patient = Patient.objects.filter(pk=request.session.get('patient_pk')).first()
+        form1 = NewSessionStep1Form(initial={
+            'patient': patient
+        })
+        """disabling form1"""
+        for key in form1.fields.keys():
+            form1.fields[key].disabled = True
+        """end of disabling form1"""
+        """End of form1 info"""
+        form2 = NewSessionStep2Form(initial=request.session["form2"])
+
+        for key in form2.fields.keys():
+            form2.fields[key].disabled = True
+
+        self.context['form1'] = form1
+        self.context['form2'] = form2
+        if request.session['form2']['payment_choice'] == '1':
+            form3 = NewSessionStep3NewPaymentForm(
+                initial=request.session['form3']
+            )
+            for key in form3.fields.keys():
+                form3.fields[key].disabled = True
+            self.context['form3'] = form3
+        else:
+            pass
+        self.context['form3b'] = form
+        return render(request, self.template_name, self.context)
+
+
+    def post(self, request, *args, **kwargs):
         pass
 
 
