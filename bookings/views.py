@@ -13,7 +13,12 @@ from django.views.generic import ListView, DetailView, UpdateView
 from django.utils.dateparse import parse_date
 
 from django.urls import reverse_lazy
-from .models import Session, Service
+from .models import (
+    Session,
+    Service,
+    SessionStatus,
+    DEFAULT_SESSION_STATUS_ID
+)
 from payments.models import Payment
 from users.models import Patient, Doctor
 from payments.searches import get_conservative_unclaimed_payments
@@ -28,9 +33,9 @@ from .forms import (
     NewSessionStep3NewPaymentForm
 )
 
+SESSION_DETAIL_URL = 'session/'
+
 # Create your views here.
-
-
 def redirect_to_home(request):
     return redirect('bookings:bookings-home')
 
@@ -135,6 +140,20 @@ class CreateSessionClaimConservativePaymentView(LoginRequiredMixin, View):
     }
 
     def get(self, request, *args, **kwargs):
+
+        """checks if the user had chosen 'Claim posted payment'"""
+
+        try:
+            if request.session.get('form2', None).get('payment_choice', None) == '2':
+                """if True, the user is redirected to CreateSessionStep3bView"""
+
+                pass
+            else:
+                return redirect('bookings:new_session3')
+        except AttributeError:
+            return redirect('bookings:new_session1')
+        """end"""
+
         patient_pk = request.session.get('patient_pk', None)
         patient = Patient.objects.filter(pk=patient_pk).first()
         payments = get_conservative_unclaimed_payments(patient_pk).order_by('-date')
@@ -263,10 +282,62 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
         self.context['form3b'] = form
         return render(request, self.template_name, self.context)
 
-
     def post(self, request, *args, **kwargs):
-        pass
 
+        if (request.session['form2']['payment_choice'] == '2'
+                or
+                request.session['form3']['payment_type'] in (1, 2)):
+
+            form = CashOrUndefinedPaymentForm
+        elif request.session['form3']['payment_type'] == 3:
+            form = InsurancePaymentForm
+        else:
+            form = MobilePaymentForm
+
+        form = form(request.POST)
+        request.session['form3b'] = {}
+        if form.is_valid():
+            for key, value in form.cleaned_data.items():
+                request.session['form3b'][key] = value
+
+        patient_pk = request.session.get('patient_pk', None)
+        pat = Patient.objects.filter(pk=patient_pk).first()
+
+        if request.session['form2']['payment_choice'] == '2':
+
+            pat_pay = request.session.get('payment', None)
+            pat_pay = Payment.objects.filter(pk=pat_pay).first()
+            # print(pat, pat_pay)
+            service = Service.objects.filter(pk=request.session['form2']['service']).first()
+            doctor = Doctor.objects.filter(pk=request.session['form2']['doctor']).first()
+            doctor_diagnosis = request.session['form2']['diagnosis']
+            start_date = parse_date(request.session['form2']['start_date'])
+            payment_id = pat_pay.id
+            status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
+            remarks = request.session['form3b']['remarks']
+
+            booking = Session(
+                patient=pat,
+                service=service,
+                doctor=doctor,
+                doctor_diagnosis=doctor_diagnosis,
+                start_date=start_date,
+                payment=pat_pay,
+                status=status,
+                remarks=remarks
+            )
+
+            try:
+                booking.save()
+                booking_id = booking.id
+                session_detail_url = SESSION_DETAIL_URL + str(booking_id)
+                messages.success(request, "Booking was successful")
+                messages.warning(request, "Booking STATUS was set to a default of 'PENDING")
+                return redirect('bookings:session-detail', booking_id)
+            except Exception:
+                messages.warning(request, "ERROR! Invalid data inputs")
+                messages.warning(request, 'chosen payment has already been claimed. Please try again')
+            return redirect('bookings:new_session2')
 
 # almost obsolete ------------------------------------------------------------------------------------------------------
 @login_required

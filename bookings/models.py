@@ -5,6 +5,7 @@ from simple_history.models import HistoricalRecords
 
 # Create your models here.
 DEFAULT_DIAGNOSIS = 'none provided'
+DEFAULT_SESSION_STATUS_ID = 2
 
 
 class Service(models.Model):
@@ -36,7 +37,7 @@ class Session(models.Model):
     start_date = models.DateField(default=timezone.now)
     payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)
-    remarks = models.TextField(max_length=200)
+    remarks = models.TextField(max_length=200, blank=True)
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

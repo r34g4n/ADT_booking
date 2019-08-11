@@ -29,6 +29,13 @@ class CashOrUndefinedPaymentForm(forms.Form):
         initial=EXTRA_TAGS_FOR_CASH_OR_UNDEFINED_PAYMENTS,
         disabled=True
     )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
+    )
 
 
 class InsurancePaymentForm(forms.Form):
@@ -36,6 +43,13 @@ class InsurancePaymentForm(forms.Form):
     company = forms.ModelChoiceField(
         InsuranceCompany.objects.all(),
         label="Insurance Company"
+    )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
     )
 
 
@@ -48,6 +62,13 @@ class MobilePaymentForm(forms.Form):
         widget=forms.TextInput(attrs={
             'maxlength': '20'
         })
+    )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
     )
 
     def clean_code(self):
