@@ -76,6 +76,6 @@ class MobilePaymentForm(forms.Form):
         mobile_banking_type = self.cleaned_data['mobile_banking_type']
         if exists:
             raise forms.ValidationError(
-                f"An {mobile_banking_type} payment with this code already exits"
+                f"An {mobile_banking_type} payment with this code already exists"
             )
         return self.cleaned_data['code']

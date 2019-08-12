@@ -19,7 +19,15 @@ from .models import (
     SessionStatus,
     DEFAULT_SESSION_STATUS_ID
 )
-from payments.models import Payment
+from payments.models import (
+    Payment,
+    CashPayment,
+    UndefinedPaymentMethod,
+    InsurancePayment,
+    InsuranceCompany,
+    MobileBankingPayment,
+    MobileBankingType,
+)
 from users.models import Patient, Doctor
 from payments.searches import get_conservative_unclaimed_payments
 from payments.forms import (
@@ -298,46 +306,157 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
         request.session['form3b'] = {}
         if form.is_valid():
             for key, value in form.cleaned_data.items():
-                request.session['form3b'][key] = value
+                if key in ('mobile_banking_type', 'company'):
+                    request.session['form3b'][key] = value.pk
+                else:
+                    request.session['form3b'][key] = value
 
-        patient_pk = request.session.get('patient_pk', None)
-        pat = Patient.objects.filter(pk=patient_pk).first()
+            patient_pk = request.session.get('patient_pk', None)
+            pat = Patient.objects.filter(pk=patient_pk).first()
 
-        if request.session['form2']['payment_choice'] == '2':
+            if request.session['form2']['payment_choice'] == '2':
 
-            pat_pay = request.session.get('payment', None)
-            pat_pay = Payment.objects.filter(pk=pat_pay).first()
-            # print(pat, pat_pay)
-            service = Service.objects.filter(pk=request.session['form2']['service']).first()
-            doctor = Doctor.objects.filter(pk=request.session['form2']['doctor']).first()
-            doctor_diagnosis = request.session['form2']['diagnosis']
-            start_date = parse_date(request.session['form2']['start_date'])
-            payment_id = pat_pay.id
-            status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
-            remarks = request.session['form3b']['remarks']
+                pat_pay = request.session.get('payment', None)
+                pat_pay = Payment.objects.filter(pk=pat_pay).first()
+                # print(pat, pat_pay)
+                service = Service.objects.filter(pk=request.session['form2']['service']).first()
+                doctor = Doctor.objects.filter(pk=request.session['form2']['doctor']).first()
+                doctor_diagnosis = request.session['form2']['diagnosis']
+                start_date = parse_date(request.session['form2']['start_date'])
+                payment_id = pat_pay.id
+                status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
+                remarks = request.session['form3b']['remarks']
 
-            booking = Session(
-                patient=pat,
-                service=service,
-                doctor=doctor,
-                doctor_diagnosis=doctor_diagnosis,
-                start_date=start_date,
-                payment=pat_pay,
-                status=status,
-                remarks=remarks
-            )
+                booking = Session(
+                    patient=pat,
+                    service=service,
+                    doctor=doctor,
+                    doctor_diagnosis=doctor_diagnosis,
+                    start_date=start_date,
+                    payment=pat_pay,
+                    status=status,
+                    remarks=remarks
+                )
 
-            try:
-                booking.save()
-                booking_id = booking.id
-                session_detail_url = SESSION_DETAIL_URL + str(booking_id)
-                messages.success(request, "Booking was successful")
-                messages.warning(request, "Booking STATUS was set to a default of 'PENDING")
-                return redirect('bookings:session-detail', booking_id)
-            except Exception:
-                messages.warning(request, "ERROR! Invalid data inputs")
-                messages.warning(request, 'chosen payment has already been claimed. Please try again')
-            return redirect('bookings:new_session2')
+                try:
+                    booking.save()
+                    booking_id = booking.id
+                    session_detail_url = SESSION_DETAIL_URL + str(booking_id)
+                    messages.success(request, "Booking was successful")
+                    messages.warning(
+                        request,
+                        f"Booking STATUS was set to a default of '{SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)}'"
+                    )
+                    return redirect('bookings:session-detail', booking_id)
+                except Exception:
+                    messages.warning(request, "ERROR! Invalid data inputs")
+                    messages.warning(request, 'chosen PAYMENT has already BEEN CLAIMED. Please try again!')
+                return redirect('bookings:new_session2')
+
+            else:
+                patient_pk = request.session.get('patient_pk', None)
+                form2 = request.session['form2']
+                form3 = request.session['form3']
+                form3b = request.session['form3b']
+
+                service = Service.objects.filter(pk=form2['service']).first()
+                doctor = Doctor.objects.filter(pk=form2['doctor']).first()
+                doctor_diagnosis = form2['diagnosis']
+                start_date = parse_date(form2['start_date'])
+                status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
+                remarks = form3b['remarks']
+
+                booking = Session(
+                    patient_id=patient_pk,
+                    service=service,
+                    doctor=doctor,
+                    doctor_diagnosis=doctor_diagnosis,
+                    start_date=start_date,
+                    status=status,
+                    remarks=remarks
+                )
+
+                if form3['payment_type'] in (1, 2):
+                    date = form3['date_of_payment']
+                    amount = form3['amount']
+                    patient_id = patient_pk
+
+                    if form3['payment_type'] == 1:
+                        payment = UndefinedPaymentMethod(
+                            date=date,
+                            amount=amount,
+                            patient_id=patient_id
+                        )
+                    else:
+                        payment = CashPayment(
+                            date=date,
+                            amount=amount,
+                            patient_id=patient_id
+                        )
+
+                elif form3['payment_type'] == 3:
+                    date = form3['date_of_payment']
+                    amount = form3['amount']
+                    patient_id = patient_pk
+                    company_id = form3b['company']
+
+                    payment = InsurancePayment(
+                        date=date,
+                        amount=amount,
+                        patient_id=patient_id,
+                        company_id=company_id
+                    )
+
+                elif form3['payment_type'] ==4:
+                    date = form3['date_of_payment']
+                    amount = form3['amount']
+                    patient_id = patient_pk
+                    mobile_banking_type_id = form3b['mobile_banking_type']
+                    code = form3b['code']
+
+                    payment = MobileBankingPayment(
+                        date=date,
+                        amount=amount,
+                        patient_id=patient_id,
+                        mobile_banking_type_id=mobile_banking_type_id,
+                        code=code
+                    )
+                else:
+                    messages.warning(request, "Invalid payment type provided. Try again")
+                    return redirect('bookings:new_session2')
+
+                payment.save()
+                messages.success(request, "Payment was successfully posted and claimed")
+
+                booking = Session(
+                    patient=pat,
+                    service=service,
+                    doctor=doctor,
+                    doctor_diagnosis=doctor_diagnosis,
+                    start_date=start_date,
+                    payment=payment,
+                    status=status,
+                    remarks=remarks
+                )
+
+                try:
+                    booking.save()
+                    booking_id = booking.id
+                    session_detail_url = SESSION_DETAIL_URL + str(booking_id)
+                    messages.success(request, "Booking was successful")
+                    messages.warning(
+                        request,
+                        f"Booking STATUS was set to a default of '{SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)}'"
+                    )
+                    return redirect('bookings:session-detail', booking_id)
+                except Exception:
+                    messages.warning(request, "ERROR! Invalid data inputs")
+                    messages.warning(request, 'Booking was unsuccessful. Please try again!')
+                return redirect('bookings:new_session2')
+        self.context['form3b'] = form
+        return render(request, self.template_name, self.context)
+
+
 
 # almost obsolete ------------------------------------------------------------------------------------------------------
 @login_required

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payments/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/forms.py" afterDir="false" />
     </list>
@@ -47,26 +46,25 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7838453">
+    <splitter split-orientation="horizontal" split-proportion="0.52189565">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/bookings/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="337" column="33" selection-start-line="337" selection-start-column="33" selection-end-line="337" selection-end-column="33" />
+                <state relative-caret-position="187">
+                  <caret line="455" column="28" selection-start-line="455" selection-start-column="28" selection-end-line="455" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#29#0" expanded="true" />
-                    <element signature="e#9546#10023#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_session">
+            <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_mobilebankingpayment">
               <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-                <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
+                <state projectRestartId="3de6a232-02d4-408f-8553-cc5502b1e878">
                   <filtering>
                     <filter text="" />
                   </filtering>
@@ -77,7 +75,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ADT_booking/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-51">
+                <state relative-caret-position="68">
                   <caret line="30" column="12" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="12" />
                   <folding>
                     <element signature="e#312#321#0" expanded="true" />
@@ -87,22 +85,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/payments/forms.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1224">
-                  <caret line="72" selection-start-line="72" selection-end-line="72" />
-                  <folding>
-                    <element signature="e#0#43#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bookings/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+                <state relative-caret-position="136">
+                  <caret line="8" column="84" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="84" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -129,19 +115,31 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+                <state relative-caret-position="1122">
+                  <caret line="66" selection-start-line="66" selection-end-line="66" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bookings/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="259">
+                  <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+                  <folding>
+                    <element signature="e#0#28#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/bookings/models.py">
+            <entry file="file://$PROJECT_DIR$/payments/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-183">
-                  <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+                <state relative-caret-position="443">
+                  <caret line="78" column="78" selection-start-line="78" selection-start-column="78" selection-end-line="78" selection-end-column="78" />
                   <folding>
-                    <element signature="e#0#28#0" expanded="true" />
+                    <element signature="e#0#43#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -151,7 +149,7 @@
             <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_listview.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="54">
-                  <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="70" />
+                  <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="70" />
                 </state>
               </provider>
             </entry>
@@ -159,8 +157,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bookings/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="850">
-                  <caret line="69" column="48" lean-forward="true" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+                <state relative-caret-position="469">
+                  <caret line="71" column="19" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -171,8 +169,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/payments/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+                <state relative-caret-position="166">
+                  <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -231,6 +229,7 @@
       <find>new_session</find>
       <find>session.form2</find>
       <find>reverse</find>
+      <find>payment_ty</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -291,15 +290,15 @@
         <option value="$PROJECT_DIR$/payments/searches.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" />
-        <option value="$PROJECT_DIR$/payments/models.py" />
         <option value="$PROJECT_DIR$/bookings/templates/bookings/conservative_unclaimed_payment_form.html" />
         <option value="$PROJECT_DIR$/bookings/forms.py" />
         <option value="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" />
         <option value="$PROJECT_DIR$/ADT_booking/settings.py" />
-        <option value="$PROJECT_DIR$/payments/forms.py" />
         <option value="$PROJECT_DIR$/bookings/models.py" />
         <option value="$PROJECT_DIR$/bookings/urls.py" />
+        <option value="$PROJECT_DIR$/payments/models.py" />
         <option value="$PROJECT_DIR$/bookings/views.py" />
+        <option value="$PROJECT_DIR$/payments/forms.py" />
       </list>
     </option>
   </component>
@@ -511,7 +510,8 @@
       <workItem from="1565343287861" duration="10350000" />
       <workItem from="1565358994214" duration="831000" />
       <workItem from="1565430583006" duration="15201000" />
-      <workItem from="1565546624261" duration="11526000" />
+      <workItem from="1565546624261" duration="12445000" />
+      <workItem from="1565602583896" duration="4549000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>
@@ -569,17 +569,24 @@
       <option name="project" value="LOCAL" />
       <updated>1565445776092</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="confirm and book for unclaimed payments done">
+      <created>1565558855073</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1565558855073</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="469244000" />
+    <option name="totallyTimeSpent" value="474712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="29" width="1922" height="1015" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.109391674" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11045891" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -589,7 +596,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50053364" side_tool="true" weight="0.4394111" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.3295583" />
-      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.26047567" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.26047567" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3997735" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -601,7 +608,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32977587" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.28068304" />
+      <window_info anchor="right" id="Database" order="4" weight="0.28068304" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
     </layout>
     <layout-to-restore>
@@ -682,7 +689,8 @@
     <MESSAGE value="conservative unclaimed payments almost done" />
     <MESSAGE value="conservative unclaimed payment done&#10;new payment posting almost done" />
     <MESSAGE value="new payment posting almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="new payment posting almost done" />
+    <MESSAGE value="confirm and book for unclaimed payments done" />
+    <option name="LAST_COMMIT_MESSAGE" value="confirm and book for unclaimed payments done" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/static/users/logo_and_icons/icons/svg/160-user-7.svg" />
@@ -971,19 +979,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_mobilebankingpayment">
+    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_sessionstatus">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="607b750c-a3ed-4994-b1fa-1cda6683344a">
+        <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
           <filtering>
             <filter text="" />
           </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
+    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_session">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
@@ -997,13 +1014,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/forms.py">
+    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="69" column="48" lean-forward="true" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1122">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
@@ -1021,9 +1035,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_listview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bookings/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="84" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ADT_booking/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
+        <state relative-caret-position="68">
           <caret line="30" column="12" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="12" />
           <folding>
             <element signature="e#312#321#0" expanded="true" />
@@ -1031,72 +1062,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html">
+    <entry file="file://$PROJECT_DIR$/bookings/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="259">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bookings/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="71" column="19" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/payments/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        <state relative-caret-position="166">
+          <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/payments/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_sessionstatus">
+    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_mobilebankingpayment">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_listview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-183">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
+        <state projectRestartId="3de6a232-02d4-408f-8553-cc5502b1e878">
           <filtering>
             <filter text="" />
           </filtering>
@@ -1105,11 +1103,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bookings/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="337" column="33" selection-start-line="337" selection-start-column="33" selection-end-line="337" selection-end-column="33" />
+        <state relative-caret-position="187">
+          <caret line="455" column="28" selection-start-line="455" selection-start-column="28" selection-end-line="455" selection-end-column="28" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#9546#10023#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payments/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="78" column="78" selection-start-line="78" selection-start-column="78" selection-end-line="78" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
