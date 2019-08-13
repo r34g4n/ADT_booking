@@ -20,6 +20,7 @@ from .models import (
     DEFAULT_SESSION_STATUS_ID
 )
 from payments.models import (
+    CorporatePayment,
     Payment,
     CashPayment,
     UndefinedPaymentMethod,
@@ -33,7 +34,8 @@ from payments.searches import get_conservative_unclaimed_payments
 from payments.forms import (
     CashOrUndefinedPaymentForm,
     InsurancePaymentForm,
-    MobilePaymentForm
+    MobilePaymentForm,
+    CorporatePaymentForm
 )
 from .forms import (
     NewSessionStep1Form,
@@ -122,9 +124,7 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
             for key, value in form.cleaned_data.items():
                 if key == 'start_date':
                     request.session["form2"][key] = str(value)
-                elif key == 'service':
-                    request.session["form2"][key] = value.pk
-                elif key == 'doctor':
+                elif key in ('service', 'doctor', 'location', 'bed_type', 'booking_type'):
                     request.session["form2"][key] = value.pk
                 else:
                     request.session["form2"][key] = value
@@ -259,6 +259,8 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
             self.form_class = CashOrUndefinedPaymentForm
         elif request.session['form3']['payment_type'] == 3:
             self.form_class = InsurancePaymentForm
+        elif request.session['form3']['payment_type'] == 5:
+            self.form_class = CorporatePaymentForm
         else:
             self.form_class = MobilePaymentForm
         form = self.form_class()
@@ -299,6 +301,8 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
             form = CashOrUndefinedPaymentForm
         elif request.session['form3']['payment_type'] == 3:
             form = InsurancePaymentForm
+        elif request.session['form3']['payment_type'] == 5:
+            form = CorporatePaymentForm
         else:
             form = MobilePaymentForm
 
@@ -306,7 +310,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
         request.session['form3b'] = {}
         if form.is_valid():
             for key, value in form.cleaned_data.items():
-                if key in ('mobile_banking_type', 'company'):
+                if key in ('mobile_banking_type', 'corporation'):
                     request.session['form3b'][key] = value.pk
                 else:
                     request.session['form3b'][key] = value
@@ -323,11 +327,13 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 doctor = Doctor.objects.filter(pk=request.session['form2']['doctor']).first()
                 doctor_diagnosis = request.session['form2']['diagnosis']
                 start_date = parse_date(request.session['form2']['start_date'])
-                payment_id = pat_pay.id
                 status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
                 remarks = request.session['form3b']['remarks']
+                location_id = request.session['form2']['location']
+                bed_type_id = request.session['form2']['bed_type']
+                booking_type_id = request.session['form2']['booking_type']
 
-                booking = Session(
+                """booking = Session(
                     patient=pat,
                     service=service,
                     doctor=doctor,
@@ -335,8 +341,11 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     start_date=start_date,
                     payment=pat_pay,
                     status=status,
+                    location_id=location_id,
+                    bed_type_id=bed_type_id,
+                    booking_type_id=booking_type_id,
                     remarks=remarks
-                )
+                )"""
 
                 try:
                     booking.save()
@@ -365,6 +374,9 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 start_date = parse_date(form2['start_date'])
                 status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
                 remarks = form3b['remarks']
+                location_id = request.session['form2']['location']
+                bed_type_id = request.session['form2']['bed_type']
+                booking_type_id = request.session['form2']['booking_type']
 
                 booking = Session(
                     patient_id=patient_pk,
@@ -373,6 +385,9 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     doctor_diagnosis=doctor_diagnosis,
                     start_date=start_date,
                     status=status,
+                    location_id=location_id,
+                    bed_type_id=bed_type_id,
+                    booking_type_id=booking_type_id,
                     remarks=remarks
                 )
 
@@ -421,6 +436,18 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                         mobile_banking_type_id=mobile_banking_type_id,
                         code=code
                     )
+                elif form3['payment_type'] == 5:
+                    date = form3['date_of_payment']
+                    amount = form3['amount']
+                    patient_id = patient_pk
+                    corporation_id = form3b['corporation']
+
+                    payment = CorporatePayment(
+                        date=date,
+                        amount=amount,
+                        patient_id=patient_id,
+                        corporation_id=corporation_id
+                    )
                 else:
                     messages.warning(request, "Invalid payment type provided. Try again")
                     return redirect('bookings:new_session2')
@@ -428,16 +455,22 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 payment.save()
                 messages.success(request, "Payment was successfully posted and claimed")
 
+                # to be obsolete soon
                 booking = Session(
-                    patient=pat,
+                    patient_id=patient_pk,
                     service=service,
                     doctor=doctor,
                     doctor_diagnosis=doctor_diagnosis,
                     start_date=start_date,
-                    payment=payment,
                     status=status,
-                    remarks=remarks
+                    location_id=location_id,
+                    bed_type_id=bed_type_id,
+                    booking_type_id=booking_type_id,
+                    remarks=remarks,
+                    payment=payment
                 )
+
+                # --------------
 
                 try:
                     booking.save()
@@ -458,24 +491,6 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
 
 
 
-# almost obsolete ------------------------------------------------------------------------------------------------------
-@login_required
-def create_session(request):
-    context = {
-        'title': 'Book Patient'
-    }
-    if request.method == "POST":
-        form = NewSessionStep1Form(request.POST)
-        context['form2'] = form
-        if form.is_valid():
-            messages.success(request, "valid data entered")
-            return render(request, 'bookings/bookings_home.html', context=None)
-    else:
-        form = NewSessionStep1Form()
-        context['form2'] = form
-    return render(request, 'bookings/bookings_home.html', context)
-# ----------------------------------------------------------------------------------------------------------------------
-
 
 class SessionListView(LoginRequiredMixin, ListView):
     model = Session
@@ -491,7 +506,7 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
 
 class SessionUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = Session
-    fields = ['service', 'doctor', 'doctor_diagnosis', 'start_date', 'remarks', 'status']
+    fields = ['service', 'doctor', 'doctor_diagnosis', 'start_date', 'remarks', 'status', 'bed_type', 'location']
     success_message = "Session was successfully updated!"
 
     def test_func(self):

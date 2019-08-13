@@ -6,6 +6,9 @@ from .models import (
     Service,
     SessionStatus,
     CancelledSession,
+    BookingType,
+    BedType,
+    Location
 )
 from payments.models import (
     PaymentType,
@@ -46,10 +49,15 @@ class NewSessionStep2Form(forms.Form):
     start_date = forms.DateField(
         widget=forms.TextInput(
             attrs={'type': 'date'}
-        )
+        ),
+        label="Date of Admission",
+        initial=timezone.now().date()
     )
 
     service = forms.ModelChoiceField(services_choices)
+    location = forms.ModelChoiceField(Location.objects.all())
+    bed_type = forms.ModelChoiceField(BedType.objects.all())
+    booking_type = forms.ModelChoiceField(BookingType.objects.all())
     doctor = forms.ModelChoiceField(doctors_list)
     diagnosis = forms.Field(
         widget=forms.Textarea, initial=DEFAULT_DIAGNOSIS

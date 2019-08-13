@@ -5,7 +5,8 @@ from .models import (
     MobileBankingType,
     MobileBankingPayment,
     InsurancePayment,
-    Payment
+    Payment,
+    Corporation
 )
 from django import forms
 from django.core.exceptions import ValidationError
@@ -29,6 +30,18 @@ class CashOrUndefinedPaymentForm(forms.Form):
         initial=EXTRA_TAGS_FOR_CASH_OR_UNDEFINED_PAYMENTS,
         disabled=True
     )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
+    )
+
+
+class CorporatePaymentForm(forms.Form):
+
+    corporation = forms.ModelChoiceField(Corporation.objects.all())
     remarks = forms.Field(
         widget=forms.Textarea(attrs={
             'rows': '5'

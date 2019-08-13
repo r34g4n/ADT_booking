@@ -14,7 +14,9 @@
             src="{% static 'users/logo_and_icons/icons/svg/159-user-1.svg' %}" alt="Other"
         {% endif %}
         >
-        <h3 id="header2" class="header2-fallback-color">{{ object.patient.first_name}} {{ object.patient.last_name }}</h3>
+        <h3 id="header2" class="header2-fallback-color">
+            {{ object.patient.first_name}} {{ object.patient.last_name }}({{ object.patient.age }}yrs)
+        </h3>
         </div>
         </a>
         <div class="card-body">
@@ -37,6 +39,13 @@
                     <td>
                         <b>Status: </b> <span style="color: {{ object.status.indicator }};">{{ object.status }}</span>
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Booking Type: </b>{{ object.booking_type }}
+                    </td>
+                    <td><b>Allocated Location: </b>{{ object.location }}</td>
+                    <td><b>Bed Type: </b>{{ object.bed_type }}</td>
                 </tr>
                 <tr>
                     <td colspan="3">

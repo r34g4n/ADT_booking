@@ -24,6 +24,14 @@ class MobileBankingType(models.Model):
         return self.name
 
 
+class Corporation(models.Model):
+    name = models.CharField(max_length=45, unique=True)
+    history = HistoricalRecords()
+
+    def __str__(self):
+        return self.name
+
+
 class InsuranceCompany(models.Model):
     name = models.CharField(max_length=20)
     history = HistoricalRecords()
@@ -64,16 +72,16 @@ class InsurancePayment(Payment):
 
 
 class CorporatePayment(Payment):
-    corporation = models.CharField(max_length=50)
+    corporation = models.ForeignKey(Corporation, on_delete=models.PROTECT)
     history = HistoricalRecords()
 
     @property
     def type(self):
-        return PaymentType.objects.get(pk=3)
+        return PaymentType.objects.get(pk=5)
 
     @property
     def additional_info(self):
-        return self.company
+        return self.corporation
 
 class UndefinedPaymentMethod(Payment):
     history = HistoricalRecords()

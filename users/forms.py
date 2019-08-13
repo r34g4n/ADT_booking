@@ -4,6 +4,7 @@ from bookings.fields import ListTextWidget
 
 # crispy-forms import
 from crispy_forms.layout import Layout, Submit, Row, Column
+from django.utils import timezone
 
 
 class PatientRegistrationForm(forms.ModelForm):
@@ -25,9 +26,18 @@ class PatientRegistrationForm(forms.ModelForm):
                                         "This could be a duplicate.\n"
                                         "Kindly confirm before proceeding")
 
+    def clean_date_of_birth(self):
+        if self.cleaned_data['date_of_birth'] > timezone.now().date():
+            raise forms.ValidationError("FUTURE date of birth values are not allowed!")
+        else:
+            return self.cleaned_data['date_of_birth']
+
     class Meta:
         model = Patient
         fields = "__all__"
         widgets = {
-            'gender': forms.RadioSelect()
+            'gender': forms.RadioSelect(),
+            'date_of_birth': forms.DateInput(attrs={
+                'type': 'date'
+            })
         }
