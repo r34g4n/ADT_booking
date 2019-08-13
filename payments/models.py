@@ -63,6 +63,18 @@ class InsurancePayment(Payment):
         return self.company
 
 
+class CorporatePayment(Payment):
+    corporation = models.CharField(max_length=50)
+    history = HistoricalRecords()
+
+    @property
+    def type(self):
+        return PaymentType.objects.get(pk=3)
+
+    @property
+    def additional_info(self):
+        return self.company
+
 class UndefinedPaymentMethod(Payment):
     history = HistoricalRecords()
 

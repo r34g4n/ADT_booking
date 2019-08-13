@@ -27,7 +27,7 @@ class Patient(models.Model):
     phone_number = models.CharField(max_length=12, unique=True)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT, default=3)
     email = models.EmailField(default=DEFAULT_EMAIL)
-    uhid = models.BigIntegerField(unique=True, null=True)
+    uhid = models.BigIntegerField(unique=True, blank=True, null=True)
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

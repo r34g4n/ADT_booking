@@ -1,0 +1,187 @@
+  :root {
+    --primary-color:#711E0C;
+    --primary-color-faded: #dd9a35;
+    --secondary-color: rgb(255, 192, 203);
+    --navbar-color: whitesmoke;
+    --fallback-color:  #0071fc;
+  }
+
+  ::selection {
+    background: var(--secondary-color);
+    color:var(--primary-color);
+    opacity:1
+  }
+
+  ::-moz-selection {
+    background: var(--secondary-color);
+    color:var(--primary-color);
+    opacity:1
+  }
+  #user-tools a:focus, #user-tools a:hover{
+    border-bottom-color: var(--navbar-color);
+    color: var(--navbar-color)
+  }
+  body {
+    font-family:
+          -apple-system,
+          BlinkMacSystemFont,site
+          'Segoe UI',
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol';
+  }
+  #header {
+    background: var(--primary-color);
+  }
+  .module h2, .module caption, .inline-group h2 {
+    background-color: var(--primary-color-faded);
+  }
+  div.breadcrumbs {
+    background: var(--primary-color-faded);
+  }
+  a:link, a:visited {
+    color: var(--primary-color-faded);
+  }
+  .selector-chosen h2 {
+    background: var(--primary-color-faded) !important;
+  }
+
+  .button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--primary-color-faded);
+  }
+  .button.default, input[type=submit].default, .submit-row input.default {
+    background: var(--primary-color);
+  }
+  .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--primary-color-faded);
+    opacity: 0.8;
+  }
+  .button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background: var(--primary-color);
+    opacity: 0.8;
+  }
+
+
+body{
+    margin: 1%;
+}
+.navbar{
+    border-bottom: 1px solid var(--navbar-color);
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    background-color: var(--primary-color-faded);
+}
+
+.icon{
+    height: 2em;
+}
+
+.icon-lg{
+    height: 5em;
+}
+#header2{
+    color: var(--primary-color);
+    background-color: unset;
+    padding: 0;
+    margin: 0;
+    font-family: "Arial", "Helvetica";
+    font-stretch: extra-expanded;
+    font-weight: bolder;
+    text-align: center;
+}
+.header2-fallback-color{
+  color: var(--fallback-color) !important;
+}
+
+.navbar li:hover, .navbar li:active{
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+.navbar a{
+    color: var(--primary-color);
+}
+.card:hover{
+    border-width: 0 15px;
+}
+.card-header{
+    color: var(--primary-color);
+    font-weight: bolder;
+    font-family: "DejaVu Sans Condensed";
+}
+.card a{
+    color: unset;
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--navbar-color);
+}
+
+/*************************************************/
+#site-name, #site-name a{
+  color: var(--navbar-color) !important;
+}
+.alert{
+  list-style: none;
+}
+
+.card-header{
+  background-color: var(--primary-color);
+  color: var(--navbar-color);
+}
+
+.main-form{
+  max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.main-form legend {
+  text-align: center;
+	font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.main-form .number, .number{
+	background: var(--primary-color-faded);
+	color: #fff;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
+}
+.attention-seeking-link{
+  color: var(--primary-color-faded) !important;
+  font-weight: bolder;
+}
+  a.view-link{
+  color: unset;
+}
+
+img.icon-lg.rounded-circle{
+  background-color: var(--fallback-color);
+}
+
+.bg-faded-theme{
+  background-color: var(--primary-color-faded) !important;
+  color: var(--fallback-color)
+}
+.bg-theme{
+  background-color: var(--primary-color);
+}
+.bg-unset{
+  background-color: unset;
+}
