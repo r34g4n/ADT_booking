@@ -1,6 +1,6 @@
   :root {
-    --primary-color: #d8381c;
-    --primary-color-faded: #dd9a35;
+    --primary-color: #9d0000;
+    --primary-color-faded: #ff0000;
     --secondary-color: #4dffba;
     --navbar-color: beige;
     --fallback-color:  #0071fc;
@@ -102,10 +102,6 @@
 
 
 /*---------------------------------------------------*/
-body{
-    margin: 1%;
-}
-
 .navbar{
     border-bottom: 1px solid var(--navbar-color);
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
@@ -119,7 +115,7 @@ body{
     background-color: unset;
     padding: 0;
     margin: 0;
-    font-family: "Arial", "Helvetica";
+    font-family: "Arial", "Helvetica", cursive;
     font-stretch: extra-expanded;
     font-weight: bolder;
 }

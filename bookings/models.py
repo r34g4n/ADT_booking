@@ -1,8 +1,11 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from simple_history.models import HistoricalRecords
 
 # Create your models here.
+DEFAULT_DIAGNOSIS = 'none provided'
+DEFAULT_SESSION_STATUS_ID = 2
 
 
 class Service(models.Model):
@@ -30,14 +33,21 @@ class Session(models.Model):
     patient = models.ForeignKey('users.Patient', on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
     doctor = models.ForeignKey('users.Doctor', on_delete=models.PROTECT)
-    doctor_diagnosis = models.TextField(max_length=200)
+    doctor_diagnosis = models.TextField(max_length=300, default=DEFAULT_DIAGNOSIS)
     start_date = models.DateField(default=timezone.now)
-    payment = models.ForeignKey('payments.Payment', on_delete=models.CASCADE)
+    payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)
-    remarks = models.TextField(max_length=200)
+    remarks = models.TextField(max_length=200, blank=True)
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('bookings:session-detail', kwargs={'pk': self.pk})
+
+    @property
+    def is_past(self):
+        return self.start_date < timezone.now().date()
 
 
 class CancelledSession(models.Model):

@@ -1,0 +1,92 @@
+{% extends 'bookings/base.html' %}
+{% block content %}
+    <h1 id="header2">Bookings Listing</h1>
+
+
+    {% if sessions %}
+
+        <table class="table table-hover table-striped">
+
+            <thead class="float-md-none">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Doctor's Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for session in sessions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'bookings:session-detail' session.id %}">
+                                {{ session.patient }}
+                            </a>
+                        </td>
+                        <td>{{ session.service }}</td>
+                        <td>{{ session.doctor }}</td>
+                        <td>{{ session.start_date|date:"jS-N-Y"}}</td>
+                        <td style="color: {{ session.status.indicator }};" >
+                            <b><i>{{ session.status }}</i></b>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><small>{{ sessions.count }} Records</small></td>
+                    <td></td>
+                    <td><small>Generated on: {% now "jS F Y H:i" %}</small></td>
+                    <td></td>
+                    <td><small>By: {{ user.username }}@adtbooking</small></td>
+                    <td></td>
+            </tfoot>
+        </table>
+
+             <!--Start of page navigation buttons-->
+
+                {% if is_paginated %}
+
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+
+            {% endif %}
+
+
+                <!--End of page navigation buttons-->
+
+    {% else %}
+
+
+        <div class="card align-items-center p-2 mx-auto">
+            <div class="card-body">
+                <p class="alert alert-danger">No session added or No search results found for the specified criteria</p>
+                <p class="alert alert-info">Please adjust criteria or add one</p>
+            </div>
+            <div class="card-footer">0 Records</div>
+        </div>
+    {% endif %}
+{% endblock %}

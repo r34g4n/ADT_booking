@@ -1,7 +1,10 @@
 configparser==3.7.4
 Django==2.2.2
+django-autocomplete-light==3.4.1
+django-bootstrap-form==3.4
 django-bootstrap-modal-forms==1.4.2
 django-crispy-forms==1.7.2
+django-polymorphic==2.1.2
 django-simple-history==2.7.3
 entrypoints==0.3
 flake8==3.7.7

@@ -1,63 +1,192 @@
 {% extends "bookings/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
     {% load static %}
+
+    <!--If booking module is active-->
+
+    {% if title == 'Book Patient' %}
+
+            <div class="row mx-auto card">
+
+
+            <!--step 1-->
+                <div class="col">
+                    <form class="main-form" method="post">
+                        <legend class="text-center font-weight-bold"><span class="number">1</span>Search Patient</legend>
+                        {% csrf_token %}
+                        {{ form1|crispy }}
+                        {% if not form2 %}
+                            <div class="submit-row text-center">
+                                <input class="btn button" type="submit" value="Next">
+                            </div>
+                        {% endif %}
+                    </form>
+
+                </div>
+            <!--en of step 1-->
+
+            <!--step 2-->
+
+                <div class="col">
+                    {% if form2%}
+                        <form class="main-form" method="post">
+                        <legend class="text-center font-weight-bold"><span class="number">2</span>Primary Info</legend>
+                        {% csrf_token %}
+                        {{ form2|crispy }}
+                        {% if not form3%}
+                            {% if not form3b %}
+                            <div class="submit-row text-center">
+                                <a href="{% url 'bookings:new_session1' %}"><span class="btn button">Back</span></a>
+                                <input class="btn button" type="submit" value="Next">
+                            </div>
+                            {% endif %}
+                         {% endif %}
+                    </form>
+                    {% endif %}
+                </div>
+
+            <!--end of step 2-->
+
+            <!--step 3-->
+
+                <div class="col">
+                    {% if form3 %}
+                        <form class="main-form" method="post">
+                            <legend class="text-center font-weight-bold"><span class="number">3a</span>Payment Info</legend>
+                        {% csrf_token %}
+                        {{ form3|crispy }}
+                        {% if not form3b %}
+                        <div class="submit-row text-center">
+                            <a href="{% url 'bookings:new_session2' %}"><span class="btn button">Back</span></a>
+                            <input class="btn button" type="submit" value="Next">
+                        </div>
+                        {% endif %}
+                    </form>
+                     {% endif %}
+
+
+                    {% if form3b %}
+                    <form class="main-form" method="post">
+                        {% csrf_token %}
+                        <legend class="text-center font-weight-bold"><span class="number">3b</span>Confirm & Book Patient</legend>
+                        {{ form3b|crispy }}
+                        <div class="submit-row text-center">
+                            <a href="{% url 'bookings:new_session3' %}"><span class="btn button">Back</span></a>
+                            <input class="btn button" type="submit" value="Confirm & Book">
+                        </div>
+                    </form>
+                    {% endif %}
+
+                </div>
+            <!--end of step 3-->
+
+            </div>
+
+
+
+    {% endif %}
+
+
+
+
+
+
+
     <div class="row text-center mx-auto">
+
         <!--Registration-->
-        <div class="card mb-2 p-2 m-1">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-4 col-md-5 col-sm-6">
             <h1 class="card-header">Patients</h1>
-            <img src="{% static 'users/logo_and_icons/icons/solid/user-circle.svg' %}" class="card-img icon-lg" alt="patients">
+            {% if title == 'Home' %}
+                <img src="{% static 'users/logo_and_icons/icons/solid/user-circle.svg' %}" class="card-img icon-lg" alt="patients">
+            {% endif %}
             <div class="card-body">
                 <a href="{% url 'register-patient' %}" target="_blank"
                             onclick="window.open('{% url 'register-patient' %}',
                                 'newwindow',
                                 'width=700,height=700');
                                     return false;">
-                    <button class="pat-reg btn btn-outline-success submit-btn" type="button" name="button">
+                    <button class="pat-reg btn btn-outline-success submit-btn" type="button" name="button" data-toggle="tooltip" data-placement="bottom" title="Add Patient">
                         <img src="{% static 'users/logo_and_icons/icons/solid/user-plus.svg' %}" class="icon" alt="Add Patient">
                     </button>
                 </a>
 
-                <span class="btn btn-outline-danger"><img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit"></span>
+                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Patient">
+                    <img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit">
+                </span>
                 <a href="{% url 'users:view_patients' %}">
-                    <span class="btn btn-outline-info"><img src="{% static 'users/logo_and_icons/icons/solid/user-friends.svg' %}" class="icon" alt="view"></span>
+                    <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Patients">
+                        <img src="{% static 'users/logo_and_icons/icons/solid/user-friends.svg' %}" class="icon" alt="view">
+                    </button>
                 </a>
             </div>
         </div>
         <!--End of Registration-->
         
         <!--Booking-->
-        <div class="card mb-2 p-2 m-1">
-            <h1 class="card-header">Bookings/Sessions</h1>
-            <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <h1 class="card-header">Bookings</h1>
+            {% if title == 'Home' %}
+                <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
+            {% endif %}
             <div class="card-body">
-                <span class="btn btn-outline-success"><img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon">Add</span>
-                <span class="btn btn-outline-danger"><img src="{% static 'users/logo_and_icons/icons/solid/pen.svg' %}" class="icon" alt="Edit"></span>
-                <span class="btn btn-outline-info"><img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"></span>
+                <a href="{% url 'bookings:new_session1' %}">
+                    <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="Book Patient">
+				        <!--img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon"-->New
+			        </button>
+                </a>
+                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Booking">
+                    <img src="{% static 'users/logo_and_icons/icons/solid/pen.svg' %}" class="icon" alt="Edit">
+                </span>
+                <a href="{% url 'bookings:view_session_all' %}">
+                    <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Bookings">
+                        <!--img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"-->View
+                    </span>
+                </a>
             </div>
         </div>
         <!--End of Booking-->
+
+        <!--div class="w-100 d-none d-md-block"></div-->
         
         <!--Update Booking-->
-        <div class="card mb-2 p-2 m-1">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Payments</h1>
-            <img src="{% static 'users/logo_and_icons/icons/solid/money-check-alt.svg' %}" class="card-img icon-lg" alt="payments">
+            {% if title == 'Home' %}
+                <img src="{% static 'users/logo_and_icons/icons/solid/money-check-alt.svg' %}" class="card-img icon-lg" alt="payments">
+            {% endif %}
             <div class="card-body">
-                <span class="btn btn-outline-success">New</span>
-                <span class="btn btn-outline-danger">Edit</span>
-                <span class="btn btn-outline-info">View</span>
+                <span class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="New Payment">New
+                </span>
+                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Payment">Edit
+                </span>
+                <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Payments">View
+                </span>
             </div>
         </div>
         <!--End of Updating Booking-->
         
         <!--Reports and Extras-->
-        <div class="card mb-2 p-2 m">
-            <h1 class="card-header">Reports & Extras</h1>
-            <img src="{% static 'users/logo_and_icons/icons/solid/box-open.svg' %}" class="card-img icon-lg" alt="payments">
+        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <h1 class="card-header">Extras</h1>
+            {% if title == 'Home' %}
+                <img src="{% static 'users/logo_and_icons/icons/solid/box-open.svg' %}" class="card-img icon-lg" alt="payments">
+            {% endif %}
             <div class="card-body">
-                <a href="#" class="btn btn-outline-success">More...</a>
+                <a href="#" class="btn btn-outline-info">
+                    <span data-toggle="tooltip" data-placement="bottom" data-html="true" title="View/Export reports, Add/View Doctors">More...
+                    </span>
+                </a>
             </div>
         </div>
         <!--End of Reports and Extras-->
     
     </div>
+    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+
+    {{ form1.media }}
+    {{ form2.media }}
+    {{ form3.media }}
+
 {% endblock %}

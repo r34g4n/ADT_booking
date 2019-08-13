@@ -1,57 +1,81 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .models import MobileBankingType, MobileBankingPayment
+from .models import (
+    InsuranceCompany,
+    MobileBankingType,
+    MobileBankingPayment,
+    InsurancePayment,
+    Payment
+)
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 
-class NewPaymentForm(forms.Form):
+EXTRA_TAGS_FOR_CASH_OR_UNDEFINED_PAYMENTS = "No extra tags needed because the" \
+                                            " payment is either: " \
+                                            "\n\t-Cash" \
+                                            "\n\t-Undefined*" \
+                                            "\n or" \
+                                            "\n\t-Unclaimed"
 
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(forms.Form, self).__init__(*args, **kwargs)
 
-    date = forms.DateField(
-        help_text="Date and time of payment.\n"
-        "Time may be an approximate.",
-        initial=timezone.now
+class CashOrUndefinedPaymentForm(forms.Form):
+    extra_tags = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5',
+            'class': 'font-weight-bold'
+        }),
+        initial=EXTRA_TAGS_FOR_CASH_OR_UNDEFINED_PAYMENTS,
+        disabled=True
+    )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
     )
 
-    amount = forms.DecimalField(
-        max_value=499999,
-        min_value=99,
-        decimal_places=2,
+
+class InsurancePaymentForm(forms.Form):
+
+    company = forms.ModelChoiceField(
+        InsuranceCompany.objects.all(),
+        label="Insurance Company"
     )
-    added_by = forms.ModelChoiceField(
-        User.objects.all()
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
     )
 
-    def clean_added_by(self):
-        if self.request is None:
-            raise forms.ValidationError("We could not capture your username!"
-                                        "Please Try again!")
-        if self.cleaned_data['added_by'] != self.request.user.id:
-            raise forms.ValidationError("Incorrect username."
-                                        "Please input your name in added_by field")
-        return self.cleaned_data['added_by']
 
+class MobilePaymentForm(forms.Form):
+    mobile_banking_type = forms.ModelChoiceField(
+        MobileBankingType.objects.all()
+    )
 
-class NewCashPayment(NewPaymentForm):
-    pass
+    code = forms.Field(
+        widget=forms.TextInput(attrs={
+            'maxlength': '20'
+        })
+    )
+    remarks = forms.Field(
+        widget=forms.Textarea(attrs={
+            'rows': '5'
+        }),
+        label="Bookings remarks(if any)",
+        required=False
+    )
 
-
-class NewInsurancePayment(NewPaymentForm):
-    company = forms.CharField(max_length=20)
-
-
-class NewMobilePayment(NewPaymentForm):
-    mobile_banking_type = forms.ModelChoiceField(MobileBankingType.objects.all())
-    code = forms.CharField(max_length=20)
-
-
-class MobilePaymentModelForm(forms.ModelForm):
-
-    class Meta:
-        model = MobileBankingPayment
-        fields = ['date', 'amount', 'type', 'code']
+    def clean_code(self):
+        exists = MobileBankingPayment.objects.filter(code=self.cleaned_data['code'])
+        mobile_banking_type = self.cleaned_data['mobile_banking_type']
+        if exists:
+            raise forms.ValidationError(
+                f"An {mobile_banking_type} payment with this code already exists"
+            )
+        return self.cleaned_data['code']

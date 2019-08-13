@@ -30,7 +30,7 @@ SECRET_KEY = config['SECRET_KEY']
 # DEBUG = config.get('DEBUG_VALUE', False)
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.15.213','localhost', 'myweb', '127.0.0.1']
+ALLOWED_HOSTS = ['172.16.15.213','localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'polymorphic',
+    'bootstrapform',
     'simple_history',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,11 +141,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_production')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/adtbooking/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 index_title = 'ADT Booking'
-# SESSION_COOKIE_AGE = 300
+SESSION_COOKIE_AGE = 3600
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

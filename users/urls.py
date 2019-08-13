@@ -6,4 +6,5 @@ app_name = 'users'
 
 urlpatterns = [
     path('view-patients/', views.PatientsListView.as_view(), name='view_patients'),
+    path('patient-autocomplete', views.PatientAutocompleteView.as_view(), name='patient_autocomplete'),
 ]
