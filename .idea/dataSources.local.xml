@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="ADTBooking" uuid="fb05994a-974e-4b04-acad-886bceed15e5">
+    <data-source name="ADTBooking@localhost" uuid="2116d89d-94d6-497b-b254-9470062e692d">
       <database-info product="MariaDB" version="10.3.15-MariaDB-1" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.3.15" exact-driver-version="2.4">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
       <user-name>django</user-name>
-      <introspection-schemas>*:@</introspection-schemas>
-    </data-source>
-    <data-source name="Django default" uuid="291c12e2-e755-4742-9c29-f8517825a261">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <introspection-schemas>*:@</introspection-schemas>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>

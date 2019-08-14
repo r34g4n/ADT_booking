@@ -40,7 +40,7 @@ class NewSessionStep1Form(forms.Form):
     patient = forms.ModelChoiceField(
         patients_list,
         widget=autocomplete.ModelSelect2(url='users:patient_autocomplete'),
-        help_text="Search Patient by phone number, First or Last name"
+        help_text="Search Patient by phone number or name"
     )
 
 

@@ -310,7 +310,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
         request.session['form3b'] = {}
         if form.is_valid():
             for key, value in form.cleaned_data.items():
-                if key in ('mobile_banking_type', 'corporation'):
+                if key in ('mobile_banking_type', 'corporation', 'company'):
                     request.session['form3b'][key] = value.pk
                 else:
                     request.session['form3b'][key] = value
@@ -333,7 +333,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 bed_type_id = request.session['form2']['bed_type']
                 booking_type_id = request.session['form2']['booking_type']
 
-                """booking = Session(
+                booking = Session(
                     patient=pat,
                     service=service,
                     doctor=doctor,
@@ -345,7 +345,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     bed_type_id=bed_type_id,
                     booking_type_id=booking_type_id,
                     remarks=remarks
-                )"""
+                )
 
                 try:
                     booking.save()
@@ -491,7 +491,6 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
 
 
 
-
 class SessionListView(LoginRequiredMixin, ListView):
     model = Session
     template_name = 'bookings/session_listview.html'
@@ -499,6 +498,16 @@ class SessionListView(LoginRequiredMixin, ListView):
     paginate_by = 10
     ordering = ['-start_date']
 
+
+class PatientSessionListView(LoginRequiredMixin, ListView):
+    model = Session
+    template_name = 'bookings/session_listview.html'
+    context_object_name = 'sessions'
+    paginate_by = 10
+
+    def get_queryset(self):
+        patient = get_object_or_404(Patient, pk=self.kwargs.get('pk'))
+        return Session.objects.filter(patient=patient).order_by('-start_date')
 
 class SessionDetailView(LoginRequiredMixin, DetailView):
     model = Session
@@ -514,3 +523,15 @@ class SessionUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
         if not session.is_past:
             return True
         return False
+
+def session_update_home(request):
+    context = {
+        'other_form': NewSessionStep1Form()
+    }
+    if request.method == 'POST':
+        form = NewSessionStep1Form(request.POST)
+        if form.is_valid():
+            patient = form.cleaned_data['patient']
+            return redirect('bookings:update_session', patient.pk)
+        context['other_form'] = form
+    return render(request, 'bookings/bookings_home.html', context=context)

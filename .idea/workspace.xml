@@ -2,20 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/users/templates/users/users_update_patient.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ADT_booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ADT_booking.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/291c12e2-e755-4742-9c29-f8517825a261.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fb05994a-974e-4b04-acad-886bceed15e5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fb05994a-974e-4b04-acad-886bceed15e5/storage_v2/_src_/schema/adtbooking.iJZykA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/migrations/0002_auto_20190807_1452.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/migrations/0003_auto_20190812_1835.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/migrations/0004_corporatepayment_historicalcorporatepayment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/migrations/0002_historicalundefinedpaymentmethod_undefinedpaymentmethod.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/migrations/0003_auto_20190812_1835.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/0002_auto_20190813_0748.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/users/patients_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/patients_listview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,16 +52,16 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ADTBooking" type="feb32156:DbDataSourceImpl" />
+        <item name="ADTBooking@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ADTBooking" type="feb32156:DbDataSourceImpl" />
+        <item name="ADTBooking@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ADTBooking" type="feb32156:DbDataSourceImpl" />
+        <item name="ADTBooking@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="ADTBooking: schema" type="ebfa3cd1:MariaImplModel$Schema" />
       </path>
@@ -56,167 +71,8 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.54832214">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/bookings/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="508" column="111" selection-start-line="508" selection-start-column="111" selection-end-line="508" selection-end-column="111" />
-                  <folding>
-                    <element signature="e#0#29#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_listview.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/payments/searches.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="96" lean-forward="true" selection-start-line="13" selection-start-column="96" selection-end-line="13" selection-end-column="96" />
-                  <folding>
-                    <element signature="e#0#27#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ADT_booking/settings.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="30" column="12" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="12" />
-                  <folding>
-                    <element signature="e#312#321#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#0#28#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="63" column="47" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_detail.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/payments/forms.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="43" column="15" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="15" />
-                  <folding>
-                    <element signature="e#0#43#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/payments/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-                  <folding>
-                    <element signature="e#0#32#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/payments/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1343">
-                  <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#0#28#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/users/templates/users/patients_listview.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/users/forms.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="670">
-                  <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/base.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-680">
-                  <caret line="14" column="103" selection-start-line="14" selection-start-column="103" selection-end-line="14" selection-end-column="103" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+  <component name="FavoritesManager">
+    <favorites_list name="ADT_booking" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -227,180 +83,28 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>bookings-home</find>
-      <find>site</find>
-      <find>hre</find>
-      <find>register_patient</find>
-      <find>booki</find>
-      <find>ma</find>
-      <find>pa</find>
-      <find>body</find>
-      <find>type</find>
-      <find>date</find>
-      <find>home</find>
-      <find>a hre</find>
-      <find>name</find>
-      <find>huma</find>
-      <find>mo</find>
-      <find>new_session</find>
-      <find>session.form2</find>
-      <find>reverse</find>
-      <find>payment_ty</find>
-      <find>xml</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="r34g4n &lt;gorreagan@gmail.com&gt;" />
       </list>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/static/admin/css/login.css" />
-        <option value="$PROJECT_DIR$/templates/users/login.html" />
-        <option value="$PROJECT_DIR$/users/static/users/css/login.css" />
-        <option value="$PROJECT_DIR$/bookings/static/bookings/main.css" />
-        <option value="$PROJECT_DIR$/ADT_booking/static/admin/css/base.css" />
-        <option value="$PROJECT_DIR$/templates/admin/base_site.html" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/bookings_register_patient.html" />
-        <option value="$PROJECT_DIR$/payments/templates/payments/payment_form.html" />
-        <option value="$PROJECT_DIR$/payments/urls.py" />
-        <option value="$PROJECT_DIR$/users/templates/users/base_modal.html" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/base2.html" />
-        <option value="$PROJECT_DIR$/users/admin.py" />
-        <option value="$PROJECT_DIR$/users/templates/users/password_reset.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/logs_base.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/password_reset_done.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/password_reset_confirm.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/password_reset_complete.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/login.html" />
-        <option value="$PROJECT_DIR$/bookings/templates/session_listview.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/users_register_patient.html" />
-        <option value="$PROJECT_DIR$/payments/views.py" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/customedate.html" />
-        <option value="$PROJECT_DIR$/users/templates/users/logout.html" />
-        <option value="$PROJECT_DIR$/static/users/css/main.css" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/bookings_new_session.html" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/bookings_detail.html" />
-        <option value="$PROJECT_DIR$/ADT_booking/urls.py" />
-        <option value="$PROJECT_DIR$/users/static/users/css/main.css" />
-        <option value="$PROJECT_DIR$/bookings/fields.py" />
-        <option value="$PROJECT_DIR$/users/urls.py" />
-        <option value="$PROJECT_DIR$/users/views.py" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/session_form.html" />
-        <option value="$PROJECT_DIR$/payments/searches.py" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/conservative_unclaimed_payment_form.html" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" />
-        <option value="$PROJECT_DIR$/ADT_booking/settings.py" />
-        <option value="$PROJECT_DIR$/bookings/urls.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/base.html" />
-        <option value="$PROJECT_DIR$/payments/forms.py" />
-        <option value="$PROJECT_DIR$/payments/admin.py" />
-        <option value="$PROJECT_DIR$/payments/models.py" />
-        <option value="$PROJECT_DIR$/users/forms.py" />
-        <option value="$PROJECT_DIR$/users/templates/users/patients_listview.html" />
-        <option value="$PROJECT_DIR$/users/models.py" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" />
-        <option value="$PROJECT_DIR$/bookings/admin.py" />
-        <option value="$PROJECT_DIR$/bookings/forms.py" />
-        <option value="$PROJECT_DIR$/bookings/models.py" />
-        <option value="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" />
-        <option value="$PROJECT_DIR$/bookings/views.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="325" />
-    <option name="y" value="29" />
-    <option name="width" value="1442" />
-    <option name="height" value="1014" />
-  </component>
+  <component name="ProjectId" id="1PPBJkjpKTwrkPzHjBMluqbaciN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="bookings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="bookings" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="bookings" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="bookings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="payments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="payments" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ADT_booking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ADT_booking" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/users/logo_and_icons/icons/svg" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/ADTBooking_auth_user.csv" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -410,7 +114,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.jsx" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -465,6 +169,36 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2124a4b7" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@47ec36a8" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@703a9a35" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -525,6 +259,9 @@
       <workItem from="1565624081537" duration="408000" />
       <workItem from="1565671127839" duration="1662000" />
       <workItem from="1565673159691" duration="2582000" />
+      <workItem from="1565765796791" duration="322000" />
+      <workItem from="1565766152730" duration="13482000" />
+      <workItem from="1565794761687" duration="9473000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>
@@ -599,64 +336,6 @@
     <option name="localTasksCounter" value="11" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="494736000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-1" y="29" width="1922" height="1015" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20490928" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="1" weight="0.3295838" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.26274067" />
-      <window_info anchor="bottom" id="Python Console" order="3" weight="0.19705549" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50053364" side_tool="true" weight="0.4394111" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.3295583" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.13703284" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.3997735" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4994664" visible="true" weight="0.2344281" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.3295838" />
-      <window_info anchor="bottom" id="SQL Generator" order="14" weight="0.14382786" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.32977587" />
-      <window_info anchor="right" id="Database" order="4" weight="0.1638207" />
-      <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18463181" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="1" weight="0.3295838" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.3295838" />
-      <window_info anchor="bottom" id="Python Console" order="3" weight="0.3295838" />
-      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" weight="0.32901296" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.202718" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.29218572" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.3295838" />
-      <window_info anchor="bottom" id="SQL Generator" order="14" weight="0.3295583" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.32977587" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.26840982" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -666,20 +345,7 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -712,442 +378,5 @@
     <MESSAGE value="confirm and book for unclaimed payments done" />
     <MESSAGE value="confirm and book for all payments done&#10;new bookings done&#10;bug hunting next" />
     <option name="LAST_COMMIT_MESSAGE" value="confirm and book for all payments done&#10;new bookings done&#10;bug hunting next" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/users/templates/users/users_register_patient.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_cashpayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="a094c86a-19b6-4653-b04a-b3d1a19e46e6">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_insurancepayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="a094c86a-19b6-4653-b04a-b3d1a19e46e6">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/django_content_type">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="a094c86a-19b6-4653-b04a-b3d1a19e46e6">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_payment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="a094c86a-19b6-4653-b04a-b3d1a19e46e6">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/auth_group">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/static/users/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="179" column="29" selection-start-line="179" selection-start-column="29" selection-end-line="179" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/forms/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="983" column="34" lean-forward="true" selection-start-line="983" selection-start-column="34" selection-end-line="983" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="72" lean-forward="true" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#16#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payments/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/tables.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="216" column="16" selection-start-line="216" selection-start-column="16" selection-end-line="216" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/users_historicalpatient">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_historicalcashpayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_historicalinsurancecompany">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_historicalinsurancepayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/auth_user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="e9d724c1-609a-48ac-acb7-923a839dcc98">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_session">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="260f5a4f-cb91-440f-b636-a81cbea6ba87">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_historicalpaymenttype">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="90fb80ea-cd3b-4394-82f8-4be5d439829f">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_mobilebankingpayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ADT_booking/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="30" column="12" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="12" />
-          <folding>
-            <element signature="e#312#321#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/templates/users/logs_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="23" selection-start-line="55" selection-start-column="12" selection-end-line="61" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/conservative_unclaimed_payment_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="14" column="103" selection-start-line="14" selection-start-column="103" selection-end-line="14" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payments/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="43" column="15" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payments/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_corporatepayment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_corporation">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/users_patient">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payments/searches.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="96" lean-forward="true" selection-start-line="13" selection-start-column="96" selection-end-line="13" selection-end-column="96" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/templates/users/patients_listview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_listview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_insurancecompany">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_mobilebankingtype">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/payments_paymenttype">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/users_gender">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_service">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fb05994a-974e-4b04-acad-886bceed15e5/schema/ADTBooking/table/bookings_sessionstatus">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="8b76f807-637c-4913-bb0d-5c23673a902b">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="63" column="47" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/templates/bookings/session_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="59" column="16" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payments/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bookings/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="508" column="111" selection-start-line="508" selection-start-column="111" selection-end-line="508" selection-end-column="111" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

@@ -74,8 +74,8 @@
     </ul>
 
   <!--Search form-->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Name, Tel No. or UHID" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'users:search_patient_home' %}">
+      <input class="form-control mr-sm-2" type="search" name="q" placeholder="Name, Tel No. or UHID" aria-label="Search">
 
         <!--Search button and Search(loupe) icon-->
       <button class="btn btn-sm btn-outline-light" type="submit">

@@ -30,11 +30,17 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length=12, unique=True)
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT, default=3)
-    email = models.EmailField(default=DEFAULT_EMAIL)
+    email = models.EmailField(unique=True, null=True, blank=True)
     uhid = models.BigIntegerField(unique=True, blank=True, null=True)
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    @property
+    def full_name(self):
+        if self.middle_name:
+            return f'{self.first_name} {self.middle_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name}'
 
     @property
     def age(self):
@@ -46,7 +52,7 @@ class Patient(models.Model):
         return age
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return self.full_name
 
 
 class Doctor(models.Model):

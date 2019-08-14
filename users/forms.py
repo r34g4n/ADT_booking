@@ -16,15 +16,15 @@ class PatientRegistrationForm(forms.ModelForm):
         else:
             raise forms.ValidationError("Invalid Phone number. Please Try again!")
 
-    def clean_email(self):
+    """def clean_email(self):
         email = self.cleaned_data.get('email', None)
         qs = Patient.objects.filter(email=email)
-        if len(qs) == 0 or qs.first().email == DEFAULT_EMAIL:
+        if len(qs) == 0:
             return email
         else:
             raise forms.ValidationError("A Patient with similar email already exists.\n"
                                         "This could be a duplicate.\n"
-                                        "Kindly confirm before proceeding")
+                                        "Kindly confirm before proceeding")"""
 
     def clean_date_of_birth(self):
         if self.cleaned_data['date_of_birth'] > timezone.now().date():
@@ -41,3 +41,4 @@ class PatientRegistrationForm(forms.ModelForm):
                 'type': 'date'
             })
         }
+

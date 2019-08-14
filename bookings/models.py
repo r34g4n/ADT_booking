@@ -51,10 +51,10 @@ class BedType(models.Model):
     def __str__(self):
         return self.name
 
-DEFAULT_BED_TYPE = BedType.objects.get(pk=1)
-DEFAULT_LOCATION = Location.objects.get(pk=1)
-DEFAULT_BOOKING_TYPE = BookingType.objects.get(pk=1)
 
+"""DEFAULT_BED_TYPE = BedType.objects.get(pk=1)
+DEFAULT_LOCATION = Location.objects.get(pk=1)
+DEFAULT_BOOKING_TYPE = BookingType.objects.get(pk=1)"""
 
 
 class Session(models.Model):

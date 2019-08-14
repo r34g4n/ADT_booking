@@ -12,6 +12,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Patient Name</th>
                     <th scope="col">Service</th>
+                    <th scope="col">Location</th>
                     <th scope="col">Doctor's Name</th>
                     <th scope="col">Admission Date</th>
                     <th scope="col">Status</th>
@@ -29,6 +30,7 @@
                             </a>
                         </td>
                         <td>{{ session.service }}</td>
+                        <td>{{ session.location }}</td>
                         <td>{{ session.doctor }}</td>
                         <td>{{ session.start_date|date:"jS-N-Y"}}</td>
                         <td style="color: {{ session.status.indicator }};" >

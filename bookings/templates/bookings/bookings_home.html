@@ -3,6 +3,20 @@
 {% block content %}
     {% load static %}
 
+    {% if other_form %}
+        <div class="row card">
+            <div class="col-3 align-self-center ">
+                <form method="post" class="form-main">
+                    {% csrf_token %}
+                    {{ other_form|crispy }}
+                    <div class="submit-row text-center">
+                        <input class="btn button" type="submit" value="Edit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
     <!--If booking module is active-->
 
     {% if title == 'Book Patient' %}
@@ -112,9 +126,11 @@
                     </button>
                 </a>
 
-                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Patient">
-                    <img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit">
-                </span>
+                <a href="{% url 'users:patient_update_home' %}">
+                    <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Patient">
+                        <img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit">
+                    </span>
+                </a>
                 <a href="{% url 'users:view_patients' %}">
                     <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Patients">
                         <img src="{% static 'users/logo_and_icons/icons/solid/user-friends.svg' %}" class="icon" alt="view">
@@ -136,9 +152,11 @@
 				        <!--img src="{% static 'users/logo_and_icons/icons/solid/user-clock.svg' %}" class="icon"-->New
 			        </button>
                 </a>
-                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Booking">
-                    <img src="{% static 'users/logo_and_icons/icons/solid/pen.svg' %}" class="icon" alt="Edit">
-                </span>
+                <a href="{% url 'bookings:session_update_home' %}">
+                    <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Booking">
+                        <img src="{% static 'users/logo_and_icons/icons/solid/pen.svg' %}" class="icon" alt="Edit">
+                    </span>
+                </a>
                 <a href="{% url 'bookings:view_session_all' %}">
                     <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Bookings">
                         <!--img src="{% static 'users/logo_and_icons/icons/solid/eye.svg' %}" class="icon" alt="View"-->View
@@ -188,5 +206,6 @@
     {{ form1.media }}
     {{ form2.media }}
     {{ form3.media }}
+    {{ other_form.media }}
 
 {% endblock %}
