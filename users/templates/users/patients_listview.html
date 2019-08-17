@@ -27,7 +27,7 @@
                 {% for patient in patients %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ patient.full_name.title }}</td>
+                        <td><a href="{% url 'users:patient-detail' patient.pk %}">{{ patient.full_name.title }}</a> </td>
                         <td>{% if patient.phone_number %}{{ patient.phone_number }}{% else %}--{% endif %}</td>
                         <td>{% if patient.email == None or patient.email == '' %}--{% else %}{{ patient.email }}{% endif %}</td>
                         <td>{% if patient.uhid %}{{ patient.uhid }}{% else %}--{% endif %}</td>

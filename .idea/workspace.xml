@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/users/templates/users/users_update_patient.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ADT_booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ADT_booking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/291c12e2-e755-4742-9c29-f8517825a261.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fb05994a-974e-4b04-acad-886bceed15e5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fb05994a-974e-4b04-acad-886bceed15e5/storage_v2/_src_/schema/adtbooking.iJZykA.meta" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookings/migrations/0002_auto_20190814_1452.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payments/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/patient_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0002_auto_20190807_1452.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/migrations/0003_auto_20190812_1835.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ADT_booking/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ADT_booking/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ADT_booking/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ADT_booking/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/bookings_home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/migrations/0002_historicalundefinedpaymentmethod_undefinedpaymentmethod.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payments/migrations/0003_auto_20190812_1835.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0002_auto_20190813_0748.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/payments/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/users/patients_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/patients_listview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
@@ -78,8 +66,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -174,27 +162,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2124a4b7" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@47ec36a8" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@60d6e0eb" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@703a9a35" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -261,7 +229,10 @@
       <workItem from="1565673159691" duration="2582000" />
       <workItem from="1565765796791" duration="322000" />
       <workItem from="1565766152730" duration="13482000" />
-      <workItem from="1565794761687" duration="9473000" />
+      <workItem from="1565794761687" duration="13608000" />
+      <workItem from="1565867580923" duration="3608000" />
+      <workItem from="1565938530484" duration="4996000" />
+      <workItem from="1566022643391" duration="10874000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>
@@ -333,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565607201270</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="search button working&#10;still bug hunting">
+      <created>1565805112210</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565805112210</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,6 +355,7 @@
     <MESSAGE value="new payment posting almost done" />
     <MESSAGE value="confirm and book for unclaimed payments done" />
     <MESSAGE value="confirm and book for all payments done&#10;new bookings done&#10;bug hunting next" />
-    <option name="LAST_COMMIT_MESSAGE" value="confirm and book for all payments done&#10;new bookings done&#10;bug hunting next" />
+    <MESSAGE value="search button working&#10;still bug hunting" />
+    <option name="LAST_COMMIT_MESSAGE" value="search button working&#10;still bug hunting" />
   </component>
 </project>

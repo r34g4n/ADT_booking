@@ -14,7 +14,8 @@ from django.contrib.auth.mixins import (
 )
 from django.views.generic import (
     ListView,
-    UpdateView
+    UpdateView,
+    DetailView
 )
 from bookings.forms import NewSessionStep1Form
 # end of generic views and mixins imports
@@ -35,9 +36,6 @@ from .forms import PatientRegistrationForm
 """end of forms imports"""
 
 from users.models import Patient
-
-PATIENT_UPDATE_URL_ROOT = "/users/update-patient/"
-
 
 # Create your views here.
 @login_required
@@ -117,6 +115,7 @@ class SearchPatients(LoginRequiredMixin, ListView):
             qs = None
         return qs
 
+
 class PatientUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Patient
     template_name = 'users/users_update_patient.html'
@@ -142,6 +141,11 @@ def patient_update_home(request):
             return redirect('users:update_patient', patient.pk)
         context['other_form'] = form
     return render(request, 'bookings/bookings_home.html', context=context)
+
+
+class PatientDetailView(LoginRequiredMixin, DetailView):
+    model = Patient
+    context_object_name = 'patient'
 
 
 class PatientAutocompleteView(autocomplete.Select2QuerySetView):

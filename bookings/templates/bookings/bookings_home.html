@@ -10,7 +10,7 @@
                     {% csrf_token %}
                     {{ other_form|crispy }}
                     <div class="submit-row text-center">
-                        <input class="btn button" type="submit" value="Edit">
+                        <input class="btn button" type="submit" value="{% if submit %}{{submit}}{% else %}Edit{% endif %}">
                     </div>
                 </form>
             </div>
@@ -126,11 +126,13 @@
                     </button>
                 </a>
 
-                <a href="{% url 'users:patient_update_home' %}">
-                    <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Patient">
-                        <img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit">
-                    </span>
-                </a>
+                {% if user.is_staff %}
+                    <a href="{% url 'users:patient_update_home' %}">
+                        <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Patient">
+                            <img src="{% static 'users/logo_and_icons/icons/solid/user-edit.svg' %}" class="icon" alt="edit">
+                        </span>
+                    </a>
+                {% endif %}
                 <a href="{% url 'users:view_patients' %}">
                     <button class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Patients">
                         <img src="{% static 'users/logo_and_icons/icons/solid/user-friends.svg' %}" class="icon" alt="view">
@@ -175,8 +177,10 @@
                 <img src="{% static 'users/logo_and_icons/icons/solid/money-check-alt.svg' %}" class="card-img icon-lg" alt="payments">
             {% endif %}
             <div class="card-body">
-                <span class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="New Payment">New
-                </span>
+                <a href="{% url 'payments:choose_payment_to_post' %}">
+                    <span class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="New Payment">New
+                    </span>
+                </a>
                 <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Payment">Edit
                 </span>
                 <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Payments">View

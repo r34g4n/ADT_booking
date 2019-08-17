@@ -48,7 +48,8 @@ urlpatterns = [
          name='password_reset_complete'),
 
     path('users/register-patient/', register_patient, name='register-patient'),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('payment/', include('payments.urls'))
 ]
 
 

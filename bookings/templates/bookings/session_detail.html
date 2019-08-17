@@ -3,7 +3,7 @@
 {% load humanize %}
 {% block content %}
     <div class="card align-items-center p-2 mx-auto">
-        <a href="#">
+        <a href="{% url 'users:patient-detail' object.patient.pk %}">
             <div class="card-header text-center bg-unset">
             <img class="icon-lg rounded-circle"
         {% if object.patient.gender.id == 3 %}

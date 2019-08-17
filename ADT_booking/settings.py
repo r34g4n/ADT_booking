@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['172.16.15.213','localhost', '127.0.0.1',]
 
 # Application definition
 
+# noinspection SpellCheckingInspection
 INSTALLED_APPS = [
     'bookings.apps.BookingsConfig',
     'payments.apps.PaymentsConfig',

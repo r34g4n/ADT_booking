@@ -2,7 +2,7 @@ from django.db import models
 from simple_history.models import HistoricalRecords
 from django.conf import settings
 from django.utils import timezone
-import datetime
+from django.urls import reverse
 
 # Create your models here.
 
@@ -35,6 +35,9 @@ class Patient(models.Model):
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('users:patient-detail', kwargs={'pk': self.pk})
 
     @property
     def full_name(self):

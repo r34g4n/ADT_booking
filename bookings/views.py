@@ -490,7 +490,6 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
         return render(request, self.template_name, self.context)
 
 
-
 class SessionListView(LoginRequiredMixin, ListView):
     model = Session
     template_name = 'bookings/session_listview.html'
@@ -509,6 +508,7 @@ class PatientSessionListView(LoginRequiredMixin, ListView):
         patient = get_object_or_404(Patient, pk=self.kwargs.get('pk'))
         return Session.objects.filter(patient=patient).order_by('-start_date')
 
+
 class SessionDetailView(LoginRequiredMixin, DetailView):
     model = Session
 
@@ -523,6 +523,7 @@ class SessionUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
         if not session.is_past:
             return True
         return False
+
 
 def session_update_home(request):
     context = {

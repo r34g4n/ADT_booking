@@ -11,4 +11,5 @@ urlpatterns = [
     path('search-patient/home/', views.search_patient_home, name='search_patient_home'),
     path('search-patient/<str:q>/', views.SearchPatients.as_view(), name='search_patient'),
     path('patient-autocomplete', views.PatientAutocompleteView.as_view(), name='patient_autocomplete'),
+    path('patient/<int:pk>', views.PatientDetailView.as_view(), name='patient-detail')
 ]

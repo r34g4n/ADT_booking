@@ -59,12 +59,9 @@ class Payment(PolymorphicModel):
 
 
 class InsurancePayment(Payment):
+    type = PaymentType.objects.get(pk=3)
     company = models.ForeignKey(InsuranceCompany, on_delete=models.PROTECT, default=1)
     history = HistoricalRecords()
-
-    @property
-    def type(self):
-        return PaymentType.objects.get(pk=3)
 
     @property
     def additional_info(self):
@@ -72,23 +69,18 @@ class InsurancePayment(Payment):
 
 
 class CorporatePayment(Payment):
+    type = PaymentType.objects.get(pk=5)
     corporation = models.ForeignKey(Corporation, on_delete=models.PROTECT)
     history = HistoricalRecords()
-
-    @property
-    def type(self):
-        return PaymentType.objects.get(pk=5)
 
     @property
     def additional_info(self):
         return self.corporation
 
-class UndefinedPaymentMethod(Payment):
-    history = HistoricalRecords()
 
-    @property
-    def type(self):
-        return PaymentType.objects.get(pk=1)
+class UndefinedPaymentMethod(Payment):
+    type = PaymentType.objects.get(pk=1)
+    history = HistoricalRecords()
 
     @property
     def additional_info(self):
@@ -96,11 +88,8 @@ class UndefinedPaymentMethod(Payment):
 
 
 class CashPayment(Payment):
+    type = PaymentType.objects.get(pk=2)
     history = HistoricalRecords()
-
-    @property
-    def type(self):
-        return PaymentType.objects.get(pk=2)
 
     @property
     def additional_info(self):
@@ -108,13 +97,10 @@ class CashPayment(Payment):
 
 
 class MobileBankingPayment(Payment):
+    type = PaymentType.objects.get(pk=4)
     mobile_banking_type = models.ForeignKey(MobileBankingType, on_delete=models.PROTECT, default=1)
     code = models.CharField(max_length=20, unique=True)
     history = HistoricalRecords()
-
-    @property
-    def type(self):
-        return PaymentType.objects.get(pk=4)
 
     @property
     def additional_info(self):

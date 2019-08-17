@@ -8,7 +8,16 @@ from .models import (
     Payment,
     Corporation
 )
+from .models import (
+    PaymentType,
+    CashPayment,
+    UndefinedPaymentMethod,
+    InsurancePayment,
+    MobileBankingPayment,
+    CorporatePayment
+)
 from django import forms
+from dal import autocomplete
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
@@ -92,3 +101,104 @@ class MobilePaymentForm(forms.Form):
                 f"An {mobile_banking_type} payment with this code already exists"
             )
         return self.cleaned_data['code']
+
+
+class CashPaymentModelForm(forms.ModelForm):
+    class Meta:
+        model=CashPayment
+        fields="__all__"
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date'
+            }),
+            'patient': autocomplete.ModelSelect2(url='users:patient_autocomplete')
+        }
+        help_texts = {
+            'patient': 'Search Patient by phone number or name'
+        }
+        labels = {
+            'patient': "Patient's Name"
+        }
+
+
+class UndefinedPaymentModelForm(forms.ModelForm):
+    class Meta:
+        model = UndefinedPaymentMethod
+        fields = "__all__"
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date'
+            }),
+            'patient': autocomplete.ModelSelect2(url='users:patient_autocomplete')
+        }
+        help_texts = {
+            'patient': 'Search Patient by phone number or name'
+        }
+        labels = {
+            'patient': "Patient's Name"
+        }
+
+
+class InsurancePaymentModelForm(forms.ModelForm):
+    class Meta:
+        model = InsurancePayment
+        fields = "__all__"
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date'
+            }),
+            'patient': autocomplete.ModelSelect2(url='users:patient_autocomplete')
+        }
+        help_texts = {
+            'patient': 'Search Patient by phone number or name'
+        }
+        labels = {
+            'patient': "Patient's Name"
+        }
+
+
+class MobileBankingPaymentModelForm(forms.ModelForm):
+
+    class Meta:
+        model = MobileBankingPayment
+        fields = "__all__"
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date'
+            }),
+            'patient': autocomplete.ModelSelect2(url='users:patient_autocomplete')
+        }
+        help_texts = {
+            'patient': 'Search Patient by phone number or name'
+        }
+        labels = {
+            'patient': "Patient's Name"
+        }
+
+
+class CorporatePaymentModelForm(forms.ModelForm):
+
+    class Meta:
+        model = CorporatePayment
+        fields = "__all__"
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'type': 'date'
+            }),
+            'patient': autocomplete.ModelSelect2(url='users:patient_autocomplete')
+        }
+        help_texts = {
+            'patient': 'Search Patient by phone number or name'
+        }
+        labels = {
+            'patient': "Patient's Name"
+        }
+
+
+class ChoosePaymentForm(forms.Form):
+
+    payment_type = forms.ModelChoiceField(
+        PaymentType.objects.all(),
+        help_text="Choose payment type from the dropdown"
+    )
+

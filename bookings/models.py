@@ -8,8 +8,6 @@ DEFAULT_DIAGNOSIS = 'none provided'
 DEFAULT_SESSION_STATUS_ID = 2
 
 
-
-
 class Service(models.Model):
     name = models.CharField(max_length=20)
     description = models.TextField(max_length=100, default="Service. No further description provided")
