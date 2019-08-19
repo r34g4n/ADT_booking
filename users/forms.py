@@ -28,8 +28,8 @@ BOOKING_SORT_BY = (
 PAYMENT_SORT_BY = (
     ('date_desc', 'Date(DESC)'),
     ('date_asc', 'Date(ASC)'),
-    ('amount_desc', 'Amount Date(DESC)'),
-    ('amount_asc', 'Amount Date(ASC)'),
+    ('amount_desc', 'Paid Date(DESC)'),
+    ('amount_asc', 'Paid Date(ASC)'),
     ('name_asc', 'Name(ASC)'),
     ('name_desc', 'Name (DESC)')
 )
@@ -178,6 +178,14 @@ class PaymentReportFilter(forms.Form):
         min_value=0,
         required=False
     )
+    extra_tags = forms.Field(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'e.g AAR or 451JKH'
+        }),
+        label="Extra tag contains",
+        help_text="this field is case insensitive",
+        required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super(PaymentReportFilter, self).__init__(*args, **kwargs)
@@ -192,10 +200,11 @@ class PaymentReportFilter(forms.Form):
             ),
             Row(
                 Row(
-                    Column('patient', css_class='form-group col-md-12 mb-0'),
+                    Column('patient', css_class='form-group col-md-3 mb-0'),
                 ),
-                Column('from_amount', css_class='form-group col-md-3 mb-0'),
-                Column('to_amount', css_class='form-group col-md-3 mb-0'),
+                Column('from_amount', css_class='form-group col-md-2 mb-0'),
+                Column('to_amount', css_class='form-group col-md-2 mb-0'),
+                Column('extra_tags', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row',
             ),
             Submit('submit', 'Filter')
@@ -203,6 +212,12 @@ class PaymentReportFilter(forms.Form):
 
 
     def clean(self):
+        if self.cleaned_data['to_amount'] is not None:
+            if self.cleaned_data['from_amount'] > self.cleaned_data['to_amount']:
+                raise forms.ValidationError("Invalid amount range!")
+            pass
+        pass
+
         if self.cleaned_data['from_date'] is not None:
             if self.cleaned_data['from_date'] > self.cleaned_data['to_date']:
                 raise forms.ValidationError("Invalid date range!")

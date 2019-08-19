@@ -2,7 +2,14 @@ from .models import Patient, Gender
 from django.db.models import Q
 from django.utils import timezone
 from bookings.models import Session
-from payments.models import Payment
+from payments.models import (
+    Payment,
+    UndefinedPaymentMethod,
+    CashPayment,
+    InsurancePayment,
+    MobileBankingPayment,
+    CorporatePayment
+)
 
 SORT_BY_DICT = {
     'registration_date_desc': '-date_added',
@@ -29,6 +36,14 @@ PAYMENT_SORT_BY = {
     'name_desc': 'patient__first_name'
 }
 
+PAYMENT_TYPE = {
+    1: UndefinedPaymentMethod,
+    2: CashPayment,
+    3: InsurancePayment,
+    4: MobileBankingPayment,
+    5: CorporatePayment
+}
+
 
 def patient_list_unfiltered():
     return Patient.objects.all()
@@ -37,6 +52,9 @@ def patient_list_unfiltered():
 def patient_list_root(*args, **kwargs):
     if args:
         kwargs = args[0]
+    else:
+        patients = Patient.objects.all()[:50]
+        return patients
     registered_from_date = kwargs.get('registered_from_date', None)
     to = kwargs.get('to', None)
     gender = kwargs.get('gender', None)
@@ -73,6 +91,9 @@ def bookings_list_root(*args, **kwargs):
     print("kwargs -- ", kwargs)
     if args:
         kwargs = args[0]
+    else:
+        booking_list = Session.objects.all()[:50]
+        return booking_list
     filter_params = kwargs
     sort_by = filter_params.get('sort_by', None)
     sort_by = SORT_BY_DICT2.get(sort_by, None)
@@ -108,8 +129,8 @@ def bookings_list_root(*args, **kwargs):
                     print(session.patient)
     return bookings_list
 
+
 def payment_list_unfiltered():
-    print("was here")
     for pay in Payment.objects.all():
         print(pay)
     return Payment.objects.all()
@@ -120,10 +141,19 @@ def payment_list_root(*args, **kwargs):
     filter_params = kwargs
     sort_by = filter_params.get('sort_by', None)
     sort_by = PAYMENT_SORT_BY.get(sort_by, None)
+    if not args and not kwargs:
+        payment_list = Payment.objects.all()[:50]
+        return payment_list
 
     BLACK_LIST = (None)
 
-    payment_list = patient_list_unfiltered()
+    if filter_params.get('type', None):
+        print("was here")
+        payment_type = PAYMENT_TYPE.get(filter_params['type'].pk)
+        print("----", payment_type)
+        payment_list = Payment.objects.instance_of(payment_type)
+    else:
+        payment_list = payment_list_unfiltered()
     for key, value in filter_params.items():
         if value:
             if key == 'patient':
@@ -136,12 +166,9 @@ def payment_list_root(*args, **kwargs):
                 payment_list = payment_list.filter(amount__gte=value)
             if key == 'to_amount':
                 payment_list = payment_list.filter(amount__lte=value)
-    if filter_params.get('sort_by'):
-        payment_list = payment_list.order_by(filter_params.get('sort_by'))
-    if filter_params.get('type'):
-        results = []
-        for pay in payment_list:
-            if pay.get_real_instance().type == filter_params.get('type'):
-                results.append(pay)
-        payment_list = results
+            if key == 'sort_by':
+                payment_list = payment_list.order_by(sort_by)
+    if filter_params.get('extra_tags', None):
+        extra_tags = filter_params['extra_tags']
+        payment_list = [pay for pay in payment_list if extra_tags.upper() in str(pay.get_real_instance().additional_info).upper()]
     return payment_list

@@ -17,7 +17,7 @@
                                 data-toggle="collapse"
                                 data-target="#filter-form" aria-expanded="false"
                                 aria-controls="filter-form">
-                            Filter Report
+                            Filter Report <small class="text-muted">(show/hide this form)</small>
                         </button>
                     </h5>
                 </div>
@@ -159,7 +159,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td><small>{{ payments.count }} Records</small></td>
+                    <td><small>{{ payments.count }}{% if not payments.count %}{{ payments|length }}{% endif %} Records</small></td>
                     <td><small>Generated on: {% now "jS F Y H:i" %}</small></td>
                     <td><small>By: {{ user.username }}@adtbooking</small></td>
             </tfoot>

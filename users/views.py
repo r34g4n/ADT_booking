@@ -222,15 +222,17 @@ def booking_listing_report(request):
 @login_required
 def payment_listing_report(request):
     context = {
-        'title': 'Bookings Listing',
-        'heading': 'Bookings listing',
+        'title': 'Payment Listing',
+        'heading': 'Payment listing',
         'filter_form': PaymentReportFilter(request.POST or None),
         'reportTable': True,
-        'payments': payment_list_root()
+        'payments': payment_list_root()[:10]
     }
+    print(context['filter_form'].fields)
+    print(payment_list_root().model)
     if request.method == 'POST':
         form = PaymentReportFilter(request.POST)
         if form.is_valid():
-            context['sessions'] = payment_list_root(form.cleaned_data)
+            context['payments'] = payment_list_root(form.cleaned_data)
 
     return render(request, 'reports/reports_home.html', context)
