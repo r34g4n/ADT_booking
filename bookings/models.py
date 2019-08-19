@@ -61,6 +61,7 @@ class Session(models.Model):
     doctor = models.ForeignKey('users.Doctor', on_delete=models.PROTECT)
     doctor_diagnosis = models.TextField(max_length=300, default=DEFAULT_DIAGNOSIS)
     start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.now)
     payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
@@ -68,15 +69,14 @@ class Session(models.Model):
     booking_type = models.ForeignKey(BookingType, on_delete=models.PROTECT)
     remarks = models.TextField(max_length=200, blank=True)
     history = HistoricalRecords()
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
         return reverse('bookings:session-detail', kwargs={'pk': self.pk})
-
     @property
     def is_past(self):
-        return self.start_date < timezone.now().date()
+        return self.end_date < timezone.now().date()
 
 
 class CancelledSession(models.Model):

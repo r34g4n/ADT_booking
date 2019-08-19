@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     ListView,
     UpdateView,
@@ -29,13 +30,21 @@ from .models import Patient
 # end of model imports
 
 # form imports
-from .forms import PatientRegistrationForm
+from .forms import (
+    PatientRegistrationForm,
+    PatientReportFilterForm,
+    BookingReportFilter
+)
 
 # end of form imports
 
 """end of forms imports"""
 
 from users.models import Patient
+from .filters import(
+    patient_list_root,
+    bookings_list_root
+)
 
 # Create your views here.
 @login_required
@@ -116,10 +125,11 @@ class SearchPatients(LoginRequiredMixin, ListView):
         return qs
 
 
-class PatientUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PatientUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Patient
     template_name = 'users/users_update_patient.html'
     form_class = PatientRegistrationForm
+    success_message = "Patient Details were successfully updated!"
 
     def form_valid(self, form):
         return super().form_valid(form)
@@ -159,3 +169,49 @@ class PatientAutocompleteView(autocomplete.Select2QuerySetView):
                 Q(first_name__icontains=self.q)| Q(middle_name__icontains=self.q) | Q(last_name__icontains=self.q) | Q(phone_number__icontains=self.q)
             )
         return qs
+
+@login_required
+def reports_home(request):
+    context = {
+        'title': 'Reports'
+    }
+    return render(request, 'reports/reports_home.html', context)
+
+
+@login_required
+def patient_listing_report(request):
+    context = {
+        'title': 'Patients Listing',
+        'heading': 'Patients Listing',
+        'filter_form': PatientReportFilterForm(request.POST or None),
+        'reportTable': True,
+        'patients': patient_list_root()
+    }
+    if request.method == 'POST':
+        form = PatientReportFilterForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            context['patients'] = patient_list_root(form.cleaned_data)
+
+    return render(request, 'reports/reports_home.html', context)
+
+
+@login_required
+def booking_listing_report(request):
+    context = {
+        'title': 'Bookings Listing',
+        'heading': 'Bookings listing',
+        'filter_form': BookingReportFilter(request.POST or None),
+        'reportTable': True,
+        'sessions': bookings_list_root()
+    }
+    print("request method -- ", request.method)
+    if request.method == 'POST':
+        print(request.POST)
+        form = BookingReportFilter(request.POST)
+        print("form_valid? -- ", form.is_valid())
+        if form.is_valid():
+            print("form cleaned data -- ", form.cleaned_data)
+            context['sessions'] = bookings_list_root(form.cleaned_data)
+
+    return render(request, 'reports/reports_home.html', context)

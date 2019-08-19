@@ -1,43 +1,39 @@
 {% extends 'bookings/base.html' %}
+{% load humanize %}
 {% block content %}
     <h1 id="header2">Bookings Listing</h1>
 
 
-    {% if sessions %}
+    {% if payments %}
 
         <table class="table table-hover table-striped">
 
             <thead class="float-md-none">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Patient Name</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Doctor's Name</th>
-                    <th scope="col">Admission Date</th>
-                    <th scope="col">Discharge Date</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Paid By</th>
+                    <th scope="col">Payment Type</th>
+                    <th scope="col">Extra Tags</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date of payment</th>
+                    <th scope="col">Last Edited by</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                {% for session in sessions %}
+                {% for payment in payments %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'bookings:session-detail' session.id %}">
-                                {{ session.patient }}
-                            </a>
+                            {% if user.is_staff %}<a href="{% url 'payments:payment-edit' payment.pk %}">{{ payment.patient }}</a>
+                            {% else %}{{ payment.patient }}{% endif %}
                         </td>
-                        <td>{{ session.service }}</td>
-                        <td>{{ session.location }}</td>
-                        <td>{{ session.doctor }}</td>
-                        <td>{{ session.start_date|date:"jS-N-Y"}}</td>
-                        <td>{{ session.end_date|date:"jS-N-Y"}}</td>
-                        <td style="color: {{ session.status.indicator }};" >
-                            <b><i>{{ session.status }}</i></b>
-                        </td>
+                        <td>{{ payment.get_real_instance.type }}</td>
+                        <td>{{ payment.get_real_instance.additional_info }}</td>
+                        <td>{{ payment.denom}} {{ payment.amount|intcomma }}{{ payment.denom_closer }}</td>
+                        <td>{{ payment.date|date:"jS-N-Y" }}</td>
+                        <td>{{ payment.history.first.history_user }}</td>
                     </tr>
                 {% endfor %}
 
@@ -45,13 +41,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td></td>
-                    <td><small>{{ sessions.count }} Records</small></td>
-                    <td></td>
+                    <td><small>{{ payments.count }} Records</small></td>
                     <td><small>Generated on: {% now "jS F Y H:i" %}</small></td>
-                    <td></td>
                     <td><small>By: {{ user.username }}@adtbooking</small></td>
-                    <td></td>
             </tfoot>
         </table>
 
@@ -87,7 +79,7 @@
 
         <div class="card align-items-center p-2 mx-auto">
             <div class="card-body">
-                <p class="alert alert-danger">No session added or No search results found for the specified criteria</p>
+                <p class="alert alert-danger">No payments added or No search results found for the specified criteria</p>
                 <p class="alert alert-info">Please adjust criteria or add one</p>
             </div>
             <div class="card-footer">0 Records</div>

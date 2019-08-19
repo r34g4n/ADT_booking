@@ -1,11 +1,12 @@
 {% extends "bookings/base.html" %}
 {% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% block content %}
     {% load static %}
 
     {% if other_form %}
-        <div class="row card">
-            <div class="col-3 align-self-center ">
+        <div class="row card unset p-2 m-2">
+            <div class="col-lg-4 col-md-6 col-sm-8 align-self-center ">
                 <form method="post" class="form-main">
                     {% csrf_token %}
                     {{ other_form|crispy }}
@@ -110,7 +111,7 @@
     <div class="row text-center mx-auto">
 
         <!--Registration-->
-        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-4 col-md-5 col-sm-6">
+        <div class="card main mb-2 p-2 mx-auto col-xl-3 col-lg-4 col-md-5 col-sm-6">
             <h1 class="card-header">Patients</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/user-circle.svg' %}" class="card-img icon-lg" alt="patients">
@@ -143,7 +144,7 @@
         <!--End of Registration-->
         
         <!--Booking-->
-        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+        <div class="card main mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Bookings</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/bookmark.svg' %}" class="card-img icon-lg" alt="Bookings">
@@ -171,7 +172,7 @@
         <!--div class="w-100 d-none d-md-block"></div-->
         
         <!--Update Booking-->
-        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+        <div class="card main mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Payments</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/money-check-alt.svg' %}" class="card-img icon-lg" alt="payments">
@@ -181,16 +182,22 @@
                     <span class="btn btn-outline-success" data-toggle="tooltip" data-placement="bottom" title="New Payment">New
                     </span>
                 </a>
-                <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Payment">Edit
-                </span>
-                <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Payments">View
-                </span>
+                {% if user.is_staff %}
+                    <a href="{% url 'payments:payment_update_home' %}">
+                            <span class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="Edit Payment">Edit
+                        </span>
+                    </a>
+                {% endif %}
+                <a href="{% url 'payments:view_payment_all' %}">
+                    <span class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="View Payments">View
+                    </span>
+                </a>
             </div>
         </div>
         <!--End of Updating Booking-->
         
         <!--Reports and Extras-->
-        <div class="card mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
+        <div class="card main mb-2 p-2 mx-auto col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <h1 class="card-header">Extras</h1>
             {% if title == 'Home' %}
                 <img src="{% static 'users/logo_and_icons/icons/solid/box-open.svg' %}" class="card-img icon-lg" alt="payments">

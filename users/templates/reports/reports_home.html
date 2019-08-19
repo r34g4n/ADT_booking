@@ -1,0 +1,187 @@
+{% extends 'bookings/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <script type="text/javascript" src="{% static "bootstrap bundle/FileSaver.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap bundle/xlsx.core.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap bundle/tableexport.js" %}"></script>
+    <h1 id="header2">{% if heading %}{{ heading }}{% else %}Reports{% endif %}</h1>
+    {% if filter_form and reportTable %}
+
+        {% if filter_form %}
+            <div class="card mx-auto">
+                <div class="card-header unset-bg" id="filterHeading">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed"
+                                data-toggle="collapse"
+                                data-target="#filter-form" aria-expanded="false"
+                                aria-controls="filter-form">
+                            Filter Report
+                        </button>
+                    </h5>
+                </div>
+                <form class="main-form2 p-2 m-1 mx-auto text-center collapse show"
+                      id="filter-form" aria-labelledby="filterHeading"
+                      method="post" aria-expanded="false">
+                    {% csrf_token %}
+                    {% crispy filter_form %}
+                </form>
+            </div>
+        {% endif %}
+
+        {% if reportTable %}
+            <table class="table table-bordered" id="reportTable">
+                {% if patients %}
+                    <thead class="float-md-none">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone/Tel No.</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">UHID</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Age(yrs)</th>
+                    <th scope="col">Registered on</th>
+                    <th scope="col">Last Modified</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url 'users:patient-detail' patient.pk %}">{{ patient.full_name.title }}</a> </td>
+                        <td>{% if patient.phone_number %}{{ patient.phone_number }}{% else %}--{% endif %}</td>
+                        <td>{% if patient.email == None or patient.email == '' %}--{% else %}{{ patient.email }}{% endif %}</td>
+                        <td>{% if patient.uhid %}{{ patient.uhid }}{% else %}--{% endif %}</td>
+                        <td>{{ patient.gender.initial }}</td>
+                        <td>{{ patient.date_of_birth }}</td>
+                        <td>{{ patient.age }}</td>
+                        <td>{{ patient.date_added|date:"jS-N-Y" }}</td>
+                        <td>{{ patient.last_modified|date:"jS-N-Y" }}</td>
+                    </tr>
+                {% endfor %}
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><small>{{ patients.count }} Records</small></td>
+                    <td></td>
+                    <td><small>Generated on: {% now "jS F Y H:i" %}</small></td>
+                    <td></td>
+                    <td><small>By: {{ user.username }}@adtbooking</small></td>
+                    <td></td>
+            </tfoot>
+                {% endif %}
+
+                {% if sessions %}
+                    <thead class="float-md-none">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Doctor's Name</th>
+                    <th scope="col">Admission Date</th>
+                    <th scope="col">Discharge Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for session in sessions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'bookings:session-detail' session.id %}">
+                                {{ session.patient }}
+                            </a>
+                        </td>
+                        <td>{{ session.service }}</td>
+                        <td>{{ session.location }}</td>
+                        <td>{{ session.doctor }}</td>
+                        <td>{{ session.start_date|date:"jS-N-Y"}}</td>
+                        <td>{{ session.end_date|date:"jS-N-Y"}}</td>
+                        <td style="color: {{ session.status.indicator }};" >
+                            <b><i>{{ session.status }}</i></b>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><small>{{ sessions.count }} Records</small></td>
+                    <td></td>
+                    <td><small>Generated on: {% now "jS F Y H:i" %}</small></td>
+                    <td></td>
+                    <td><small>By: {{ user.username }}@adtbooking</small></td>
+                    <td></td>
+            </tfoot>
+                {% endif %}
+
+            </table>
+        {% endif %}
+
+    {% else %}
+        <div id="accordion" class="mx-auto text-center m-5">
+  <div class="card">
+    <div class="card-header unset-bg" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          PATIENTS
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <a href="{% url 'users:patient_listing_report' %}">
+            <div class="btn btn-link m-2">Patients' List</div>
+        </a> <br>
+        <div class="btn btn-link m-2">User  Logs</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header unset-bg" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          BOOKINGS
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <a href="{% url 'users:booking_listing_report' %}">
+            <div class="btn btn-link m-2">Bookings List</div><br>
+        </a>
+        <div class="btn btn-link m-2">User  Logs</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header unset-bg" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          PAYMENTS
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        <div class="btn btn-link m-2">Payments List</div><br>
+        <div class="btn btn-link m-2">User  Logs</div>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% endblock %}

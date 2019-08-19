@@ -54,6 +54,14 @@ class NewSessionStep2Form(forms.Form):
         initial=timezone.now().date()
     )
 
+    end_date = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        ),
+        label="Expected Discharge Date",
+        initial=timezone.now().date()
+    )
+
     service = forms.ModelChoiceField(services_choices)
     location = forms.ModelChoiceField(Location.objects.all())
     bed_type = forms.ModelChoiceField(BedType.objects.all())
@@ -68,6 +76,11 @@ class NewSessionStep2Form(forms.Form):
         if self.cleaned_data['start_date'] < timezone.now().date():
             raise forms.ValidationError("INVALID DATE. You cannot create or recreate past bookings")
         return self.cleaned_data['start_date']
+
+    def clean_end_date(self):
+        if self.cleaned_data['end_date'] < self.cleaned_data['start_date']:
+            raise forms.ValidationError("INVALID Discharge Date. Discharge date cannot be less than Admission Date")
+        return self.cleaned_data['end_date']
 
     def clean_payment_choice(self):
         if self.cleaned_data['payment_choice'] not in ('1', '2'):
@@ -92,3 +105,23 @@ class NewSessionStep3NewPaymentForm(forms.Form):
         if self.cleaned_data['date_of_payment'] > timezone.now().date():
             raise forms.ValidationError("INVALID DATE provided. FUTURE payments CANNOT be created")
         return self.cleaned_data['date_of_payment']
+
+
+class SessionUpdateModelForm(forms.ModelForm):
+
+    def clean_end_date(self):
+        if self.cleaned_data['end_date'] < self.cleaned_data['start_date']:
+            raise forms.ValidationError("INVALID Discharge Date. Discharge date cannot be less than the Admission Date")
+        return self.cleaned_data['end_date']
+
+    class Meta:
+        model = Session
+        exclude = ['payment', 'patient', 'date_added', 'last_modified']
+        labels = {
+            'start_date': 'Admission Date',
+            'end_date': 'Expected Discharge Date'
+        }
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+        }

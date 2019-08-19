@@ -34,7 +34,7 @@
                         <b>Service: </b> {{ object.service }}
                     </td>
                     <td>
-                        <b>Date: </b>{{ object.start_date|date:"jS-N-Y" }}
+                        <b>Admission Date: </b>{{ object.start_date|date:"jS-N-Y" }}
                     </td>
                     <td>
                         <b>Status: </b> <span style="color: {{ object.status.indicator }};">{{ object.status }}</span>
@@ -48,8 +48,12 @@
                     <td><b>Bed Type: </b>{{ object.bed_type }}</td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    <td>
                         <b>Doctor: </b>{{ object.doctor }}
+                    </td>
+                    <td><b>Discharged? </b>{{ object.is_past }}</td>
+                    <td>
+                        <b>{% if object.is_past %}Discharged on{% else %}Expected Discharge Date{% endif %}: </b>{{ object.end_date }}
                     </td>
                 </tr>
                 <tr class="bg-faded-theme text-center">
@@ -74,6 +78,16 @@
                         <b>Amount: </b>{{ object.payment.denom}} {{ object.payment.amount|intcomma }}{{ object.payment.denom_closer }}
                     </td>
                 </tr>
+                {% if object.remarks != "" %}
+                    <tr class="bg-faded-theme text-center">
+                        <td colspan="3"><b>Booking remarks</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <textarea cols="50" rows="5" disabled class="bg-unset border-info rounded">{{ object.remarks }}</textarea>
+                        </td>
+                    </tr>
+                {% endif %}
                 <tr class="bg-faded-theme text-center">
                     <td colspan="3"><b>Session Logs/History</b></td>
                 </tr>

@@ -1,6 +1,7 @@
 {% extends "users/logs_base.html" %}l>
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% block content %}
     <div>
         {{ form|crispy }}
@@ -16,7 +17,12 @@
         {% endif %}
     </div>
      <div class="submit-row">
+        <a href="{% url 'payments:view_payment_all' %}"><span class="btn btn-outline-info">Cancel</span></a>
          <input type="submit" value="Submit">&nbsp;
      </div>
+    <div class="d-flex align-items-center">
+        <small class="text-muted">Waiting...</small>
+        <div class="spinner-grow spinner-border-sm text-secondary ml-auto" role="status" aria-hidden="true"></div>
+    </div>
 {% endblock %}
 

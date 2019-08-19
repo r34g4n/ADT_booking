@@ -40,7 +40,8 @@ from payments.forms import (
 from .forms import (
     NewSessionStep1Form,
     NewSessionStep2Form,
-    NewSessionStep3NewPaymentForm
+    NewSessionStep3NewPaymentForm,
+    SessionUpdateModelForm
 )
 
 SESSION_DETAIL_URL = 'session/'
@@ -122,7 +123,7 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
         if form.is_valid():
 
             for key, value in form.cleaned_data.items():
-                if key == 'start_date':
+                if key in ('start_date', 'end_date'):
                     request.session["form2"][key] = str(value)
                 elif key in ('service', 'doctor', 'location', 'bed_type', 'booking_type'):
                     request.session["form2"][key] = value.pk
@@ -327,6 +328,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 doctor = Doctor.objects.filter(pk=request.session['form2']['doctor']).first()
                 doctor_diagnosis = request.session['form2']['diagnosis']
                 start_date = parse_date(request.session['form2']['start_date'])
+                end_date = parse_date(request.session['form2']['end_date'])
                 status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
                 remarks = request.session['form3b']['remarks']
                 location_id = request.session['form2']['location']
@@ -339,6 +341,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     doctor=doctor,
                     doctor_diagnosis=doctor_diagnosis,
                     start_date=start_date,
+                    end_date=end_date,
                     payment=pat_pay,
                     status=status,
                     location_id=location_id,
@@ -372,6 +375,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                 doctor = Doctor.objects.filter(pk=form2['doctor']).first()
                 doctor_diagnosis = form2['diagnosis']
                 start_date = parse_date(form2['start_date'])
+                end_date = parse_date(form2['end_date'])
                 status = SessionStatus.objects.get(pk=DEFAULT_SESSION_STATUS_ID)
                 remarks = form3b['remarks']
                 location_id = request.session['form2']['location']
@@ -384,6 +388,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     doctor=doctor,
                     doctor_diagnosis=doctor_diagnosis,
                     start_date=start_date,
+                    end_date=end_date,
                     status=status,
                     location_id=location_id,
                     bed_type_id=bed_type_id,
@@ -462,6 +467,7 @@ class CreateSessionStep3bView(LoginRequiredMixin, View):
                     doctor=doctor,
                     doctor_diagnosis=doctor_diagnosis,
                     start_date=start_date,
+                    end_date=end_date,
                     status=status,
                     location_id=location_id,
                     bed_type_id=bed_type_id,
@@ -515,7 +521,7 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
 
 class SessionUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = Session
-    fields = ['service', 'doctor', 'doctor_diagnosis', 'start_date', 'remarks', 'status', 'bed_type', 'location']
+    form_class = SessionUpdateModelForm
     success_message = "Session was successfully updated!"
 
     def test_func(self):

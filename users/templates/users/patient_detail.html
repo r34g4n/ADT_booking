@@ -38,6 +38,48 @@
                 </tr>
                 <tr>
                 </tr>
+                <tr>
+                    <th scope="rowgroup" class="bg-faded-theme text-center" colspan="3" >
+                        <h4>Current Bookings</h4>
+                    </th>
+                </tr>
+                <tr>
+                    <td><b>Admission - Discharge(Dates)</b></td>
+                    <td><b>Service</b></td>
+                    <td><b>Location</b></td>
+                </tr>
+                {% for session in patient.session_set.all|dictsortreversed:"start_date" %}
+                    {% if not session.is_past %}
+                    <tr>
+                        <td class="attention-seeking-link">
+                            <a href="{% url 'bookings:session-detail' session.pk %}">{{ session.start_date }} - {{ session.end_date }}</a>
+                        </td>
+                        <td><b>{{ session.service }}</b></td>
+                        <td><b>{{ session.location }}</b></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr>
+                    <th scope="rowgroup" class="bg-theme text-center" colspan="3" >
+                        <h4>Past Bookings(Discharged)</h4>
+                    </th>
+                </tr>
+                <tr>
+                    <td><b>Admission - Disharge(Dates)</b></td>
+                    <td><b>Service</b></td>
+                    <td><b>Location</b></td>
+                </tr>
+                {% for session in patient.session_set.all|dictsortreversed:"start_date" %}
+                    {% if session.is_past %}
+                    <tr>
+                        <td class="attention-seeking-link">
+                            <a href="{% url 'bookings:session-detail' session.pk %}">{{ session.start_date }} - {{ session.end_date }}</a>
+                        </td>
+                        <td><b>{{ session.service }}</b></td>
+                        <td><b>{{ session.location }}</b></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>

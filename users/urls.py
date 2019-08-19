@@ -11,5 +11,8 @@ urlpatterns = [
     path('search-patient/home/', views.search_patient_home, name='search_patient_home'),
     path('search-patient/<str:q>/', views.SearchPatients.as_view(), name='search_patient'),
     path('patient-autocomplete', views.PatientAutocompleteView.as_view(), name='patient_autocomplete'),
-    path('patient/<int:pk>', views.PatientDetailView.as_view(), name='patient-detail')
+    path('patient/<int:pk>', views.PatientDetailView.as_view(), name='patient-detail'),
+    path('reports/home', views.reports_home, name='reports_home'),
+    path('reports/bookings/list', views.booking_listing_report, name='booking_listing_report'),
+    path('reports/patients/list', views.patient_listing_report, name='patient_listing_report')
 ]

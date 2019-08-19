@@ -55,6 +55,6 @@ urlpatterns = [
 
 urlpatterns += staticfiles_urlpatterns()
 
-admin.site.site_header = "ADT Administration"
-admin.site.site_title = "ADT Admin System"
+admin.site.site_header = "ADT Booking Admin"
+admin.site.site_title = "ADT Admin Site"
 admin.site.index_title = "Welcome to ADT Booking System"

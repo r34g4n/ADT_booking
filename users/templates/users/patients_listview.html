@@ -34,7 +34,7 @@
                         <td>{{ patient.gender.initial }}</td>
                         <td>{{ patient.date_of_birth }}</td>
                         <td>{{ patient.age }}</td>
-                        <td>{{ patient.date_added|date:"jS-N-Y H:i" }}</td>
+                        <td>{{ patient.date_added|date:"jS-N-Y" }}</td>
                         <td>{{ patient.last_modified|date:"jS-N-Y H:i" }}</td>
                     </tr>
                 {% endfor %}

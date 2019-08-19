@@ -33,7 +33,7 @@ class Patient(models.Model):
     email = models.EmailField(unique=True, null=True, blank=True)
     uhid = models.BigIntegerField(unique=True, blank=True, null=True)
     history = HistoricalRecords()
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
@@ -65,7 +65,7 @@ class Doctor(models.Model):
     gender = models.ForeignKey(Gender, on_delete=models.PROTECT)
     email = models.EmailField(default=DEFAULT_EMAIL, null=True)
     history = HistoricalRecords()
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
