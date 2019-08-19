@@ -89,6 +89,7 @@ class PaymentsListView(LoginRequiredMixin, ListView):
     extra_context = {
         'title': 'View All Payments'
     }
+    paginate_by = 20
 
 
 def payment_update_home(request):

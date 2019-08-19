@@ -33,7 +33,8 @@ from .models import Patient
 from .forms import (
     PatientRegistrationForm,
     PatientReportFilterForm,
-    BookingReportFilter
+    BookingReportFilter,
+    PaymentReportFilter
 )
 
 # end of form imports
@@ -43,7 +44,8 @@ from .forms import (
 from users.models import Patient
 from .filters import(
     patient_list_root,
-    bookings_list_root
+    bookings_list_root,
+    payment_list_root
 )
 
 # Create your views here.
@@ -86,7 +88,7 @@ class PatientsListView(LoginRequiredMixin, ListView):
     model = Patient
     template_name = 'users/patients_listview.html'
     context_object_name = 'patients'
-    paginate_by = 10
+    paginate_by = 20
     ordering = ['-last_modified']
 
 
@@ -213,5 +215,22 @@ def booking_listing_report(request):
         if form.is_valid():
             print("form cleaned data -- ", form.cleaned_data)
             context['sessions'] = bookings_list_root(form.cleaned_data)
+
+    return render(request, 'reports/reports_home.html', context)
+
+
+@login_required
+def payment_listing_report(request):
+    context = {
+        'title': 'Bookings Listing',
+        'heading': 'Bookings listing',
+        'filter_form': PaymentReportFilter(request.POST or None),
+        'reportTable': True,
+        'payments': payment_list_root()
+    }
+    if request.method == 'POST':
+        form = PaymentReportFilter(request.POST)
+        if form.is_valid():
+            context['sessions'] = payment_list_root(form.cleaned_data)
 
     return render(request, 'reports/reports_home.html', context)

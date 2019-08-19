@@ -14,5 +14,6 @@ urlpatterns = [
     path('patient/<int:pk>', views.PatientDetailView.as_view(), name='patient-detail'),
     path('reports/home', views.reports_home, name='reports_home'),
     path('reports/bookings/list', views.booking_listing_report, name='booking_listing_report'),
-    path('reports/patients/list', views.patient_listing_report, name='patient_listing_report')
+    path('reports/patients/list', views.patient_listing_report, name='patient_listing_report'),
+    path('reports/payments/list', views.payment_listing_report, name='payment_listing_report')
 ]

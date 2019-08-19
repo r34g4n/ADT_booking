@@ -508,7 +508,7 @@ class PatientSessionListView(LoginRequiredMixin, ListView):
     model = Session
     template_name = 'bookings/session_listview.html'
     context_object_name = 'sessions'
-    paginate_by = 10
+    paginate_by = 20
 
     def get_queryset(self):
         patient = get_object_or_404(Patient, pk=self.kwargs.get('pk'))

@@ -30,7 +30,7 @@ SECRET_KEY = config['SECRET_KEY']
 # DEBUG = config.get('DEBUG_VALUE', False)
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.15.213','localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['172.16.15.213','localhost', '127.0.0.1', '192.168.42.198']
 
 
 # Application definition

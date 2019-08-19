@@ -2,11 +2,13 @@ from django import forms
 from .models import Patient, DEFAULT_EMAIL, Gender, Doctor
 from bookings.fields import ListTextWidget
 from bookings.models import Location, Service, SessionStatus
+from payments.models import PaymentType
 
 # crispy-forms import
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 from django.utils import timezone
+from dal import autocomplete
 
 PATIENT_SORT_BY = (
     ('registration_date_desc', 'Registration Date(DESC)'),
@@ -20,6 +22,14 @@ BOOKING_SORT_BY = (
     ('start_date_asc', 'Admission Date(ASC)'),
     ('end_date_desc', 'Discharge Date(DESC)'),
     ('end_date_asc', 'Discharge Date(ASC)'),
+    ('name_asc', 'Name(ASC)'),
+    ('name_desc', 'Name (DESC)')
+)
+PAYMENT_SORT_BY = (
+    ('date_desc', 'Date(DESC)'),
+    ('date_asc', 'Date(ASC)'),
+    ('amount_desc', 'Amount Date(DESC)'),
+    ('amount_asc', 'Amount Date(ASC)'),
     ('name_asc', 'Name(ASC)'),
     ('name_desc', 'Name (DESC)')
 )
@@ -106,6 +116,12 @@ class BookingReportFilter(forms.Form):
     )
     status = forms.ModelChoiceField(SessionStatus.objects.all(), required=False)
     sort_by = forms.ChoiceField(choices=BOOKING_SORT_BY)
+    patient = forms.ModelChoiceField(
+        Patient.objects.all(),
+        widget=autocomplete.ModelSelect2(url='users:patient_autocomplete'),
+        help_text="Tel no. or name",
+        required=False
+    )
 
     def clean(self):
         if self.cleaned_data['from_date'] is not None:
@@ -132,5 +148,63 @@ class BookingReportFilter(forms.Form):
                 Column('status', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row'
             ),
+            Row(
+                Column('patient', css_class='form-group col-md-3 mb-0'),
+                css_class='form-row'
+            ),
             Submit('submit', 'Filter')
         )
+
+
+class PaymentReportFilter(forms.Form):
+    from_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False,
+                                           label='Paid From date')
+    to_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=timezone.now)
+    type = forms.ModelChoiceField(PaymentType.objects.all(), required=False)
+    sort_by = forms.ChoiceField(choices=PAYMENT_SORT_BY)
+    patient = forms.ModelChoiceField(
+        Patient.objects.all(),
+        widget=autocomplete.ModelSelect2(url='users:patient_autocomplete'),
+        help_text="Tel no. or name",
+        required=False
+    )
+    from_amount = forms.DecimalField(
+        decimal_places=2,
+        min_value=0,
+        initial=0
+    )
+    to_amount = forms.DecimalField(
+        decimal_places=2,
+        min_value=0,
+        required=False
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(PaymentReportFilter, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('from_date', css_class='form-group col-md-3 mb-0'),
+                Column('to_date', css_class='form-group col-md-3 mb-0'),
+                Column('type', css_class='form-group col-md-3 mb-0'),
+                Column('sort_by', css_class='form-group col-md-3 mb-0'),
+                css_class='form-row',
+            ),
+            Row(
+                Row(
+                    Column('patient', css_class='form-group col-md-12 mb-0'),
+                ),
+                Column('from_amount', css_class='form-group col-md-3 mb-0'),
+                Column('to_amount', css_class='form-group col-md-3 mb-0'),
+                css_class='form-row',
+            ),
+            Submit('submit', 'Filter')
+        )
+
+
+    def clean(self):
+        if self.cleaned_data['from_date'] is not None:
+            if self.cleaned_data['from_date'] > self.cleaned_data['to_date']:
+                raise forms.ValidationError("Invalid date range!")
+            pass
+        pass

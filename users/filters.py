@@ -2,6 +2,7 @@ from .models import Patient, Gender
 from django.db.models import Q
 from django.utils import timezone
 from bookings.models import Session
+from payments.models import Payment
 
 SORT_BY_DICT = {
     'registration_date_desc': '-date_added',
@@ -17,6 +18,15 @@ SORT_BY_DICT2 = {
     'name_desc': '-patient__first_name',
     'end_date_desc': '-end_date',
     'end_date_asc': 'end_date',
+}
+
+PAYMENT_SORT_BY = {
+    'date_desc': '-date',
+    'date_asc': 'date',
+    'amount_desc': '-amount',
+    'amount_asc': 'amount',
+    'name_asc': '-patient__first_name',
+    'name_desc': 'patient__first_name'
 }
 
 
@@ -76,6 +86,8 @@ def bookings_list_root(*args, **kwargs):
 
     for key, value in filter_params.items():
         if value is not None:
+            if key == 'patient':
+                bookings_list = bookings_list.filter(patient=value)
             if key == 'status':
                 bookings_list = bookings_list.filter(status=value)
             if key == 'gender':
@@ -95,3 +107,41 @@ def bookings_list_root(*args, **kwargs):
                 for session in bookings_list:
                     print(session.patient)
     return bookings_list
+
+def payment_list_unfiltered():
+    print("was here")
+    for pay in Payment.objects.all():
+        print(pay)
+    return Payment.objects.all()
+
+def payment_list_root(*args, **kwargs):
+    if args:
+        kwargs = args[0]
+    filter_params = kwargs
+    sort_by = filter_params.get('sort_by', None)
+    sort_by = PAYMENT_SORT_BY.get(sort_by, None)
+
+    BLACK_LIST = (None)
+
+    payment_list = patient_list_unfiltered()
+    for key, value in filter_params.items():
+        if value:
+            if key == 'patient':
+                payment_list = payment_list.filter(patient__pk=value.pk)
+            if key == 'from_date':
+                payment_list = payment_list.filter(date__gte=value)
+            if key == 'to_date':
+                payment_list = payment_list.filter(date__lte=value)
+            if key == 'from_amount':
+                payment_list = payment_list.filter(amount__gte=value)
+            if key == 'to_amount':
+                payment_list = payment_list.filter(amount__lte=value)
+    if filter_params.get('sort_by'):
+        payment_list = payment_list.order_by(filter_params.get('sort_by'))
+    if filter_params.get('type'):
+        results = []
+        for pay in payment_list:
+            if pay.get_real_instance().type == filter_params.get('type'):
+                results.append(pay)
+        payment_list = results
+    return payment_list

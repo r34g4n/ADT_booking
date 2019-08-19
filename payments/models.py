@@ -41,7 +41,7 @@ class InsuranceCompany(models.Model):
 
 
 class Payment(PolymorphicModel):
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
     amount = models.DecimalField(max_digits=18, decimal_places=2)
     patient = models.ForeignKey('users.Patient', on_delete=models.PROTECT)
     history = HistoricalRecords()
