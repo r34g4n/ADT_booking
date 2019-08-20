@@ -65,7 +65,6 @@ def patient_list_root(*args, **kwargs):
     patients = patient_list_unfiltered()
 
     if kwargs:
-        print("kwargs -- ", kwargs)
         if registered_from_date == to and to is not None:
             patients = patients.filter(date_added=registered_from_date)
         else:
@@ -87,8 +86,6 @@ def booking_list_unfiltered():
 
 
 def bookings_list_root(*args, **kwargs):
-    print("args --  ", args)
-    print("kwargs -- ", kwargs)
     if args:
         kwargs = args[0]
     else:
@@ -97,11 +94,7 @@ def bookings_list_root(*args, **kwargs):
     filter_params = kwargs
     sort_by = filter_params.get('sort_by', None)
     sort_by = SORT_BY_DICT2.get(sort_by, None)
-    print('filter_params---filter__params')
     filter_params['sort_by'] = sort_by
-    for key, value in filter_params.items():
-        if value is not None:
-            print(f"{key} -- {value}")
 
     bookings_list = booking_list_unfiltered()
 
@@ -125,15 +118,12 @@ def bookings_list_root(*args, **kwargs):
                 bookings_list = bookings_list.filter(start_date__lte=value)
             if key == 'sort_by':
                 bookings_list = bookings_list.order_by(sort_by)
-                for session in bookings_list:
-                    print(session.patient)
     return bookings_list
 
 
 def payment_list_unfiltered():
-    for pay in Payment.objects.all():
-        print(pay)
     return Payment.objects.all()
+
 
 def payment_list_root(*args, **kwargs):
     if args:
@@ -148,9 +138,8 @@ def payment_list_root(*args, **kwargs):
     BLACK_LIST = (None)
 
     if filter_params.get('type', None):
-        print("was here")
+        print("cba passed thru")
         payment_type = PAYMENT_TYPE.get(filter_params['type'].pk)
-        print("----", payment_type)
         payment_list = Payment.objects.instance_of(payment_type)
     else:
         payment_list = payment_list_unfiltered()
