@@ -145,7 +145,7 @@
                         <td>{{ forloop.counter }}</td>
                         <td>
                             {% if user.is_staff %}<a href="{% url 'payments:payment-edit' payment.pk %}">{{ payment.patient }}</a>
-                            {% else %}{{ payment }}{% endif %}
+                            {% else %}{{ payment.patient }}{% endif %}
                         </td>
                         <td>{{ payment.get_real_instance.type }}</td>
                         <td>{{ payment.get_real_instance.additional_info }}</td>
