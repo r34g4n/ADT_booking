@@ -192,7 +192,6 @@ def patient_listing_report(request):
     if request.method == 'POST':
         form = PatientReportFilterForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             context['patients'] = patient_list_root(form.cleaned_data)
 
     return render(request, 'reports/reports_home.html', context)
@@ -207,13 +206,9 @@ def booking_listing_report(request):
         'reportTable': True,
         'sessions': bookings_list_root()
     }
-    print("request method -- ", request.method)
     if request.method == 'POST':
-        print(request.POST)
         form = BookingReportFilter(request.POST)
-        print("form_valid? -- ", form.is_valid())
         if form.is_valid():
-            print("form cleaned data -- ", form.cleaned_data)
             context['sessions'] = bookings_list_root(form.cleaned_data)
 
     return render(request, 'reports/reports_home.html', context)
@@ -228,8 +223,6 @@ def payment_listing_report(request):
         'reportTable': True,
         'payments': payment_list_root()[:10]
     }
-    print(context['filter_form'].fields)
-    print(payment_list_root().model)
     if request.method == 'POST':
         form = PaymentReportFilter(request.POST)
         if form.is_valid():

@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/reports/reports_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/reports/reports_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -229,7 +228,7 @@
       <workItem from="1566231811270" duration="6216000" />
       <workItem from="1566239880859" duration="1631000" />
       <workItem from="1566269764950" duration="618000" />
-      <workItem from="1566293090099" duration="6056000" />
+      <workItem from="1566293090099" duration="6504000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>
@@ -336,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566241084565</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="****">
+      <created>1566315214003</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1566315214003</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,6 +393,7 @@
     <MESSAGE value="updated db schema uml&#10;reports module almost done" />
     <MESSAGE value="payments reports almost done" />
     <MESSAGE value="payments reports done&#10;remaining user-logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="payments reports done&#10;remaining user-logs" />
+    <MESSAGE value="****" />
+    <option name="LAST_COMMIT_MESSAGE" value="****" />
   </component>
 </project>
