@@ -30,11 +30,13 @@
                                 {{ session.patient }}
                             </a>
                             {% if session.timeline == 'PAST' %}
-                                <span style="color: #6fc6de;" class="font-weight-bolder">&#10004;</span>
+                                <span style="color: #6fc6de;" class="font-weight-bolder">&#10004</span>
                              {% elif session.timeline == 'ACTIVE' %}
                                 <span style="color: #dadada" class="font-weight-bolder">&check;</span>
                             {% elif session.timeline == 'INCONSISTENT' %}
                                <span style="color: #de0b00;" class="font-weight-bolder"> &#10008;</span>
+                            {% else %}
+                                <span style="color: #468012;" class="font-weight-bolder">&#10171;</span>
                             {% endif %}
                         </td>
                         <td>{{ session.service }}</td>

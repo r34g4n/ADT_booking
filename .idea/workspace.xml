@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/reports/reports_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/reports/reports_home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -233,7 +230,7 @@
       <workItem from="1566239880859" duration="1631000" />
       <workItem from="1566269764950" duration="618000" />
       <workItem from="1566293090099" duration="8117000" />
-      <workItem from="1566458592139" duration="5998000" />
+      <workItem from="1566458592139" duration="6611000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>
@@ -361,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566317321163</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="prettier bookings report">
+      <created>1566464607434</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1566464607434</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,6 +418,7 @@
     <MESSAGE value="payments reports done&#10;remaining user-logs" />
     <MESSAGE value="****" />
     <MESSAGE value="removed forgotten debug prints" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed forgotten debug prints" />
+    <MESSAGE value="prettier bookings report" />
+    <option name="LAST_COMMIT_MESSAGE" value="prettier bookings report" />
   </component>
 </project>
