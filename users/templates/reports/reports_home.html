@@ -102,14 +102,23 @@
                             <a href="{% url 'bookings:session-detail' session.id %}">
                                 {{ session.patient }}
                             </a>
+                            {% if session.timeline == 'PAST' %}
+                                <span style="color: #6fc6de;" class="font-weight-bolder">&#10004</span>
+                             {% elif session.timeline == 'ACTIVE' %}
+                                <span style="color: #dadada" class="font-weight-bolder">&check;</span>
+                            {% elif session.timeline == 'INCONSISTENT' %}
+                               <span style="color: #de0b00;" class="font-weight-bolder"> &#10008;</span>
+                            {% endif %}
                         </td>
                         <td>{{ session.service }}</td>
                         <td>{{ session.location }}</td>
                         <td>{{ session.doctor }}</td>
                         <td>{{ session.start_date|date:"jS-N-Y"}}</td>
                         <td>{{ session.end_date|date:"jS-N-Y"}}</td>
-                        <td style="color: {{ session.status.indicator }};" >
-                            <b><i>{{ session.status }}</i></b>
+                        <td>
+                            <span style="background-color: {{ session.status.indicator }}; color: whitesmoke;" class="text-center p-1 rounded">
+                                <i>{{ session.status }}</i>
+                            </span>
                         </td>
                     </tr>
                 {% endfor %}
@@ -119,7 +128,7 @@
             <tfoot>
                 <tr>
                     <td></td>
-                    <td colspan="3"><small>{{ sessions.count }} Records</small></td>
+                    <td colspan="3"><small>{{ sessions.count }}{% if not sessions.count %}{{ sessions|length }}{% endif %} Records</small></td>
                     <td colspan="2"><small>Generated on: {% now "jS F Y H:i" %}</small></td>
                     <td colspan="2"><small>By: {{ user.username }}@adtbooking</small></td>
             </tfoot>

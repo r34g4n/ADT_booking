@@ -77,6 +77,18 @@ class Session(models.Model):
     @property
     def is_past(self):
         return self.end_date < timezone.now().date()
+    @property
+    def timeline(self):
+        if self.start_date > self.end_date:
+            return "INCONSISTENT"
+        if self.is_past:
+            return "PAST"
+        elif self.start_date <= timezone.now().date() <= self.end_date:
+            return "ACTIVE"
+        elif self.start_date > timezone.now().date() and self.end_date >= timezone.now().date():
+            return "FUTURE"
+        else:
+            return "INCONSISTENT"
 
 
 class CancelledSession(models.Model):

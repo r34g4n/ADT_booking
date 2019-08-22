@@ -118,6 +118,8 @@ def bookings_list_root(*args, **kwargs):
                 bookings_list = bookings_list.filter(start_date__lte=value)
             if key == 'sort_by':
                 bookings_list = bookings_list.order_by(sort_by)
+    if filter_params.get('timeline'):
+        bookings_list = [session for session in bookings_list if session.timeline == filter_params.get('timeline')]
     return bookings_list
 
 
@@ -138,7 +140,7 @@ def payment_list_root(*args, **kwargs):
     BLACK_LIST = (None)
 
     if filter_params.get('type', None):
-        print("cba passed thru")
+        print("cba")
         payment_type = PAYMENT_TYPE.get(filter_params['type'].pk)
         payment_list = Payment.objects.instance_of(payment_type)
     else:

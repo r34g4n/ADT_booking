@@ -34,6 +34,14 @@ PAYMENT_SORT_BY = (
     ('name_desc', 'Name (DESC)')
 )
 
+BOOKING_TIMELINE_CHOICE = (
+    ('', '-----select----'),
+    ('PAST', 'Past Bookings'),
+    ('ACTIVE', 'Active Bookings'),
+    ('FUTURE', 'Future Bookings'),
+    ('INCONSISTENT', 'Inconsistent Bookings')
+)
+
 
 class PatientRegistrationForm(forms.ModelForm):
 
@@ -122,6 +130,7 @@ class BookingReportFilter(forms.Form):
         help_text="Tel no. or name",
         required=False
     )
+    timeline = forms.ChoiceField(choices=BOOKING_TIMELINE_CHOICE, required=False)
 
     def clean(self):
         if self.cleaned_data['from_date'] is not None:
@@ -149,7 +158,10 @@ class BookingReportFilter(forms.Form):
                 css_class='form-row'
             ),
             Row(
-                Column('patient', css_class='form-group col-md-3 mb-0'),
+                Row(
+                    Column('patient', css_class='form-group col-md-3 mb-0'),
+                ),
+                Column('timeline', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row'
             ),
             Submit('submit', 'Filter')
@@ -209,7 +221,6 @@ class PaymentReportFilter(forms.Form):
             ),
             Submit('submit', 'Filter')
         )
-
 
     def clean(self):
         if self.cleaned_data['to_amount'] is not None:
