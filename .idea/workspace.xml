@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="50f540ea-8e3d-4d7f-8aa3-3349259cd540" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/templates/bookings/session_listview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/reports/reports_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/reports/reports_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookings/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -231,6 +231,8 @@
       <workItem from="1566269764950" duration="618000" />
       <workItem from="1566293090099" duration="8117000" />
       <workItem from="1566458592139" duration="6611000" />
+      <workItem from="1566467023139" duration="48000" />
+      <workItem from="1566531100573" duration="1652000" />
     </task>
     <task id="LOCAL-00001" summary="Huge changes;lost Track.&#10;-Modifies patient registration form&#10;-Reset passwords via email&#10;-history tables via simple_history library(for auditing purposes)">
       <created>1564241187391</created>

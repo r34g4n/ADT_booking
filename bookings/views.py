@@ -117,8 +117,6 @@ class CreateSessionStep2View(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-        print("uncleaned form: ", request.POST)
-        print("form is valid: ", form.is_valid())
         request.session['form2'] = {}
         if form.is_valid():
 
