@@ -172,6 +172,7 @@ class PatientAutocompleteView(autocomplete.Select2QuerySetView):
             )
         return qs
 
+
 @login_required
 def reports_home(request):
     context = {
@@ -187,7 +188,7 @@ def patient_listing_report(request):
         'heading': 'Patients Listing',
         'filter_form': PatientReportFilterForm(request.POST or None),
         'reportTable': True,
-        'patients': patient_list_root()
+        'patients': patient_list_root()[:50]
     }
     if request.method == 'POST':
         form = PatientReportFilterForm(request.POST)
@@ -204,7 +205,7 @@ def booking_listing_report(request):
         'heading': 'Bookings listing',
         'filter_form': BookingReportFilter(request.POST or None),
         'reportTable': True,
-        'sessions': bookings_list_root()
+        'sessions': bookings_list_root()[:50]
     }
     if request.method == 'POST':
         form = BookingReportFilter(request.POST)
@@ -221,7 +222,7 @@ def payment_listing_report(request):
         'heading': 'Payment listing',
         'filter_form': PaymentReportFilter(request.POST or None),
         'reportTable': True,
-        'payments': payment_list_root()[:10]
+        'payments': payment_list_root()[:50]
     }
     if request.method == 'POST':
         form = PaymentReportFilter(request.POST)

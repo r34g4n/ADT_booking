@@ -23,7 +23,8 @@ class SessionStatus(models.Model):
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name_plural = 'Session Statuses'
+        verbose_name = "Booking Status"
+        verbose_name_plural = 'Booking Statuses'
 
     def __str__(self):
         return self.status
@@ -60,8 +61,8 @@ class Session(models.Model):
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
     doctor = models.ForeignKey('users.Doctor', on_delete=models.PROTECT)
     doctor_diagnosis = models.TextField(max_length=300, default=DEFAULT_DIAGNOSIS)
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
+    start_date = models.DateField('Admission Date', default=timezone.now)
+    end_date = models.DateField('Discharge Date', default=timezone.now)
     payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT)
     status = models.ForeignKey(SessionStatus, on_delete=models.PROTECT, default=1)
     location = models.ForeignKey(Location, on_delete=models.PROTECT)
@@ -77,6 +78,9 @@ class Session(models.Model):
     @property
     def is_past(self):
         return self.end_date < timezone.now().date()
+    """is_past.admin_order_field = 'start_date'
+    is_past.boolean = True
+    is_past.short_description = 'Patient Discharged?'"""
     @property
     def timeline(self):
         if self.start_date > self.end_date:
@@ -89,6 +93,12 @@ class Session(models.Model):
             return "FUTURE"
         else:
             return "INCONSISTENT"
+    def __str__(self):
+        return f"for {self.patient.full_name}, {self.location}"
+
+    class Meta:
+        verbose_name = "Booking"
+        verbose_name_plural = 'Bookings'
 
 
 class CancelledSession(models.Model):
@@ -97,3 +107,7 @@ class CancelledSession(models.Model):
     history = HistoricalRecords()
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Cancelled Booking"
+        verbose_name_plural = 'Cancelled Bookings'
